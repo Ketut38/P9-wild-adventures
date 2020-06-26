@@ -1,4 +1,4 @@
-<mxfile modified="2020-06-25T16:44:36.956Z" host="app.diagrams.net" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.97 Safari/537.36" etag="FbwLzkNokPV6tI_lrP48" version="13.3.4" type="github" pages="7">
+<mxfile modified="2020-06-26T10:45:36.185Z" host="app.diagrams.net" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.97 Safari/537.36" etag="bl9omMD_z5FhtGWZTBZ0" version="13.3.4" type="github" pages="7">
   <diagram id="l16LvVKYGK52wR2hXaVe" name="Use Case global">
     <mxGraphModel dx="782" dy="437" grid="1" gridSize="10" guides="0" tooltips="1" connect="0" arrows="0" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
       <root>
@@ -279,7 +279,7 @@
       </root>
     </mxGraphModel>
   </diagram>
-  <diagram name="Copy of Use Case-Profil" id="CVIfVjK3WB-jEQ3jZeYL">
+  <diagram name=" Use Case-Paiement" id="CVIfVjK3WB-jEQ3jZeYL">
     <mxGraphModel dx="1117" dy="624" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="FKMfp64RvgORfzvBl-uU-0" />
@@ -330,7 +330,7 @@
       </root>
     </mxGraphModel>
   </diagram>
-  <diagram name="Copy of Copy of Use Case-Profil" id="-2d81UseDW01kPxZY3IM">
+  <diagram name="Use Case-Aventure" id="-2d81UseDW01kPxZY3IM">
     <mxGraphModel dx="782" dy="437" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="CJbKsG-ZHkJrWChJ9QG1-0" />
