@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "aventure")
+@Table(name = "adventure")
 public class Adventure implements Serializable {
 
 
@@ -22,8 +22,8 @@ public class Adventure implements Serializable {
     private String description;
 
 
-    @Column(name = "nbparticipant")
-    private Integer nbparticipant;
+    @Column(name = "participant_count")
+    private Integer participantCount;
 
 
     @Column(name = "location")
@@ -40,10 +40,10 @@ public class Adventure implements Serializable {
     @Column(name = "category_id")
     private Integer categoryId;
 
-    public Adventure(String title, String description, Integer nbparticipant, String location, Integer price, String image, Integer categoryId) {
+    public Adventure(String title, String description, Integer participantCount, String location, Integer price, String image, Integer categoryId) {
         this.title = title;
         this.description = description;
-        this.nbparticipant = nbparticipant;
+        this.participantCount = participantCount;
         this.location = location;
         this.price = price;
         this.image = image;
@@ -77,12 +77,12 @@ public class Adventure implements Serializable {
         this.description = description;
     }
 
-    public Integer getNbparticipant() {
-        return nbparticipant;
+    public Integer getParticipantCount() {
+        return participantCount;
     }
 
-    public void setNbparticipant(Integer nbparticipant) {
-        this.nbparticipant = nbparticipant;
+    public void setParticipantCount(Integer participantCount) {
+        this.participantCount = participantCount;
     }
 
     public String getLocation() {
@@ -123,7 +123,7 @@ public class Adventure implements Serializable {
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
-                ", nbparticipant=" + nbparticipant +
+                ", nbparticipant=" + participantCount +
                 ", location='" + location + '\'' +
                 ", price=" + price +
                 ", image='" + image + '\'' +
