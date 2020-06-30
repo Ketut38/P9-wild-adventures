@@ -1,13 +1,13 @@
-package com.wildadventures.mscategories;
+package com.wildadventures.mssession;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class MsCategoriesApplication {
+public class MsSessionApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(MsCategoriesApplication.class, args);
+		SpringApplication.run(MsSessionApplication.class, args);
 	}
 
 }
