@@ -9,6 +9,6 @@ import java.util.List;
 @Repository
 public interface SessionRepository extends JpaRepository<Session, Integer> {
 
-    List<Session> findAllByAventureId(Integer aventureId);
+    List<Session> findAllByAdventureId(Integer adventureId);
 
 }

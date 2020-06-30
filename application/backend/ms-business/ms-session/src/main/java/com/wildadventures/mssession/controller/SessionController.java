@@ -5,9 +5,12 @@ import com.wildadventures.mssession.model.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
+@RequestMapping("api/sessions")
 public class SessionController{
 
 
@@ -19,19 +22,28 @@ public class SessionController{
     }
 
 
-    @RequestMapping(value = "/session/getAll/{aventureId}", method = RequestMethod.GET)
-    public List<Session> getAllSessionsByAventureId(@PathVariable Integer adventureId){
-        List<Session> sessions = sessionService.getAllSessionsByAventureId(adventureId);
+    @GetMapping(value = "/{adventureId}/sessions")
+    public List<Session> getAllSessionsByAdventureId(@PathVariable Integer adventureId){
+        List<Session> sessions = sessionService.getAllSessionsByAdventureId(adventureId);
         return sessions;
     }
 
 
-    @GetMapping(value = "/session/{sessionId}")
+    @GetMapping(value = "/{sessionId}")
     public Session findById(@PathVariable Integer sessionId) {
         Session session = sessionService.findById(sessionId);
         return session;
     }
 
 
+    // TODO : Enlever cette méthode de test
+    @GetMapping()
+    public List<Session> findAll() {
+        List<Session> sessionList = new ArrayList<>();
+        sessionList.add(new Session(LocalDate.now(), LocalDate.now()));
+        sessionList.add(new Session(LocalDate.now(), LocalDate.now()));
+        sessionList.add(new Session(LocalDate.now(), LocalDate.now()));
 
+        return sessionList;
+    }
 }

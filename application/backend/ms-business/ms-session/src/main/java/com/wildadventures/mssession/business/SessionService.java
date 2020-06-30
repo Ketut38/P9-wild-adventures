@@ -3,9 +3,11 @@ package com.wildadventures.mssession.business;
 import com.wildadventures.mssession.consumer.SessionRepository;
 import com.wildadventures.mssession.model.Session;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class SessionService {
 
     private SessionRepository sessionRepository;
@@ -15,8 +17,8 @@ public class SessionService {
         this.sessionRepository = sessionRepository;
     }
 
-    public List<Session> getAllSessionsByAventureId(Integer aventureId) {
-        return sessionRepository.findAllByAventureId(aventureId);
+    public List<Session> getAllSessionsByAdventureId(Integer adventureId) {
+        return sessionRepository.findAllByAdventureId(adventureId);
     }
 
     public Session findById(Integer sessionId) {
