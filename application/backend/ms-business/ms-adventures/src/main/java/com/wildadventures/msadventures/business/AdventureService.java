@@ -3,9 +3,11 @@ package com.wildadventures.msadventures.business;
 import com.wildadventures.msadventures.consumer.AdventureRepository;
 import com.wildadventures.msadventures.model.Adventure;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class AdventureService {
 
     private AdventureRepository adventureRepository;

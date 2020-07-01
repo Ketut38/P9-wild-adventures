@@ -4,9 +4,11 @@ package com.wildadventures.msadventures.business;
 import com.wildadventures.msadventures.consumer.CategoryRepository;
 import com.wildadventures.msadventures.model.Category;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class CategoryService {
 
     private CategoryRepository categoryRepository;
