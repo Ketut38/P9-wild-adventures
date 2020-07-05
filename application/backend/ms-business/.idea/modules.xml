@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/ms-adventures/ms-adventures.iml" filepath="$PROJECT_DIR$/ms-adventures/ms-adventures.iml" />
       <module fileurl="file://$PROJECT_DIR$/ms-reservations/ms-reservations.iml" filepath="$PROJECT_DIR$/ms-reservations/ms-reservations.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ms-session/ms-session.iml" filepath="$PROJECT_DIR$/ms-session/ms-session.iml" />
     </modules>
   </component>
 </project>

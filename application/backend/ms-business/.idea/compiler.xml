@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="ms-reservations" />
+        <module name="ms-session" />
         <module name="ms-adventures" />
       </profile>
     </annotationProcessing>
