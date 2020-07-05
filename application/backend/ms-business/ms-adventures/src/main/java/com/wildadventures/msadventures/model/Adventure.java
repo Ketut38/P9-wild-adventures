@@ -2,12 +2,13 @@ package com.wildadventures.msadventures.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "adventure")
 public class Adventure implements Serializable {
-
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,6 +37,11 @@ public class Adventure implements Serializable {
     @Column(name = "image")
     private String image;
 
+    @ManyToMany
+    @JoinTable( name = "category_adventure",
+            joinColumns = @JoinColumn( name = "adventure_id" ),
+            inverseJoinColumns = @JoinColumn( name = "category_id" ) )
+    private List<Category> categories = new ArrayList<>();
 
     @Column(name = "category_id")
     private Integer categoryId;
@@ -47,7 +53,6 @@ public class Adventure implements Serializable {
         this.location = location;
         this.price = price;
         this.image = image;
-        this.categoryId = categoryId;
     }
 
     public Adventure() {
@@ -117,6 +122,14 @@ public class Adventure implements Serializable {
         this.categoryId = categoryId;
     }
 
+    public List<Category> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(List<Category> categories) {
+        this.categories = categories;
+    }
+
     @Override
     public String toString() {
         return "Aventure{" +
@@ -127,7 +140,6 @@ public class Adventure implements Serializable {
                 ", location='" + location + '\'' +
                 ", price=" + price +
                 ", image='" + image + '\'' +
-                ", categoryId=" + categoryId +
                 '}';
     }
 }

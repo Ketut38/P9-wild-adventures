@@ -14,3 +14,10 @@ INSERT INTO adventure (id, description, location, participant_count, price, titl
 INSERT INTO adventure (id, description, location, participant_count, price, title, image, category_id) VALUES (7, 'Cotoyez corails et poissons fluorescent dans les profondeurs de la mer', 'Phuket, Thailand', 10, 385, 'Plongée sous-marine', 'http://blog.adrenaline-hunter.com/wp-content/uploads/2017/12/Plongee-sous-marine-.jpg', 2);
 INSERT INTO adventure (id, description, location, participant_count, price, title, image, category_id) VALUES (9, 'Entourée par la nature nordique, venez monter sur une motoneige qui file a toute allure. N''oubliez pas votre permis !', 'Tromso, Norvege', 10, 100, 'Motoneige', 'https://www.aventurequebec.ca/public_upload/images/Entreprise/Centre%20de%20Vacances%20-%20Ferme%205%20%C3%89toiles/thumbnails/Motoneige%20Fjord-1200x630-000000.jpg', 3);
 
+INSERT INTO category_adventure(category_id, adventure_id) VALUES (1, 1);
+INSERT INTO category_adventure(category_id, adventure_id) VALUES (1, 2);
+INSERT INTO category_adventure(category_id, adventure_id) VALUES (1, 3);
+INSERT INTO category_adventure(category_id, adventure_id) VALUES (2, 4);
+INSERT INTO category_adventure(category_id, adventure_id) VALUES (3, 4);
+INSERT INTO category_adventure(category_id, adventure_id) VALUES (4, 4);
+

@@ -3,6 +3,7 @@ networks:
     wild-adventures-network:
 
 services:
+# Base de données adventure
     adventure-db:
         container_name: adventure-db
         build:
@@ -11,7 +12,7 @@ services:
         image: adventure-db:latest
         networks:
           - wild-adventures-network      
-            
+# Microservice adventure        
     adventure-ms:
         container_name: adventure-ms
         build:
@@ -25,7 +26,7 @@ services:
       - wild-adventures-network
     depends_on:
       - adventure-db    
-
+# Base de données session
     sessions-db:
         container_name: sessions-db
         build:
@@ -34,7 +35,7 @@ services:
         image: sessions-db:latest
         networks:
           - wild-adventures-network
-
+# Microservice session 
     session-ms:
         container_name: session-ms
         build:

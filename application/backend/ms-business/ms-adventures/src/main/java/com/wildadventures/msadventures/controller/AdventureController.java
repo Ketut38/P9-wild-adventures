@@ -26,7 +26,8 @@ public class AdventureController {
 
     @GetMapping(value = "/{id}")
     public Adventure findById(@PathVariable Integer id) {
-        return adventureService.findById(id);
+        Adventure adventure =  adventureService.findById(id);
+        return adventure;
     }
 
 
