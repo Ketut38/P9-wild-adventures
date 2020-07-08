@@ -1,6 +1,6 @@
 // API Services
 
-export const apiPrefix = "http://localhost:NUMERO_PORT";
+export const apiPrefix = "http://localhost:9001";
 
 /**** API Commande ****/
 export const apiCommande = apiPrefix + "/";
@@ -16,10 +16,10 @@ export const apiSessionById = apiPrefix + "/";
 export const apiInscription = apiPrefix + "/utilisateur/utilisateur/save";
 
 /**** API Aventure ****/
-export const apiAventureBySession = apiPrefix + "/";
-export const apiAventureByCategory = apiPrefix + "/";
-export const apiAventure = apiPrefix + "/";
-export const apiAventureById = apiPrefix + "/";
+export const apidAdventureBySession = apiPrefix + "/";
+export const apidAdventureByCategory = apiPrefix + "/";
+export const apidAdventure = apiPrefix + "/api/adventures";
+export const apidAdventureById = apiPrefix + "/api/adventures";
 
 /**** API Category ****/
 export const apiCategory = apiPrefix + "/";

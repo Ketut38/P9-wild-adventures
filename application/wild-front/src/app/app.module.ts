@@ -11,10 +11,19 @@ import { AdventureService } from "./services/adventure.service";
 import { CategoryService } from "./services/category.service";
 import { CommentService } from "./services/comment.service";
 import { SessionService } from "./services/session.service";
+import { CategoryComponent } from "./category/category.component";
+import { AdventureComponent } from "./adventure/adventure.component";
+import { HttpClientModule } from "@angular/common/http";
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, FooterComponent],
-  imports: [BrowserModule, AppRoutingModule],
+  declarations: [
+    AppComponent,
+    HeaderComponent,
+    FooterComponent,
+    CategoryComponent,
+    AdventureComponent
+  ],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [
     UserService,
     OrderService,
