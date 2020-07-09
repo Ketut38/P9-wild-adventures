@@ -1,9 +1,10 @@
 <div class="container">
   <!-- Jumbotron Header -->
   <header class="jumbotron my-4">
-    <h3 class="display-3">LIVE EPIC MOMENTS!</h3>
+    <h3 class="display-3">NOS AVENTURES!</h3>
     <p class="lead">
-      Réservez parmi 6827 activités d'aventures dans le monde entier !
+      Réservez parmi nos différentes activités d'aventures dans le monde entier
+      !
     </p>
     <a class="btn btn-primary btn-lg" [routerLink]="['allAdventures']"
       >Voir les aventures disponible !</a
@@ -20,7 +21,7 @@
           <p class="card-text">{{ adv.description }}</p>
         </div>
         <div class="card-footer">
-          <a class="btn btn-primary" [routerLink]="['adventure', adv.id]"
+          <a class="btn btn-primary" [routerLink]="[getAventureById(adv.id)]"
             >Voir details</a
           >
         </div>

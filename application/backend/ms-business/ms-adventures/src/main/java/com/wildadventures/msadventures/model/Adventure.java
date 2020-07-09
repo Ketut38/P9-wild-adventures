@@ -37,11 +37,11 @@ public class Adventure implements Serializable {
     @Column(name = "image")
     private String image;
 
-    @ManyToMany
-    @JoinTable( name = "category_adventure",
-            joinColumns = @JoinColumn( name = "adventure_id" ),
-            inverseJoinColumns = @JoinColumn( name = "category_id" ) )
-    private List<Category> categories = new ArrayList<>();
+//    @ManyToMany
+//    @JoinTable( name = "category_adventure",
+//            joinColumns = @JoinColumn( name = "adventure_id" ),
+//            inverseJoinColumns = @JoinColumn( name = "category_id" ) )
+//    private List<Category> categories = new ArrayList<>();
 
     @Column(name = "category_id")
     private Integer categoryId;
@@ -122,13 +122,13 @@ public class Adventure implements Serializable {
         this.categoryId = categoryId;
     }
 
-    public List<Category> getCategories() {
-        return categories;
-    }
-
-    public void setCategories(List<Category> categories) {
-        this.categories = categories;
-    }
+//    public List<Category> getCategories() {
+//        return categories;
+//    }
+//
+//    public void setCategories(List<Category> categories) {
+//        this.categories = categories;
+//    }
 
     @Override
     public String toString() {

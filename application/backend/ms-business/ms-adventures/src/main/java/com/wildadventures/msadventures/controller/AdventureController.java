@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("api/adventures")
 public class AdventureController {
 
@@ -24,7 +25,7 @@ public class AdventureController {
         return adventureService.getAllAventures();
     }
 
-    @GetMapping(value = "/{id}")
+    @GetMapping(value = "adventure/{id}")
     public Adventure findById(@PathVariable Integer id) {
         Adventure adventure =  adventureService.findById(id);
         return adventure;
