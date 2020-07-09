@@ -1,0 +1,50 @@
+<!-- Team -->
+<section id="team" class="pb-5">
+  <div class="container">
+    <header class="jumbotron my-4">
+      <h5 class="section-title h1">Nos categories d'aventures</h5>
+    </header>
+    <div class="row">
+      <!-- Team member -->
+      <div
+        *ngFor="let cat of allCategories"
+        class="col-xs-12 col-sm-6 col-md-4"
+      >
+        <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
+          <div class="mainflip">
+            <div class="frontside">
+              <div class="card">
+                <div class="card-body text-center">
+                  <p>
+                    <img
+                      class=" img-fluid"
+                      src="{{ cat.image }}"
+                      alt="card image"
+                    />
+                  </p>
+                  <h4 class="card-title">{{ cat.title }}</h4>
+                  <p class="card-text">{{ cat.keywords }}</p>
+                </div>
+              </div>
+            </div>
+            <div class="backside">
+              <div class="card">
+                <div class="card-body text-center mt-4">
+                  <h4 class="card-title">{{ cat.title }}</h4>
+                  <p class="card-text">{{ cat.description }}</p>
+                  <a
+                    class="btn btn-primary"
+                    routerLink="/{{ cat.id }}/adventures"
+                    >Voir activité {{ cat.title }}</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- ./Team member -->
+    </div>
+  </div>
+</section>
+<!-- Team -->

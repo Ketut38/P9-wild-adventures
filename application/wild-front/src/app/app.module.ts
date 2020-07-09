@@ -14,6 +14,7 @@ import { SessionService } from "./services/session.service";
 import { CategoryComponent } from "./category/category.component";
 import { AdventureComponent } from "./adventure/adventure.component";
 import { HttpClientModule } from "@angular/common/http";
+import { AdventureDetailsComponent } from './adventure-details/adventure-details.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { HttpClientModule } from "@angular/common/http";
     HeaderComponent,
     FooterComponent,
     CategoryComponent,
-    AdventureComponent
+    AdventureComponent,
+    AdventureDetailsComponent
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [

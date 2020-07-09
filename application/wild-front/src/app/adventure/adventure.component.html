@@ -5,14 +5,14 @@
     <p class="lead">
       Réservez parmi 6827 activités d'aventures dans le monde entier !
     </p>
-    <a class="btn btn-primary btn-lg" [routerLink]="['allAventures']"
+    <a class="btn btn-primary btn-lg" [routerLink]="['allAdventures']"
       >Voir les aventures disponible !</a
     >
   </header>
 
   <!-- Page Features -->
   <div class="row text-center">
-    <div *ngFor="let adv of aventureList" class="col-lg-3 col-md-6 mb-4">
+    <div *ngFor="let adv of adventureList" class="col-lg-3 col-md-6 mb-4">
       <div class="card h-100">
         <img class="card-img-top" src="{{ adv.image }}" alt="" />
         <div class="card-body">
@@ -20,7 +20,7 @@
           <p class="card-text">{{ adv.description }}</p>
         </div>
         <div class="card-footer">
-          <a class="btn btn-primary" [routerLink]="['aventure', adv.id]"
+          <a class="btn btn-primary" [routerLink]="['adventure', adv.id]"
             >Voir details</a
           >
         </div>

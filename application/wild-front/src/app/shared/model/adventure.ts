@@ -10,5 +10,5 @@ export class Adventure {
   price: number;
   image: string;
   sessions: Session[];
-  categories: Category[];
+  category_id: number;
 }

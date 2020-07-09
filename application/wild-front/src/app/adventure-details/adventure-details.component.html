@@ -1,0 +1,32 @@
+<div class="container">
+  <header class="jumbotron my-4">
+    <div class="wrapper row">
+      <div class="preview col-md-6">
+        <h1 class="display-3">{{ adventure.title }}</h1>
+        <img src="{{ adventure.image }}" class="img-fluid" alt="" />
+      </div>
+      <div class="details col-md-6">
+        <p class="lead">
+          <span
+            >Prix :
+            <b class="lead font-weight-bold"> {{ adventure.price }} €</b></span
+          >
+        </p>
+
+        <p class="lead font-weight-bold">Description :</p>
+
+        <p>{{ adventure.description }}</p>
+        <form class="d-flex justify-content-left">
+          <!-- Default input -->
+          <button
+            class="btn btn-primary btn-md my-0 p"
+            [routerLink]="['/addCommande', adventure.id]"
+            type="submit"
+          >
+            Commander
+          </button>
+        </form>
+      </div>
+    </div>
+  </header>
+</div>

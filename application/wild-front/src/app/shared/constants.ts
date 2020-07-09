@@ -17,13 +17,13 @@ export const apiInscription = apiPrefix + "/utilisateur/utilisateur/save";
 
 /**** API Aventure ****/
 export const apidAdventureBySession = apiPrefix + "/";
-export const apidAdventureByCategory = apiPrefix + "/";
+export const apidAdventureByCategory = apiPrefix + "/api/categories";
 export const apidAdventure = apiPrefix + "/api/adventures";
 export const apidAdventureById = apiPrefix + "/api/adventures";
 
 /**** API Category ****/
-export const apiCategory = apiPrefix + "/";
-export const apiCategoryById = apiPrefix + "/";
+export const apiCategory = apiPrefix + "/api/categories";
+export const apiCategoryById = apiPrefix + "/api/categories";
 
 /**** API Paiement ****/
 export const apiPayment = apiPrefix + "/";

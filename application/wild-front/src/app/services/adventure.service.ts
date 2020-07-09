@@ -2,7 +2,11 @@ import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { Adventure } from "../shared/model/adventure";
-import { apidAdventure, apidAdventureById } from "../shared/constants";
+import {
+  apidAdventure,
+  apidAdventureById,
+  apidAdventureByCategory
+} from "../shared/constants";
 import { Session } from "../shared/model/session";
 
 @Injectable({
@@ -16,6 +20,12 @@ export class AdventureService {
   }
 
   getAdventureById(id: number): Observable<Adventure> {
-    return this.http.get<Adventure>(apidAdventureById + "/" + id);
+    return this.http.get<Adventure>(apidAdventureById + "/adventure/" + id);
+  }
+
+  getAventuresByCategory(id: number): Observable<Adventure[]> {
+    return this.http.get<Adventure[]>(
+      apidAdventureByCategory + id + "/adventures"
+    );
   }
 }
