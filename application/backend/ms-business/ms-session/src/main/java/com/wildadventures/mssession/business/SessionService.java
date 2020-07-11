@@ -17,11 +17,15 @@ public class SessionService {
         this.sessionRepository = sessionRepository;
     }
 
+    public List<Session> findAll() {
+        return sessionRepository.findAll();
+    }
+
     public List<Session> getAllSessionsByAdventureId(Integer adventureId) {
         return sessionRepository.findAllByAdventureId(adventureId);
     }
 
     public Session findById(Integer sessionId) {
-        return sessionRepository.findById(sessionId).get();
+        return sessionRepository.getOne(sessionId);
     }
 }

@@ -1,6 +1,7 @@
 package com.wildadventures.mssession.controller;
 
 import com.wildadventures.mssession.business.SessionService;
+import com.wildadventures.mssession.controller.exceptions.SessionNotFoundException;
 import com.wildadventures.mssession.model.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -21,6 +22,10 @@ public class SessionController{
         this.sessionService = sessionService;
     }
 
+    @GetMapping()
+    public List<Session> findAll() {
+        return  sessionService.findAll();
+    }
 
     @GetMapping(value = "/{adventureId}/sessions")
     public List<Session> getAllSessionsByAdventureId(@PathVariable Integer adventureId){
@@ -32,18 +37,8 @@ public class SessionController{
     @GetMapping(value = "/{sessionId}")
     public Session findById(@PathVariable Integer sessionId) {
         Session session = sessionService.findById(sessionId);
+        if(session == null)
+            throw new SessionNotFoundException("La session avec l'id " + sessionId + " est INTROUVABLE");
         return session;
-    }
-
-
-    // TODO : Enlever cette méthode de test
-    @GetMapping()
-    public List<Session> findAll() {
-        List<Session> sessionList = new ArrayList<>();
-        sessionList.add(new Session(LocalDate.now(), LocalDate.now()));
-        sessionList.add(new Session(LocalDate.now(), LocalDate.now()));
-        sessionList.add(new Session(LocalDate.now(), LocalDate.now()));
-
-        return sessionList;
     }
 }

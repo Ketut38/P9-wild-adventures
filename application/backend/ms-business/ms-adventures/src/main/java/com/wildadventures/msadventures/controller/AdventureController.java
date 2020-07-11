@@ -1,6 +1,7 @@
 package com.wildadventures.msadventures.controller;
 
 import com.wildadventures.msadventures.business.AdventureService;
+import com.wildadventures.msadventures.controller.exceptions.AdventureNotFoundException;
 import com.wildadventures.msadventures.model.Adventure;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -25,15 +26,12 @@ public class AdventureController {
         return adventureService.getAllAventures();
     }
 
-    @GetMapping(value = "adventure/{id}")
+    @GetMapping(value = "/adventure/{id}")
     public Adventure findById(@PathVariable Integer id) {
         Adventure adventure =  adventureService.findById(id);
+        if(adventure==null)
+            throw new AdventureNotFoundException("L'aventure avec l'id, " + id + " est INTROUVABLE");
         return adventure;
     }
 
-
-    @GetMapping(path = "{categoryId}/adventures")
-    public List<Adventure> getAventuresByCategoryId(@PathVariable Integer categoryId) {
-        return adventureService.getAventuresByCategoryId(categoryId);
-    }
 }

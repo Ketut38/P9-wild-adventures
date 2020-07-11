@@ -21,15 +21,11 @@ public class Category {
     @Column(name = "description")
     private String description;
 
-
     @Column(name = "image")
     private String image;
 
-//    @ManyToMany
-//    @JoinTable( name = "category_adventure",
-//            joinColumns = @JoinColumn( name = "category_id" ),
-//            inverseJoinColumns = @JoinColumn( name = "adventure_id" ) )
-//    private List<Adventure> adventures = new ArrayList<>();
+    @OneToMany(fetch = FetchType.EAGER)
+    private List<Adventure> adventures = new ArrayList<>();
 
     public Category(String title, String description, String image) {
         this.title = title;
@@ -72,13 +68,14 @@ public class Category {
         this.image = image;
     }
 
-//    public List<Adventure> getAdventures() {
-//        return adventures;
-//    }
-//
-//    public void setAdventures(List<Adventure> adventures) {
-//        this.adventures = adventures;
-//    }
+    public List<Adventure> getAdventures() {
+        return adventures;
+    }
+
+    public Category setAdventures(List<Adventure> adventures) {
+        this.adventures = adventures;
+        return this;
+    }
 
     @Override
     public String toString() {

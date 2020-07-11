@@ -9,5 +9,4 @@ import java.util.List;
 
 @Repository
 public interface AdventureRepository extends JpaRepository<Adventure, Integer> {
-    List<Adventure> findAllByCategoryId(@Param("categoryId")Integer categoryId);
 }
