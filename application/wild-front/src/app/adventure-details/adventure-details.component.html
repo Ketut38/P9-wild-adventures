@@ -18,13 +18,8 @@
         <p>{{ adventure.description }}</p>
         <form class="d-flex justify-content-left">
           <!-- Default input -->
-          <button
-            class="btn btn-primary btn-md my-0 p"
-            [routerLink]="['/addCommande', adventure.id]"
-            type="submit"
-          >
-            Commander
-          </button>
+          <a class="btn btn-primary" routerLink="/adventures/{{adventure.id}}/sessions"
+            >Voir les sessions disponibles</a>
         </form>
       </div>
     </div>

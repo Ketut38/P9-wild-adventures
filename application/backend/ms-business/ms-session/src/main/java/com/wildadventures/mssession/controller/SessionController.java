@@ -2,12 +2,10 @@ package com.wildadventures.mssession.controller;
 
 import com.wildadventures.mssession.business.SessionService;
 import com.wildadventures.mssession.controller.exceptions.SessionNotFoundException;
-import com.wildadventures.mssession.model.Session;
+import com.wildadventures.mssession.model.Sessions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -23,22 +21,22 @@ public class SessionController{
     }
 
     @GetMapping()
-    public List<Session> findAll() {
+    public List<Sessions> findAll() {
         return  sessionService.findAll();
     }
 
     @GetMapping(value = "/{adventureId}/sessions")
-    public List<Session> getAllSessionsByAdventureId(@PathVariable Integer adventureId){
-        List<Session> sessions = sessionService.getAllSessionsByAdventureId(adventureId);
+    public List<Sessions> getAllSessionsByAdventureId(@PathVariable Integer adventureId){
+        List<Sessions> sessions = sessionService.getAllSessionsByAdventureId(adventureId);
         return sessions;
     }
 
 
     @GetMapping(value = "/{sessionId}")
-    public Session findById(@PathVariable Integer sessionId) {
-        Session session = sessionService.findById(sessionId);
-        if(session == null)
-            throw new SessionNotFoundException("La session avec l'id " + sessionId + " est INTROUVABLE");
-        return session;
+    public Sessions findById(@PathVariable Integer sessionId) {
+        Sessions sessions = sessionService.findById(sessionId);
+        if(sessions == null)
+            throw new SessionNotFoundException("La sessions avec l'id " + sessionId + " est INTROUVABLE");
+        return sessions;
     }
 }

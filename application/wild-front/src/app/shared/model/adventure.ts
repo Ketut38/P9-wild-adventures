@@ -5,7 +5,7 @@ export class Adventure {
   id: number;
   title: string;
   description: string;
-  nbparticipant: number;
+  participantCount: number;
   location: string;
   price: number;
   image: string;

@@ -21,9 +21,8 @@
           <p class="card-text">{{ adv.description }}</p>
         </div>
         <div class="card-footer">
-          <a class="btn btn-primary" [routerLink]="[getAventureById(adv.id)]"
-            >Voir details</a
-          >
+          <a class="btn btn-primary" routerLink= "/adventures/{{ adv.id }}"
+            >Voir details</a>
         </div>
       </div>
     </div>

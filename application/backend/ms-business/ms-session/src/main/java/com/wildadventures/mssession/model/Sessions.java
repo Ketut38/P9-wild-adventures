@@ -8,7 +8,7 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "session")
-public class Session implements Serializable {
+public class Sessions implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,12 +23,12 @@ public class Session implements Serializable {
     @Column(name = "end_date")
     private LocalDate endDate;
 
-    public Session(LocalDate startDate, LocalDate endDate) {
+    public Sessions(LocalDate startDate, LocalDate endDate) {
         this.startDate = startDate;
         this.endDate = endDate;
     }
 
-    public Session() {
+    public Sessions() {
     }
 
     public Integer getId() {
@@ -65,7 +65,7 @@ public class Session implements Serializable {
 
     @Override
     public String toString() {
-        return "Session{" +
+        return "Sessions{" +
                 "id=" + id +
                 ", startdate=" + startDate +
                 ", enddate=" + endDate +

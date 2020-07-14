@@ -1,5 +1,7 @@
 package com.wildadventures.msadventures.model;
 
+import org.hibernate.Session;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;

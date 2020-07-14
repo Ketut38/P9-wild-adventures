@@ -16,6 +16,7 @@ import { AdventureComponent } from "./adventure/adventure.component";
 import { HttpClientModule } from "@angular/common/http";
 import { AdventureDetailsComponent } from './adventure-details/adventure-details.component';
 import { AdventuresByCategoryComponent } from './adventures-by-category/adventures-by-category.component';
+import { SessionsByAdventureComponent } from './sessions-by-adventure/sessions-by-adventure.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { AdventuresByCategoryComponent } from './adventures-by-category/adventur
     CategoryComponent,
     AdventureComponent,
     AdventureDetailsComponent,
-    AdventuresByCategoryComponent
+    AdventuresByCategoryComponent,
+    SessionsByAdventureComponent
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [
