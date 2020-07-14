@@ -39,6 +39,9 @@ public class Adventure implements Serializable {
     @Column(name = "image")
     private String image;
 
+    @OneToMany(mappedBy = "adventure", targetEntity = AdventureSession.class, fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.REMOVE})
+    private List<AdventureSession> categoryAdventures = new ArrayList<>(0);
+
 
     public Adventure(String title, String description, Integer participantCount, String location, Integer price, String image) {
         this.title = title;
@@ -108,6 +111,14 @@ public class Adventure implements Serializable {
         this.image = image;
     }
 
+    public List<AdventureSession> getCategoryAdventures() {
+        return categoryAdventures;
+    }
+
+    public Adventure setCategoryAdventures(List<AdventureSession> categoryAdventures) {
+        this.categoryAdventures = categoryAdventures;
+        return this;
+    }
 
     @Override
     public String toString() {
