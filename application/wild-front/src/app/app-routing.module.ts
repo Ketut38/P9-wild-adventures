@@ -5,9 +5,10 @@ import { AdventureDetailsComponent } from "./adventure-details/adventure-details
 import { CategoryComponent } from "./category/category.component";
 import { AdventuresByCategoryComponent } from './adventures-by-category/adventures-by-category.component';
 import { SessionsByAdventureComponent } from './sessions-by-adventure/sessions-by-adventure.component';
+import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
-  { path: "", component: AdventureComponent },
+  { path: "", component: HomeComponent },
   { path: "adventures", component: AdventureComponent },
   { path: "adventures/:id", component: AdventureDetailsComponent },
   { path : "adventuresByCategory/:id", component : AdventuresByCategoryComponent}, 

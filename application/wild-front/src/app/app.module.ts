@@ -17,6 +17,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { AdventureDetailsComponent } from './adventure-details/adventure-details.component';
 import { AdventuresByCategoryComponent } from './adventures-by-category/adventures-by-category.component';
 import { SessionsByAdventureComponent } from './sessions-by-adventure/sessions-by-adventure.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { SessionsByAdventureComponent } from './sessions-by-adventure/sessions-b
     AdventureComponent,
     AdventureDetailsComponent,
     AdventuresByCategoryComponent,
-    SessionsByAdventureComponent
+    SessionsByAdventureComponent,
+    HomeComponent
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [
