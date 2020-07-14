@@ -10,7 +10,7 @@ export class CategoryComponent implements OnInit {
   public allCategories: any = [];
   public categories: any = [];
   constructor(private categoryService: CategoryService) {
-    this.categories = [
+    /* this.categories = [
       {
         id: 1,
         title: "Terre",
@@ -35,7 +35,7 @@ export class CategoryComponent implements OnInit {
         image:
           "https://img6.onthesnow.com/image/la/99/en_montagne_neige_et_redoux_ne_99461.jpg"
       }
-    ];
+    ]; */
   }
 
   ngOnInit() {
@@ -43,11 +43,10 @@ export class CategoryComponent implements OnInit {
   }
 
   getAllCategories() {
-    /* this.categoryService.getAllCategories().subscribe(res => {
-      //this.allCategories = res;
-      this.allCategories = this.categories;
+     this.categoryService.getAllCategories().subscribe(res => {
+      this.allCategories = res;
       console.log("getAllCategories ", this.allCategories);
-    }); */
+    }); 
     this.allCategories = this.categories;
   }
 }

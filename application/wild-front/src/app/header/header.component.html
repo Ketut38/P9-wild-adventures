@@ -1,4 +1,4 @@
-<nav class="navbar navbar-dark bg-dark navbar-expand-lg navStyle">
+<nav class="navbar navbar-expand-lg navStyle">
   <a class="brand-navbar" href="#"
     ><img
       src="/assets/images/logo.jpg"
@@ -22,7 +22,7 @@
           >
         </li>
         <li class="nav-item">
-          <a routerLink="category" routerLinkActive="active" class="nav-link"
+          <a routerLink="categories" routerLinkActive="active" class="nav-link"
             >Liste des catégories</a
           >
         </li>
@@ -33,12 +33,12 @@
     </div>
     <div class="navbar-collapse navbar-nav navbar-right" id="collapsibleNavbar">
       <ul class="navbar-nav ml-auto navList">
-        <li class="nav-item"><a class="nav-link">Déconnexion</a></li>
+        <li class="nav-item" *ngIf="isUserLoggedIn"><a class="nav-link">Déconnexion</a></li>
         <li class="nav-item">
-          <a class="nav-link">Connexion</a>
+          <a class="nav-link" *ngIf="!isUserLoggedIn">Connexion</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link">Inscription</a>
+          <a class="nav-link" *ngIf="isUserLoggedIn">Inscription</a>
         </li>
       </ul>
     </div>

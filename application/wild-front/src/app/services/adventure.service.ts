@@ -25,7 +25,7 @@ export class AdventureService {
 
   getAventuresByCategory(id: number): Observable<Adventure[]> {
     return this.http.get<Adventure[]>(
-      apidAdventureByCategory + id + "/adventures"
+      apidAdventureByCategory + "/adventures"
     );
   }
 }
