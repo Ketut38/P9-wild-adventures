@@ -12,13 +12,17 @@
         <img class="d-flex align-self-start" src="{{advCat.image}}" alt="Generic placeholder image">
         <div class="media-body pl-3">
           <div class="price">
-            <a routerLink="/aventure/{{advCat.id}}">{{advCat.title}}</a>
+            <a routerLink="/adventures/{{advCat.id}}">{{advCat.title}}</a>
             <small>{{advCat.price}} €/pers.</small>
           </div>
           <div class="stats">
             <span><i class="fa fa-user"></i>{{advCat.participantCount}} participants max.</span>
             <span><i class="fa fa-map-marker"></i>{{advCat.location}}</span>
-            <div class="address">{{advCat.description}}</div>
+            <span>
+                <a routerLink="adventures/{{advCat.id}}/sessions"
+                    style="margin-left: 2rem;">Voir les sessions</a>
+            </span>
+            <span class="address">{{advCat.description}}</span>
           </div>
         </div>
       </div>

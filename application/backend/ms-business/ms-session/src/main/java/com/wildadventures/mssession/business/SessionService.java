@@ -21,8 +21,12 @@ public class SessionService {
         return sessionRepository.findAll();
     }
 
-    public List<Sessions> getAllSessionsByAdventureId(Integer adventureId) {
+    public Iterable<Sessions> findAllByAdventureId(Integer adventureId) {
         return sessionRepository.findAllByAdventureId(adventureId);
+    }
+
+    public Iterable<Sessions> findAllByIdIn(List<Integer> sessionsIdList){
+        return sessionRepository.findAllByIdIn(sessionsIdList);
     }
 
     public Sessions findById(Integer sessionId) {

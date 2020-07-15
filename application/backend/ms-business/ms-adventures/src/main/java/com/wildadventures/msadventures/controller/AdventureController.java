@@ -1,25 +1,27 @@
 package com.wildadventures.msadventures.controller;
 
 import com.wildadventures.msadventures.business.AdventureService;
+import com.wildadventures.msadventures.business.CategoryService;
 import com.wildadventures.msadventures.controller.exceptions.AdventureNotFoundException;
 import com.wildadventures.msadventures.model.Adventure;
+import com.wildadventures.msadventures.model.Category;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("api/adventures")
 public class AdventureController {
 
+    @Autowired
     private AdventureService adventureService;
 
     @Autowired
-    public AdventureController (AdventureService adventureService){
-        this.adventureService = adventureService;
-    }
-
+    private CategoryService categoryService;
 
     @GetMapping()
     public List<Adventure> getAllAventures() {

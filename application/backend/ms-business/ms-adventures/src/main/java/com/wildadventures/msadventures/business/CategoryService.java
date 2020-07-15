@@ -34,4 +34,8 @@ public class CategoryService {
     public Category findByTitle(String title){
         return categoryRepository.getByTitle(title);
     }
+
+    public Iterable<Category> findAllByIdIn(List<Integer> categoriesIdList){
+        return categoryRepository.findAllByIdIn(categoriesIdList);
+    }
 }

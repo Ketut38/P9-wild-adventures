@@ -11,6 +11,7 @@ const routes: Routes = [
   { path: "", component: HomeComponent },
   { path: "adventures", component: AdventureComponent },
   { path: "adventures/:id", component: AdventureDetailsComponent },
+  { path: "adventuresByCategory/:id/adventures/:id/sessions", component: SessionsByAdventureComponent },
   { path : "adventuresByCategory/:id", component : AdventuresByCategoryComponent}, 
   { path: "adventures/:id/sessions", component: SessionsByAdventureComponent }, 
   { path: "categories", component: CategoryComponent }

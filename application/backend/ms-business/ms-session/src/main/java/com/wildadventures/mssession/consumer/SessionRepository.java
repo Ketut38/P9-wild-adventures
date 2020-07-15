@@ -9,6 +9,8 @@ import java.util.List;
 @Repository
 public interface SessionRepository extends JpaRepository<Sessions, Integer> {
 
-    List<Sessions> findAllByAdventureId(Integer adventureId);
+    Iterable<Sessions> findAllByAdventureId(Integer adventureId);
+
+    Iterable<Sessions> findAllByIdIn(List<Integer> sessionsIdList);
 
 }

@@ -13,13 +13,13 @@ INSERT INTO category (id, title, description, image) VALUES (3, 'Neige', 'Cascad
 INSERT INTO category (id, title, description, image) VALUES (4, 'Air', 'Faire du parapente, parachute ou saut a l''elastique.... Il n''y a rien sous vos pieds !', 'https://www.visitjamestown.com.au/wp-content/uploads/2018/06/Air-Show-1-600x600.jpg');
 INSERT INTO category (id, title, description, image) VALUES (5, 'Crazy', 'Stage de survie, Wildlife, Plongée avec des requins ou crocodiles, ... Adrenalines garanties. ', 'https://media.adrenaline-hunter.com/cache/activity_gallery_305x170/media/2017/12/01651d698452776fe9626c3a89d85c31.jpeg');
 
-INSERT INTO category_adventures (category_id, adventures_id) VALUES (1,1);
-INSERT INTO category_adventures (category_id, adventures_id) VALUES (1,2);
-INSERT INTO category_adventures (category_id, adventures_id) VALUES (1,3);
+INSERT INTO category_adventures (category_id, adventure_id) VALUES (1,1);
+INSERT INTO category_adventures (category_id, adventure_id) VALUES (1,2);
+INSERT INTO category_adventures (category_id, adventure_id) VALUES (1,3);
 
-INSERT INTO category_adventures (category_id, adventures_id) VALUES (2,4);
-INSERT INTO category_adventures (category_id, adventures_id) VALUES (2,5);
-INSERT INTO category_adventures (category_id, adventures_id) VALUES (2,6);
+INSERT INTO category_adventures (category_id, adventure_id) VALUES (2,4);
+INSERT INTO category_adventures (category_id, adventure_id) VALUES (2,5);
+INSERT INTO category_adventures (category_id, adventure_id) VALUES (2,6);
 
-INSERT INTO category_adventures (category_id, adventures_id) VALUES (3,7);
-INSERT INTO category_adventures (category_id, adventures_id) VALUES (3,8);
+INSERT INTO category_adventures (category_id, adventure_id) VALUES (3,7);
+INSERT INTO category_adventures (category_id, adventure_id) VALUES (3,8);

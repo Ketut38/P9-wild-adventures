@@ -23,15 +23,6 @@ public class AdventureSession implements Serializable {
     public AdventureSession() {
     }
 
-    public Adventure getAdventure() {
-        return adventure;
-    }
-
-    public AdventureSession setAdventure(Adventure adventure) {
-        this.adventure = adventure;
-        return this;
-    }
-
     public Integer getAdventureId() {
         return adventureId;
     }
