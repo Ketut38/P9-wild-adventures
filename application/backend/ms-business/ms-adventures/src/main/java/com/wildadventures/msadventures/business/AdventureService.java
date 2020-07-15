@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AdventureService {
@@ -22,10 +23,11 @@ public class AdventureService {
     }
 
     public Adventure findById(Integer id) {
-        return adventureRepository.findById(id).get();
+         Optional<Adventure> adventure = adventureRepository.findById(id);
+         if(adventure.isPresent()){
+             return adventure.get();
+         }
+         return null;
     }
 
-    public List<Adventure> getAventuresByCategoryId(Integer categoryId){
-        return adventureRepository.findAllByCategoryId(categoryId);
-    }
 }

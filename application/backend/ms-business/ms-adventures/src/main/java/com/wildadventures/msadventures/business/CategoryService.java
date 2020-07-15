@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CategoryService {
@@ -23,10 +24,18 @@ public class CategoryService {
     }
 
     public Category findById(Integer id) {
-        return categoryRepository.findById(id).get();
+        Optional<Category> category = categoryRepository.findById(id);
+        if(category.isPresent()){
+            return category.get();
+        }
+        return null;
     }
 
     public Category findByTitle(String title){
         return categoryRepository.getByTitle(title);
+    }
+
+    public Iterable<Category> findAllByIdIn(List<Integer> categoriesIdList){
+        return categoryRepository.findAllByIdIn(categoriesIdList);
     }
 }

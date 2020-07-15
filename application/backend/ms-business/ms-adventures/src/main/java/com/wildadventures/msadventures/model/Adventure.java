@@ -1,5 +1,7 @@
 package com.wildadventures.msadventures.model;
 
+import org.hibernate.Session;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -37,16 +39,11 @@ public class Adventure implements Serializable {
     @Column(name = "image")
     private String image;
 
-    @ManyToMany
-    @JoinTable( name = "category_adventure",
-            joinColumns = @JoinColumn( name = "adventure_id" ),
-            inverseJoinColumns = @JoinColumn( name = "category_id" ) )
-    private List<Category> categories = new ArrayList<>();
+    @OneToMany(mappedBy = "adventure", targetEntity = AdventureSession.class, fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.REMOVE})
+    private List<AdventureSession> adventureSessions = new ArrayList<>(0);
 
-    @Column(name = "category_id")
-    private Integer categoryId;
 
-    public Adventure(String title, String description, Integer participantCount, String location, Integer price, String image, Integer categoryId) {
+    public Adventure(String title, String description, Integer participantCount, String location, Integer price, String image) {
         this.title = title;
         this.description = description;
         this.participantCount = participantCount;
@@ -114,20 +111,13 @@ public class Adventure implements Serializable {
         this.image = image;
     }
 
-    public Integer getCategoryId() {
-        return categoryId;
+    public List<AdventureSession> getCategoryAdventures() {
+        return adventureSessions;
     }
 
-    public void setCategoryId(Integer categoryId) {
-        this.categoryId = categoryId;
-    }
-
-    public List<Category> getCategories() {
-        return categories;
-    }
-
-    public void setCategories(List<Category> categories) {
-        this.categories = categories;
+    public Adventure setCategoryAdventures(List<AdventureSession> categoryAdventures) {
+        this.adventureSessions = categoryAdventures;
+        return this;
     }
 
     @Override

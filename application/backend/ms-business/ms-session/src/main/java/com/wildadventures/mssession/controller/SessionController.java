@@ -1,11 +1,12 @@
 package com.wildadventures.mssession.controller;
 
 import com.wildadventures.mssession.business.SessionService;
-import com.wildadventures.mssession.model.Session;
+import com.wildadventures.mssession.controller.exceptions.SessionNotFoundException;
+import com.wildadventures.mssession.model.Sessions;
+import com.wildadventures.mssession.proxy.MsAdventureProxy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,6 +14,8 @@ import java.util.List;
 @RequestMapping("api/sessions")
 public class SessionController{
 
+    @Autowired
+    private MsAdventureProxy msAdventureProxy;
 
     private SessionService sessionService;
 
@@ -21,29 +24,28 @@ public class SessionController{
         this.sessionService = sessionService;
     }
 
+    @GetMapping()
+    public List<Sessions> findAll() {
+        return  sessionService.findAll();
+    }
 
-    @GetMapping(value = "/{adventureId}/sessions")
-    public List<Session> getAllSessionsByAdventureId(@PathVariable Integer adventureId){
-        List<Session> sessions = sessionService.getAllSessionsByAdventureId(adventureId);
+    @GetMapping(value = "/{id}")
+    public Sessions findById(@PathVariable Integer id) {
+        Sessions sessions = sessionService.findById(id);
+        if(sessions == null)
+            throw new SessionNotFoundException("La sessions avec l'id " + id + " est INTROUVABLE");
         return sessions;
     }
 
+    @GetMapping(value = "/{adventureId}/sessions")
+    public List<Sessions> sessionList(@PathVariable Integer adventureId) {
 
-    @GetMapping(value = "/{sessionId}")
-    public Session findById(@PathVariable Integer sessionId) {
-        Session session = sessionService.findById(sessionId);
-        return session;
+        List<Sessions> sessions = new ArrayList<>(0);
+        sessionService.findAllByAdventureId(adventureId).forEach(sessions::add);
+        if (sessions.isEmpty()) {
+            throw new SessionNotFoundException("Il n'existe aucune sessions pour cette aventure");
+        }
+        return sessions;
     }
 
-
-    // TODO : Enlever cette méthode de test
-    @GetMapping()
-    public List<Session> findAll() {
-        List<Session> sessionList = new ArrayList<>();
-        sessionList.add(new Session(LocalDate.now(), LocalDate.now()));
-        sessionList.add(new Session(LocalDate.now(), LocalDate.now()));
-        sessionList.add(new Session(LocalDate.now(), LocalDate.now()));
-
-        return sessionList;
-    }
 }

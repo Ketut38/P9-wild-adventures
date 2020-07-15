@@ -1,6 +1,7 @@
 package com.wildadventures.msreservations.controller;
 
 import com.wildadventures.msreservations.business.OrderService;
+import com.wildadventures.msreservations.controller.exceptions.OrderNotFoundException;
 import com.wildadventures.msreservations.model.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -34,7 +35,7 @@ public class OrderController {
     @GetMapping(value = "/{id}")
     public Order findById(@PathVariable Integer id) throws Exception {
         Order order = orderService.findById(id);
-        if(order==null) throw new Exception("La commande avec l'id " + id + " est INTROUVABLE");
+        if(order==null) throw new OrderNotFoundException("La commande avec l'id " + id + " est INTROUVABLE");
 
         return order;
     }

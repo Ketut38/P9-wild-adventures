@@ -1,7 +1,7 @@
 package com.wildadventures.mssession.business;
 
 import com.wildadventures.mssession.consumer.SessionRepository;
-import com.wildadventures.mssession.model.Session;
+import com.wildadventures.mssession.model.Sessions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,11 +17,19 @@ public class SessionService {
         this.sessionRepository = sessionRepository;
     }
 
-    public List<Session> getAllSessionsByAdventureId(Integer adventureId) {
+    public List<Sessions> findAll() {
+        return sessionRepository.findAll();
+    }
+
+    public Iterable<Sessions> findAllByAdventureId(Integer adventureId) {
         return sessionRepository.findAllByAdventureId(adventureId);
     }
 
-    public Session findById(Integer sessionId) {
-        return sessionRepository.findById(sessionId).get();
+    public Iterable<Sessions> findAllByIdIn(List<Integer> sessionsIdList){
+        return sessionRepository.findAllByIdIn(sessionsIdList);
+    }
+
+    public Sessions findById(Integer sessionId) {
+        return sessionRepository.getOne(sessionId);
     }
 }

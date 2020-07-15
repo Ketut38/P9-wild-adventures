@@ -1,5 +1,7 @@
 <body>
   <app-header></app-header>
-  <router-outlet></router-outlet>
-  <app-footer *ngIf="1 + 2 == 5"></app-footer>
+  <div class="container">
+    <router-outlet></router-outlet>
+  </div>
+  <app-footer *ngIf="condition"></app-footer>
 </body>
