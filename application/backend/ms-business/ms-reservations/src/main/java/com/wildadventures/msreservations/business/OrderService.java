@@ -31,16 +31,8 @@ public class OrderService {
         return orderRepository.save(order);
     }
 
-    public Order updateOrder(Integer orderToUpdateId, Order order) {
-        Order orderToUpdate = orderRepository.findById(orderToUpdateId).get();
-        if(orderToUpdate != null){
-            orderToUpdate.setUserId(order.getUserId());
-            orderToUpdate.setSessionId(order.getSessionId());
-            orderToUpdate.setDate(order.getDate());
-            orderToUpdate.setIsPaid(order.getIsPaid());
-            return orderRepository.save(orderToUpdate);
-        }
-        return null;
+    public Order updateOrder(Order order) {
+        return orderRepository.save(order);
     }
 
     public void deleteOrderById(Integer orderId){

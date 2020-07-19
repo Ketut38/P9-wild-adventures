@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Session } from '../shared/model/session';
+import { Session} from '../shared/model/session';
+import { Order } from '../shared/model/order';
 import { SessionService } from '../services/session.service';
 import { ActivatedRoute } from '@angular/router';
 import { Adventure } from '../shared/model/adventure';
@@ -12,7 +13,16 @@ import { AdventureService } from '../services/adventure.service';
 })
 export class SessionsByAdventureComponent implements OnInit {
 
-  public sessions : Session[] = [];
+  public sessionsByAdv : Session[];
+  public orders = [{id : 100, sessionId: 100, userId: 100, date: new Date()}];
+  order: Order = {  
+    id: null,
+    userId: null,
+    sessionId: null,
+    date: null,
+    isPaid: false
+  }
+
   adventure: Adventure = {  id: null, 
                             title: '', 
                             description : '',
@@ -35,7 +45,30 @@ export class SessionsByAdventureComponent implements OnInit {
       console.log("this.adventure", res)
       this.adventure = res;
     })
-    this.sessionService.get
+    /* this.sessionService.getSessionsByAdventure(id).subscribe((res) => {
+      console.log("res", res);
+      this.sessionsByAdv = res;
+    }) */ 
+
+    this.sessionsByAdv = [
+      {id: 1, adventureId: 1, startDate: "2018-05-14", endDate: "2018-05-20"},
+      {id: 2, adventureId: 1, startDate: "2018-11-19", endDate: "2018-11-25"},
+      {id: 3, adventureId: 1, startDate: "2018-11-19", endDate: "2018-11-25"},
+      {id: 4, adventureId: 1, startDate: "2018-11-19", endDate: "2018-11-25"}
+      
+    ]
   }
+
+  createOrderDemand(sessionId : number){
+    this.order.id = null;
+    this.order.sessionId = sessionId;
+    this.order.userId = parseInt(sessionStorage.getItem("userId"));
+    this.order.date = new Date();
+    console.log("orderDemands", JSON.stringify(this.order))
+    this.orders.push(this.order);
+    sessionStorage.setItem("orderDemands", JSON.stringify(this.orders));
+  }
+
+
 
 }

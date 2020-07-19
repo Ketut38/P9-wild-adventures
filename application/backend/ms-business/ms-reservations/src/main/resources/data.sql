@@ -5,3 +5,6 @@ INSERT INTO orders(id, user_id, session_id, order_date, is_paid) VALUES (4, 1, 1
 INSERT INTO orders(id, user_id, session_id, order_date, is_paid) VALUES (5, 3, 1, '10-04-2020', TRUE);
 INSERT INTO orders(id, user_id, session_id, order_date, is_paid) VALUES (6, 2, 1, '15-01-2020', TRUE);
 INSERT INTO orders(id, user_id, session_id, order_date, is_paid) VALUES (7, 1, 1, '20-01-2020', TRUE);
+
+
+

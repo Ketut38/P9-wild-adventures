@@ -2,6 +2,8 @@
 
 export const apiPrefix = "http://localhost:9001";
 
+export const apiPrefixSession = "http://localhost:9002";
+
 /**** API Commande ****/
 export const apiCommande = apiPrefix + "/";
 export const apiCommandeById = apiPrefix + "/";
@@ -12,7 +14,6 @@ export const apiSaveCommande = apiPrefix + "/";
 export const apiLogin = apiPrefix + "/";
 export const apiUserByusername = apiPrefix + "/";
 export const apiUserByuserid = apiPrefix + "/";
-export const apiSessionById = apiPrefix + "/";
 export const apiInscription = apiPrefix + "/utilisateur/utilisateur/save";
 
 /**** API Aventure ****/
@@ -24,6 +25,9 @@ export const apidAdventureById = apiPrefix + "/api/adventures";
 /**** API Category ****/
 export const apiCategory = apiPrefix + "/api/categories";
 export const apiCategoryById = apiPrefix + "/api/categories";
+
+/**** API Session ****/
+export const apiSession = apiPrefixSession + "/api/sessions";
 
 /**** API Paiement ****/
 export const apiPayment = apiPrefix + "/";

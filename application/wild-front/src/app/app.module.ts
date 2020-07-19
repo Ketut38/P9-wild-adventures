@@ -18,6 +18,7 @@ import { AdventureDetailsComponent } from './adventure-details/adventure-details
 import { AdventuresByCategoryComponent } from './adventures-by-category/adventures-by-category.component';
 import { SessionsByAdventureComponent } from './sessions-by-adventure/sessions-by-adventure.component';
 import { HomeComponent } from './home/home.component';
+import { BasketDetailsComponent } from './basket-details/basket-details.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { HomeComponent } from './home/home.component';
     AdventureDetailsComponent,
     AdventuresByCategoryComponent,
     SessionsByAdventureComponent,
-    HomeComponent
+    HomeComponent,
+    BasketDetailsComponent
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [

@@ -2,6 +2,7 @@ package com.wildadventures.msreservations.controller;
 
 import com.wildadventures.msreservations.bean.AdventureBean;
 import com.wildadventures.msreservations.business.OrderService;
+import com.wildadventures.msreservations.consumer.OrderSessionRepository;
 import com.wildadventures.msreservations.controller.exceptions.OrderNotFoundException;
 import com.wildadventures.msreservations.controller.exceptions.OrderValidationException;
 import com.wildadventures.msreservations.model.Order;
@@ -13,9 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,6 +25,9 @@ public class OrderController {
 
     @Autowired
     private MsOrderProxy msOrderProxy;
+
+    @Autowired
+    private OrderSessionRepository orderSessionRepository;
 
     private OrderService orderService;
 
@@ -60,39 +62,56 @@ public class OrderController {
     }
 
     @PostMapping(value = "/save")
-    public ResponseEntity<Void> saveOrder(@RequestBody Order order) {
-        Order addedOrder = orderService.addOrder(order);
-
-        if (addedOrder == null)
-            return ResponseEntity.noContent().build();
-
-        URI location = ServletUriComponentsBuilder
-                .fromCurrentRequest()
-                .path("/{id}")
-                .buildAndExpand(addedOrder.getId())
-                .toUri();
-
-        return ResponseEntity.created(location).build();
-    }
-
-
-    @PutMapping (value = "/update/{id}")
-    public ResponseEntity<Order> updateOrder(@RequestBody Order orderDetails, @PathVariable Integer id) {
-
-        Order order = null;
-        Optional<Order> orderOptional = orderService.findById(id);
-        if(!orderOptional.isPresent()){
-            throw new OrderNotFoundException("L'aventure avec l'id, " + id + " est INTROUVABLE");
-        }
-        order = orderOptional.get();
-        if(order.getId() == null){
+    public ResponseEntity<Order> createOrder(@RequestBody Order order){
+        log.info("Début méthode : createOrder()");
+        if(order == null) {
+            log.error("La commande fournie est nulle");
             throw new OrderValidationException("La commande fournie est nulle");
         }
-        order.setUserId(orderDetails.getUserId());
-        order.setSessionId(orderDetails.getSessionId());
-        order.setDate(orderDetails.getDate());
-        order.setIsPaid(orderDetails.getIsPaid());
+        if(order.getId()!=null){
+            log.error("La commande fournie est déjà  à l'état persistant");
+            throw new OrderValidationException("La commande fournie existe déjà");
+        }
+        if(order.getOrderSessions()!=null && order.getOrderSessions().size()==0) {
+            log.error("La commande fournie n'est reliée à aucune session d'aventure");
+            throw new OrderValidationException(("La commande fournie n'est reliée à aucune session d'aventure"));
+        }
+        //Vérification que l'utilisateur fournie existe
+        if(order.getUserId()!=null) {
+            log.error("L'utilisateur lié à la commande n'existe pas");
+            throw new OrderValidationException(("L'utilisateur lié à la commande n'existe pas"));
+        }
 
+        log.info("Création de la commande");
+        order = orderService.addOrder(order);
+
+        final Integer orderId = order.getId();
+
+        if(!order.getOrderSessions().isEmpty()){
+
+            //Si les sessions existent on sauvegarde les liens entre la commande et les sessions
+            log.info("Enregistrement des sessions liés à la commande");
+            order.getOrderSessions().iterator().forEachRemaining(orderSession -> {
+                orderSession.setOrderId(orderId);
+                orderSessionRepository.save(orderSession);
+            });
+        }
+
+        return new ResponseEntity<>(order, HttpStatus.CREATED);
+    }
+
+    @PatchMapping(value = "/update/{id}")
+    public ResponseEntity<Order> updateOrder(@RequestBody Order order){
+        log.info("Début méthode : updateOrder()");
+        if(order == null) {
+            log.error("La commande fournie est nulle");
+            throw new OrderValidationException("La commande fournie est nulle");
+        }
+        if(order.getId()==null || !orderService.findById(order.getId()).isPresent()) {
+            log.error("La commande fournie n' a pas encore été enregistrée");
+            throw new OrderValidationException("La commande fournie n' a pas encore été enregistrée");
+        }
+        log.info("Mise à jour de la commande");
         return new ResponseEntity<>(orderService.addOrder(order),HttpStatus.CREATED);
     }
 

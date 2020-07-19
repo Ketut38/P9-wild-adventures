@@ -2,13 +2,10 @@ package com.wildadventures.msreservations.model;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "orders")
@@ -20,22 +17,22 @@ public class Order implements Serializable{
     private Integer id;
     @Column(name = "user_id")
     private Integer userId;
-    @Column(name = "session_id")
-    private Integer sessionId;
     @Column(name = "order_date")
     private LocalDate date;
     @Column(name = "is_paid")
     private Boolean isPaid;
 
+    @OneToMany(mappedBy = "order", targetEntity = OrderSession.class, fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.REMOVE})
+    private List<OrderSession> orderSessions = new ArrayList<>(0);
+
     public Order() {
     }
 
 
-    public Order(Integer id, Integer userId, Integer sessionId, LocalDate date, Boolean isPaid) {
+    public Order(Integer id, Integer userId, LocalDate date, Boolean isPaid) {
         super();
         this.id = id;
         this.userId = userId;
-        this.sessionId = sessionId;
         this.date = date;
         this.isPaid = isPaid;
     }
@@ -61,16 +58,6 @@ public class Order implements Serializable{
     }
 
 
-    public Integer getSessionId() {
-        return sessionId;
-    }
-
-
-    public void setSessionId(Integer sessionId) {
-        this.sessionId = sessionId;
-    }
-
-
     public LocalDate getDate() {
         return date;
     }
@@ -90,10 +77,27 @@ public class Order implements Serializable{
         this.isPaid = isPaid;
     }
 
+    public Boolean getPaid() {
+        return isPaid;
+    }
+
+    public Order setPaid(Boolean paid) {
+        isPaid = paid;
+        return this;
+    }
+
+    public List<OrderSession> getOrderSessions() {
+        return orderSessions;
+    }
+
+    public Order setOrderSessions(List<OrderSession> orderSessions) {
+        this.orderSessions = orderSessions;
+        return this;
+    }
 
     @Override
     public String toString() {
-        return String.format("Order[id=%d, user_id='%s', session_id='%s', date='%s', isPaid='%s']", id, userId, sessionId, date, isPaid);
+        return String.format("Order[id=%d, user_id='%s', session_id='%s', date='%s', isPaid='%s']", id, userId, date, isPaid);
     }
 
 }
