@@ -1,9 +1,11 @@
 package com.wildadventures.msreservations.controller;
 
+import com.wildadventures.msreservations.bean.AdventureBean;
 import com.wildadventures.msreservations.business.OrderService;
 import com.wildadventures.msreservations.controller.exceptions.OrderNotFoundException;
 import com.wildadventures.msreservations.controller.exceptions.OrderValidationException;
 import com.wildadventures.msreservations.model.Order;
+import com.wildadventures.msreservations.proxy.MsOrderProxy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,6 +24,9 @@ import java.util.Optional;
 public class OrderController {
     Logger log = LoggerFactory.getLogger(this.getClass());
 
+    @Autowired
+    private MsOrderProxy msOrderProxy;
+
     private OrderService orderService;
 
     @Autowired
@@ -33,6 +38,17 @@ public class OrderController {
     public List<Order> findAll(){
         log.info("Récupération de la liste des commandes");
         return orderService.findAll();
+    }
+
+    @GetMapping(value = "/all-adventures")
+    public List<AdventureBean> findAllAdventures(){
+        log.info("Récupération de la liste des commandes");
+        List<AdventureBean> adventureBeans = msOrderProxy.getAllAventures();
+        if(adventureBeans.isEmpty()){
+            throw new OrderNotFoundException("Nothing to show");
+        }
+        return adventureBeans;
+
     }
 
     @GetMapping(value = "/{id}")
