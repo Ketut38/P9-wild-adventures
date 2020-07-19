@@ -1,0 +1,33 @@
+<div class="container">
+    <header class="jumbotron my-4">
+      <div style="display: flex;">
+        <div>
+            <h1>Détails de votre panier</h1>
+        </div>
+      </div>
+    </header>
+
+    <div class="row text-center">
+      <div *ngFor="let orderDemand of ordersDemand" class="col-lg-3 col-md-6 mb-4">
+        <div class="card h-100">
+          <div class="card-body">
+            <p class="card-text">Start</p>
+            <p class="card-text">end</p>
+            <p class="card-text">price</p>
+            <p class="card-text">localisation</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="jumbotron my-4">
+        <div style="display: flex; justify-content: space-between;">
+          <div>
+              <h1>Total : 4556</h1>
+          </div>
+          <a class="btn btn-primary" routerLink=""
+            >Valider votre commande</a>
+        </div>
+
+    </div>
+</div>
