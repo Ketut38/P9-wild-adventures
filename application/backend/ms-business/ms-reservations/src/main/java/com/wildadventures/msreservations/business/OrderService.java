@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class OrderService {
@@ -22,8 +23,8 @@ public class OrderService {
         return orderRepository.findAll();
     }
 
-    public Order findById(Integer id) {
-        return  orderRepository.findById(id).get();
+    public Optional<Order> findById(Integer id) {
+        return  orderRepository.findById(id);
     }
 
     public Order addOrder(Order order) {
@@ -36,10 +37,14 @@ public class OrderService {
             orderToUpdate.setUserId(order.getUserId());
             orderToUpdate.setSessionId(order.getSessionId());
             orderToUpdate.setDate(order.getDate());
-            orderToUpdate.setStatus(order.getStatus());
+            orderToUpdate.setIsPaid(order.getIsPaid());
             return orderRepository.save(orderToUpdate);
         }
         return null;
+    }
+
+    public void deleteOrderById(Integer orderId){
+        orderRepository.deleteById(orderId);
     }
 
     public List<Order> findByUser(Integer userId){

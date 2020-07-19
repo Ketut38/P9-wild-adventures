@@ -2,8 +2,10 @@ package com.wildadventures.msreservations.controller;
 
 import com.wildadventures.msreservations.business.OrderService;
 import com.wildadventures.msreservations.controller.exceptions.OrderNotFoundException;
+import com.wildadventures.msreservations.controller.exceptions.OrderValidationException;
 import com.wildadventures.msreservations.model.Order;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,6 +15,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("api/orders")
@@ -34,10 +37,10 @@ public class OrderController {
 
     @GetMapping(value = "/{id}")
     public Order findById(@PathVariable Integer id) throws Exception {
-        Order order = orderService.findById(id);
-        if(order==null) throw new OrderNotFoundException("La commande avec l'id " + id + " est INTROUVABLE");
+        Optional<Order> orderOptional = orderService.findById(id);
+        if(!orderOptional.isPresent()) throw new OrderNotFoundException("La commande avec l'id " + id + " est INTROUVABLE");
 
-        return order;
+        return orderOptional.get();
     }
 
     @PostMapping(value = "/save")
@@ -58,22 +61,46 @@ public class OrderController {
 
 
     @PutMapping (value = "/update/{id}")
-    public Order updateOrder(@RequestBody Order orderDetails, @PathVariable Integer id) {
+    public ResponseEntity<Order> updateOrder(@RequestBody Order orderDetails, @PathVariable Integer id) {
 
-        Order order = orderService.findById(id);
+        Order order = null;
+        Optional<Order> orderOptional = orderService.findById(id);
+        if(!orderOptional.isPresent()){
+            throw new OrderNotFoundException("L'aventure avec l'id, " + id + " est INTROUVABLE");
+        }
+        order = orderOptional.get();
+        if(order.getId() == null){
+            throw new OrderValidationException("La commande fournie est nulle");
+        }
         order.setUserId(orderDetails.getUserId());
         order.setSessionId(orderDetails.getSessionId());
         order.setDate(orderDetails.getDate());
-        order.setStatus(orderDetails.getStatus());
+        order.setIsPaid(orderDetails.getIsPaid());
 
-        return orderService.addOrder(order);
+        return new ResponseEntity<>(orderService.addOrder(order),HttpStatus.CREATED);
     }
+
+    @DeleteMapping(value = "/delete/{orderId}")
+    public ResponseEntity<String> deleteOrder(@PathVariable Integer orderId){
+        log.info("Début méthode : deleteOrder()");
+        Optional<Order> orderToDelete = orderService.findById(orderId);
+        if(!orderToDelete.isPresent()) {
+            log.error("La commande fournie n'existe pas");
+            throw new OrderNotFoundException("La commande fournie n'existe pas");
+        }
+        else {
+            log.info("Suppression de la commande d'id : "+orderId);
+            orderService.deleteOrderById(orderId);
+        }
+        return new ResponseEntity<>("La commande d'id " + orderId + " a bien été supprimé", HttpStatus.GONE);
+    }
+
 
     @RequestMapping(value = "/{userId}/orders", method = RequestMethod.GET)
     public List<Order> findByUser(@PathVariable Integer userId) throws Exception {
         List<Order> orders = orderService.findByUser(userId);
         if (orders.isEmpty()){
-            throw new Exception("Il n'existe aucune commande avec l'id : " + userId);
+            throw new OrderNotFoundException("Il n'existe aucune commande avec l'id : " + userId);
         }
         return orders;
     }

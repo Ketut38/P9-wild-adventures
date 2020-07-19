@@ -14,7 +14,7 @@ export class AdventuresByCategoryComponent implements OnInit {
 
   private adventuresByCategory: Adventure[];
   category: Category = {  id: null, title: '', description : '', image: '', adventures:[]};
-  constructor(private adventureService:AdventureService,private categoryService:CategoryService, private route: ActivatedRoute,) { }
+  constructor(private adventureService:AdventureService,private categoryService:CategoryService, private route: ActivatedRoute) { }
 
   ngOnInit() {
     const id = +this.route.snapshot.paramMap.get('id');

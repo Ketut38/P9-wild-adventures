@@ -24,19 +24,20 @@ public class Order implements Serializable{
     private Integer sessionId;
     @Column(name = "order_date")
     private LocalDate date;
-    private Boolean status;
+    @Column(name = "is_paid")
+    private Boolean isPaid;
 
     public Order() {
     }
 
 
-    public Order(Integer id, Integer userId, Integer sessionId, LocalDate date, Boolean status) {
+    public Order(Integer id, Integer userId, Integer sessionId, LocalDate date, Boolean isPaid) {
         super();
         this.id = id;
         this.userId = userId;
         this.sessionId = sessionId;
         this.date = date;
-        this.status = status;
+        this.isPaid = isPaid;
     }
 
 
@@ -80,19 +81,19 @@ public class Order implements Serializable{
     }
 
 
-    public Boolean getStatus() {
-        return status;
+    public Boolean getIsPaid() {
+        return isPaid;
     }
 
 
-    public void setStatus(Boolean status) {
-        this.status = status;
+    public void setIsPaid(Boolean isPaid) {
+        this.isPaid = isPaid;
     }
 
 
     @Override
     public String toString() {
-        return String.format("Order[id=%d, user_id='%s', session_id='%s', date='%s', status='%s']", id, userId, sessionId, date, status);
+        return String.format("Order[id=%d, user_id='%s', session_id='%s', date='%s', isPaid='%s']", id, userId, sessionId, date, isPaid);
     }
 
 }
