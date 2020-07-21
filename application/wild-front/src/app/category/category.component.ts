@@ -1,10 +1,10 @@
-import { Component, OnInit } from "@angular/core";
-import { CategoryService } from "../services/category.service";
+import { Component, OnInit } from '@angular/core';
+import { CategoryService } from '../services/category.service';
 
 @Component({
-  selector: "app-category",
-  templateUrl: "./category.component.html",
-  styleUrls: ["./category.component.css"]
+  selector: 'app-category',
+  templateUrl: './category.component.html',
+  styleUrls: ['./category.component.css']
 })
 export class CategoryComponent implements OnInit {
   public allCategories: any = [];
@@ -45,8 +45,8 @@ export class CategoryComponent implements OnInit {
   getAllCategories() {
      this.categoryService.getAllCategories().subscribe(res => {
       this.allCategories = res;
-      console.log("getAllCategories ", this.allCategories);
+      console.log('getAllCategories ', this.allCategories);
     }); 
-    this.allCategories = this.categories;
+     this.allCategories = this.categories;
   }
 }

@@ -1,3 +1,6 @@
+
+
+
 INSERT INTO adventure (id, description, location, participant_count, price, title, image, category_id) VALUES (1, 'Un sejour au coeur du Sahara algerien, viste chez les Touaregs. Balade en chameaux le long des dunes de sables, avec  pour horizon ... encore du sable', 'Tamanrasset, Algerie', 15, 1000, 'Traversée du désert', 'https://zagoradeserttravel.com/wp-content/uploads/2016/07/Sahara-Desert-Charity-Trek6_1.jpg', 5);
 INSERT INTO adventure (id, description, location, participant_count, price, title, image, category_id) VALUES (2, 'Venez découvrir la sensation unique de voler haut au-dessus de l''eau. Vous décollez confortablement d''un bateau spécial pour le parachute ascensionnel pour une expérience grisante.', 'Vilamoura, Portugal', 9, 20, 'Parachute ascensionnel', 'http://www.capferratwatersports.com/wp-content/uploads/2017/02/parachute-sunset-cap-ferrat-watersports.jpg', 1);
 INSERT INTO adventure (id, description, location, participant_count, price, title, image, category_id) VALUES (3, 'Ca vous dit de sauter dans le vide ? Venez essayer, c''est mortel !!', 'New Zealand', 5, 500, 'Bungee Jumping', 'https://cdn-images-1.medium.com/max/2600/1*6q1-rTOP10j1qV9A7ACm_g.jpeg', 1);
