@@ -1,8 +1,36 @@
 import { KeycloakConfig, KeycloakInitOptions, KeycloakOptions } from 'keycloak-angular';
+import {KeycloakService} from 'keycloak-angular';
 
+export function initializer(keycloak: KeycloakService): () => Promise<any> {
+  return (): Promise<any> => {
+    return new Promise(async (resolve, reject) => {
+      try {
+        await keycloak.init({
+          config: {
+            url: 'http://localhost:8080/auth',
+            realm: 'WildAdventures',
+            clientId: 'wildAdventures-frontend'
+          },
+          initOptions: {
+            onLoad: 'login-required',
+            checkLoginIframe: false,
+            responseMode: 'fragment',
+            flow: 'standard'
+          }
+        });
+        resolve();
+      } catch (error) {
+        reject(error);
+      }
+    });
+  };
+}
+export const environment = {
+  production: false,
+  initializer
+};
 
-
-const keycloakConfig: KeycloakConfig = {
+/*const keycloakConfig: KeycloakConfig = {
   url: 'http://localhost:8080/auth',
   realm: 'WildAdventures',
   clientId: 'wildAdventures-frontend'
@@ -20,11 +48,8 @@ const keycloakOptions: KeycloakOptions = {
   enableBearerInterceptor: true
 };
 
-export const environment = {
-  production: false,
-  keycloakOptions
-};
 
+*/
 
 
 

@@ -16,7 +16,7 @@ import com.wildadventures.msadventures.controller.exceptions.AdventureNotFoundEx
 import com.wildadventures.msadventures.model.Adventure;
 
 @RestController
-@RequestMapping(value = "/api", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "/api")
 @CrossOrigin(origins = "http://localhost:4200")
 public class AdventureController {
 

@@ -9,6 +9,8 @@ import {
 } from '../shared/constants';
 import { Session } from '../shared/model/session';
 
+const headers = new HttpHeaders().set('Content-Type', 'application/json');
+
 @Injectable({
   providedIn: 'root'
 })
@@ -16,7 +18,7 @@ export class AdventureService {
   constructor(private http: HttpClient) {}
 
   getAllAdventures(): Observable<Adventure[]> {
-    return this.http.get<Adventure[]>(apidAdventure);
+    return this.http.get<Adventure[]>(apidAdventure, {headers});
   }
 
   getAdventureById(id: number): Observable<Adventure> {
