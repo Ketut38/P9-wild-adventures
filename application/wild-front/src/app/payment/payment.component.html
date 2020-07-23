@@ -1,0 +1,57 @@
+<div class="container">
+ 
+    <div class="row">
+      <aside class="col-sm-6">
+    <article class="card">
+        <div class="card-header">
+            <div class="row display-tr" >
+                <h3 class="title display-td" >Détails du paiement</h3>
+                <div class="display-td" >                            
+                <img class="img-responsive pull-right" src="http://i76.imgup.net/accepted_c22e0.png">
+                </div>
+                </div> 
+          </div>
+    <div class="card-body p-5">
+    <!--  <span class="payment-message alert alert-success">{{message}}</span>  -->
+   <p>  Montant de la commande : <b>1000 €</b></p>
+    <form>   
+      <p *ngIf="saved == true" class="alert alert-success payment-message">success</p>
+      <p *ngIf="errorMessage" class="alert alert-danger payment-message">Error</p>
+    <div class="form-group">
+    <label for="cardNumber">Numéro de carte</label>
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <span class="input-group-text"><i class="fa fa-credit-card"></i></span>
+      </div>
+      <input type="text" class="form-control" name="cardNumber" placeholder="Numéro de carte">
+    </div> <!-- input-group.// -->
+    </div> <!-- form-group.// -->
+    
+    <div class="row">
+        <div class="col-sm-8">
+            <div class="form-group">
+                <label><span class="hidden-xs">Expiration</span> </label>
+              <div class="form-inline">
+                <input type="text" class="form-control col-sm-4" name="expMonth" placeholder="MM">
+                  <span style="width:10%; text-align: center"> / </span>
+                  <input type="text" class="form-control col-sm-4" name="expYear" placeholder="AA">
+              </div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="form-group">
+                <label data-toggle="tooltip" title="" data-original-title="3 digits code on back side of the card" >CVV <i class="fa fa-question-circle"></i></label>
+                <input class="form-control"  placeholder="CVV" name="cvc" required="" type="text">
+            </div> <!-- form-group.// -->
+        </div>
+    </div> 
+  <!-- row.// -->
+    <button class="subscribe btn btn-primary btn-block" type="button"> Payer  </button>
+    </form>
+    </div> <!-- card-body.// -->
+    </article> <!-- card.// -->
+    
+    
+      </aside> <!-- col.// -->
+    </div>
+  </div>

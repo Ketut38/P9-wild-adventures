@@ -19,6 +19,7 @@ import { AdventuresByCategoryComponent } from './adventures-by-category/adventur
 import { SessionsByAdventureComponent } from './sessions-by-adventure/sessions-by-adventure.component';
 import { HomeComponent } from './home/home.component';
 import { BasketDetailsComponent } from './basket-details/basket-details.component';
+import { PaymentComponent } from './payment/payment.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { BasketDetailsComponent } from './basket-details/basket-details.componen
     AdventuresByCategoryComponent,
     SessionsByAdventureComponent,
     HomeComponent,
-    BasketDetailsComponent
+    BasketDetailsComponent,
+    PaymentComponent
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [

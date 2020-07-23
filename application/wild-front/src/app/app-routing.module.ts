@@ -7,6 +7,7 @@ import { AdventuresByCategoryComponent } from './adventures-by-category/adventur
 import { SessionsByAdventureComponent } from './sessions-by-adventure/sessions-by-adventure.component';
 import { HomeComponent } from './home/home.component';
 import { BasketDetailsComponent } from './basket-details/basket-details.component';
+import { PaymentComponent } from './payment/payment.component';
 
 const routes: Routes = [
   { path: "", component: HomeComponent },
@@ -16,7 +17,9 @@ const routes: Routes = [
   { path : "adventuresByCategory/:id", component : AdventuresByCategoryComponent}, 
   { path: "adventures/:id/sessions", component: SessionsByAdventureComponent }, 
   { path: "categories", component: CategoryComponent },
-  { path: "basket-details", component: BasketDetailsComponent }
+  { path: "basket-details", component: BasketDetailsComponent },
+  { path: "payment/commande", component: PaymentComponent }
+  
 ];
 
 @NgModule({
