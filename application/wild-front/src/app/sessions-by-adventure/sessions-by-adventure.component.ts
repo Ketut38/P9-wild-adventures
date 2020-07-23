@@ -13,7 +13,9 @@ import { AdventureService } from '../services/adventure.service';
 })
 export class SessionsByAdventureComponent implements OnInit {
 
-  public sessionsByAdv : Session[];
+  public sessionsByAdv : Session[] = [];
+  public addedToBasket : boolean = false;
+  public sessionAlreadyExist : boolean = false;
   public orders = [{id : 100, sessionId: 100, userId: 100, date: new Date()}];
   order: Order = {  
     id: null,
@@ -45,18 +47,10 @@ export class SessionsByAdventureComponent implements OnInit {
       console.log("this.adventure", res)
       this.adventure = res;
     })
-    /* this.sessionService.getSessionsByAdventure(id).subscribe((res) => {
+    this.sessionService.getSessionsByAdventure(id).subscribe((res) => {
       console.log("res", res);
       this.sessionsByAdv = res;
-    }) */ 
-
-    this.sessionsByAdv = [
-      {id: 1, adventureId: 1, startDate: "2018-05-14", endDate: "2018-05-20"},
-      {id: 2, adventureId: 1, startDate: "2018-11-19", endDate: "2018-11-25"},
-      {id: 3, adventureId: 1, startDate: "2018-11-19", endDate: "2018-11-25"},
-      {id: 4, adventureId: 1, startDate: "2018-11-19", endDate: "2018-11-25"}
-      
-    ]
+    }) 
   }
 
   createOrderDemand(sessionId : number){
@@ -64,9 +58,28 @@ export class SessionsByAdventureComponent implements OnInit {
     this.order.sessionId = sessionId;
     this.order.userId = parseInt(sessionStorage.getItem("userId"));
     this.order.date = new Date();
-    console.log("orderDemands", JSON.stringify(this.order))
-    this.orders.push(this.order);
-    sessionStorage.setItem("orderDemands", JSON.stringify(this.orders));
+    let ordersFromSession = JSON.parse(sessionStorage.getItem("orderDemands"));
+    if(ordersFromSession != null){
+      ordersFromSession.forEach(element => {
+        //A changer après : Remplacer order.sessionId par order.id
+        if(this.order.sessionId === element.sessionId && this.order.userId === element.userId){
+          this.sessionAlreadyExist = true;
+        }
+      });
+    }
+    if(!this.sessionAlreadyExist){
+      this.orders.push(this.order);
+      sessionStorage.setItem("orderDemands", JSON.stringify(this.orders));
+      this.changeAddedBasket();
+    }
+  }
+
+  changeAddedBasket(){
+    this.addedToBasket = true;
+    setTimeout(
+      () => {
+        this.addedToBasket = false;
+      }, 3000);
   }
 
 

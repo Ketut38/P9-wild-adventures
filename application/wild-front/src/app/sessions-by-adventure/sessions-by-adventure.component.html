@@ -1,4 +1,10 @@
 <div class="container">
+  <div *ngIf="addedToBasket" class="alert alert-success" role="alert" style="margin-top: 2rem;">
+    La session a bien été ajouté dans votre panier.
+  </div>
+  <div *ngIf="sessionAlreadyExist" class="alert alert-danger" role="alert" style="margin-top: 2rem;">
+    Une erreur est survenue : la session a déjà été ajouté dans le panier.
+  </div>
     <header class="jumbotron my-4">
       <div style="display: flex;">
         <div>

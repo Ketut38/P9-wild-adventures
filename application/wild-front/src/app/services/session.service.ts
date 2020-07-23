@@ -13,7 +13,7 @@ import { Session } from '../shared/model/session';
 export class SessionService {
   constructor(private http: HttpClient) {}
 
-  getSessionsByAdventure(id: number): Observable<Session> {
-    return this.http.get<Session>(apiSession + "/" + id + "/sessions") ;
+  getSessionsByAdventure(id: number): Observable<Session[]> {
+    return this.http.get<Session[]>(apiSession + "/adventure/" + id) ;
   }
 }
