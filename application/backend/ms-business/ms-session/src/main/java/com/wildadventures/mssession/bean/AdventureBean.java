@@ -1,5 +1,10 @@
 package com.wildadventures.mssession.bean;
 
+import com.wildadventures.mssession.model.Sessions;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class AdventureBean {
 
     private Integer id;
@@ -9,6 +14,7 @@ public class AdventureBean {
     private String location;
     private Integer price;
     private String image;
+    private List<Sessions> sessions = new ArrayList<>(0);
 
     public AdventureBean() {
     }
@@ -73,6 +79,15 @@ public class AdventureBean {
 
     public AdventureBean setImage(String image) {
         this.image = image;
+        return this;
+    }
+
+    public List<Sessions> getSessions() {
+        return sessions;
+    }
+
+    public AdventureBean setSessions(List<Sessions> sessions) {
+        this.sessions = sessions;
         return this;
     }
 }

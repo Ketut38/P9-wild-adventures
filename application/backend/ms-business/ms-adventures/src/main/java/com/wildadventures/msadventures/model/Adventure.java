@@ -42,7 +42,6 @@ public class Adventure implements Serializable {
     @OneToMany(mappedBy = "adventure", targetEntity = AdventureSession.class, fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.REMOVE})
     private List<AdventureSession> adventureSessions = new ArrayList<>(0);
 
-
     public Adventure(String title, String description, Integer participantCount, String location, Integer price, String image) {
         this.title = title;
         this.description = description;

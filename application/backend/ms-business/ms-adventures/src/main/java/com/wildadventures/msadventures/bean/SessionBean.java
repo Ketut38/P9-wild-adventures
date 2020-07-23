@@ -1,5 +1,7 @@
 package com.wildadventures.msadventures.bean;
 
+import com.wildadventures.msadventures.model.Adventure;
+
 import java.time.LocalDate;
 
 public class SessionBean {
@@ -7,6 +9,7 @@ public class SessionBean {
     private Integer id;
     private LocalDate startDate;
     private LocalDate endDate;
+    private Adventure adventure;
 
     public SessionBean() {
     }
@@ -35,6 +38,15 @@ public class SessionBean {
 
     public SessionBean setEndDate(LocalDate endDate) {
         this.endDate = endDate;
+        return this;
+    }
+
+    public Adventure getAdventure() {
+        return adventure;
+    }
+
+    public SessionBean setAdventure(Adventure adventure) {
+        this.adventure = adventure;
         return this;
     }
 }
