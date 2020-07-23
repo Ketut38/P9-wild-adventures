@@ -1,5 +1,7 @@
 package com.wildadventures.msreservations.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -8,6 +10,7 @@ import java.io.Serializable;
 @IdClass(OrderSessionKey.class)
 public class OrderSession implements Serializable {
 
+    @JsonBackReference
     @ManyToOne(targetEntity = Order.class, fetch = FetchType.LAZY)
     @JoinColumn(name = "order_id", referencedColumnName = "id", insertable = false, updatable = false)
     private Order order;

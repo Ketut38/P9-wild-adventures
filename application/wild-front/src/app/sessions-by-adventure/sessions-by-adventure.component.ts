@@ -54,20 +54,19 @@ export class SessionsByAdventureComponent implements OnInit {
   }
 
   createOrderDemand(sessionId : number){
-    this.order.id = null;
+    this.order.id = Math.floor(Math.random() * 100);;
     this.order.sessionId = sessionId;
     this.order.userId = parseInt(sessionStorage.getItem("userId"));
     this.order.date = new Date();
     let ordersFromSession = JSON.parse(sessionStorage.getItem("orderDemands"));
     if(ordersFromSession != null){
       ordersFromSession.forEach(element => {
-        //A changer après : Remplacer order.sessionId par order.id
-        if(this.order.sessionId === element.sessionId && this.order.userId === element.userId){
+        if(this.order.id === element.id){
           this.sessionAlreadyExist = true;
         }
       });
     }
-    if(!this.sessionAlreadyExist){
+    if(this.sessionAlreadyExist === false){
       this.orders.push(this.order);
       sessionStorage.setItem("orderDemands", JSON.stringify(this.orders));
       this.changeAddedBasket();

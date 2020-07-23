@@ -16,4 +16,8 @@ export class SessionService {
   getSessionsByAdventure(id: number): Observable<Session[]> {
     return this.http.get<Session[]>(apiSession + "/adventure/" + id) ;
   }
+
+  getSessionById(id: number): Observable<Session> {
+    return this.http.get<Session>(apiSession + "/single/" + id) ;
+  }
 }

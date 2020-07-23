@@ -1,6 +1,5 @@
 package com.wildadventures.msreservations.controller;
 
-import com.wildadventures.msreservations.bean.AdventureBean;
 import com.wildadventures.msreservations.business.OrderService;
 import com.wildadventures.msreservations.consumer.OrderSessionRepository;
 import com.wildadventures.msreservations.controller.exceptions.OrderNotFoundException;
@@ -36,29 +35,40 @@ public class OrderController {
         this.orderService = orderService;
     }
 
-   @GetMapping()
-    public List<Order> findAll(){
-        log.info("Récupération de la liste des commandes");
-        return orderService.findAll();
-    }
+    // Récupère toutes les commandes enregistrées
 
-    @GetMapping(value = "/all-adventures")
-    public List<AdventureBean> findAllAdventures(){
-        log.info("Récupération de la liste des commandes");
-        List<AdventureBean> adventureBeans = msOrderProxy.getAllAventures();
-        if(adventureBeans.isEmpty()){
-            throw new OrderNotFoundException("Nothing to show");
+    @GetMapping()
+    public List<Order> getAllOrders(){
+        log.info("Début méthode : getAllOrders()");
+        List<Order> orders = orderService.findAll();
+        if(orders == null || orders.isEmpty()) {
+            throw  new OrderNotFoundException("Aucune commande enregistrée");
         }
-        return adventureBeans;
-
+        return orders;
     }
 
-    @GetMapping(value = "/{id}")
-    public Order findById(@PathVariable Integer id) throws Exception {
-        Optional<Order> orderOptional = orderService.findById(id);
-        if(!orderOptional.isPresent()) throw new OrderNotFoundException("La commande avec l'id " + id + " est INTROUVABLE");
+    //Récupère toutes les commandes d'un utlisateur
 
-        return orderOptional.get();
+    @GetMapping(value = "/user/{userId}")
+    public List<Order> getAllOrdersByUser(@PathVariable Integer userId){
+        log.info("Début méthode : getAllOrdersByUser()");
+        List<Order> orders = orderService.findByUser(userId);
+        if(orders == null || orders.isEmpty()) {
+            throw  new OrderNotFoundException("Aucune commande enregistrée pour cet utilisateur " + +userId);
+        }
+        return orders;
+    }
+
+    // Récupère une commande en fonction de son id
+
+    @GetMapping(value = "/{orderId}")
+    public Order getOrder(@PathVariable Integer orderId){
+        log.info("Début méthode : getOrder()");
+        Optional<Order> order = orderService.findById(orderId);
+        if(!order.isPresent()) {
+            throw new OrderNotFoundException("La commande d'id : "+ orderId + "n'existe pas");
+        }
+        return order.get();
     }
 
     @PostMapping(value = "/save")
@@ -124,19 +134,8 @@ public class OrderController {
             throw new OrderNotFoundException("La commande fournie n'existe pas");
         }
         else {
-            log.info("Suppression de la commande d'id : "+orderId);
             orderService.deleteOrderById(orderId);
         }
         return new ResponseEntity<>("La commande d'id " + orderId + " a bien été supprimé", HttpStatus.GONE);
-    }
-
-
-    @RequestMapping(value = "/{userId}/orders", method = RequestMethod.GET)
-    public List<Order> findByUser(@PathVariable Integer userId) throws Exception {
-        List<Order> orders = orderService.findByUser(userId);
-        if (orders.isEmpty()){
-            throw new OrderNotFoundException("Il n'existe aucune commande avec l'id : " + userId);
-        }
-        return orders;
     }
 }

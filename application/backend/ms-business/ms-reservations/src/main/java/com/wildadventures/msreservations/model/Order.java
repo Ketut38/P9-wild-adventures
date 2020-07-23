@@ -1,5 +1,7 @@
 package com.wildadventures.msreservations.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -22,6 +24,7 @@ public class Order implements Serializable{
     @Column(name = "is_paid")
     private Boolean isPaid;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "order", targetEntity = OrderSession.class, fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.REMOVE})
     private List<OrderSession> orderSessions = new ArrayList<>(0);
 
