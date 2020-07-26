@@ -100,7 +100,12 @@ public class Order implements Serializable{
 
     @Override
     public String toString() {
-        return String.format("Order[id=%d, user_id='%s', session_id='%s', date='%s', isPaid='%s']", id, userId, date, isPaid);
+        return "Order{" +
+                "id=" + id +
+                ", userId=" + userId +
+                ", date=" + date +
+                ", isPaid=" + isPaid +
+                ", orderSessions=" + orderSessions +
+                '}';
     }
-
 }

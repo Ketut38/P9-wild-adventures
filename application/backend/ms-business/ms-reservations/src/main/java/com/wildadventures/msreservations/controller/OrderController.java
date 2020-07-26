@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.*;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
@@ -71,6 +73,7 @@ public class OrderController {
         return order.get();
     }
 
+
     @PostMapping(value = "/save")
     public ResponseEntity<Order> createOrder(@RequestBody Order order){
         log.info("Début méthode : createOrder()");
@@ -78,22 +81,26 @@ public class OrderController {
             log.error("La commande fournie est nulle");
             throw new OrderValidationException("La commande fournie est nulle");
         }
-        if(order.getId()!=null){
+        /*if(order.getId()!=null){
             log.error("La commande fournie est déjà  à l'état persistant");
             throw new OrderValidationException("La commande fournie existe déjà");
-        }
+        }*/
         if(order.getOrderSessions()!=null && order.getOrderSessions().size()==0) {
             log.error("La commande fournie n'est reliée à aucune session d'aventure");
             throw new OrderValidationException(("La commande fournie n'est reliée à aucune session d'aventure"));
         }
         //Vérification que l'utilisateur fournie existe
-        if(order.getUserId()!=null) {
+        if(order.getUserId()==null) {
             log.error("L'utilisateur lié à la commande n'existe pas");
             throw new OrderValidationException(("L'utilisateur lié à la commande n'existe pas"));
         }
 
         log.info("Création de la commande");
-        order = orderService.addOrder(order);
+
+        Order addedOrder = orderService.addOrder(order);
+
+        if (addedOrder == null)
+            return ResponseEntity.noContent().build();
 
         final Integer orderId = order.getId();
 
