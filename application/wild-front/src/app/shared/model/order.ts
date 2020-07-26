@@ -1,7 +1,9 @@
+import { Session } from './session';
+
 export class Order {
   id: number;
   userId: number;
-  sessionId: number;
+  sessions: Session[];
   date: Date;
   isPaid: Boolean;
 }
