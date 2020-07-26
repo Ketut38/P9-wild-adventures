@@ -4,6 +4,8 @@ export const apiPrefix = "http://localhost:9001";
 
 export const apiPrefixSession = "http://localhost:9002";
 
+export const apiPrefixPayment = "http://localhost:9006";
+
 /**** API Commande ****/
 export const apiCommande = apiPrefix + "/";
 export const apiCommandeById = apiPrefix + "/";
@@ -30,7 +32,7 @@ export const apiCategoryById = apiPrefix + "/api/categories";
 export const apiSession = apiPrefixSession + "/api/sessions";
 
 /**** API Paiement ****/
-export const apiPayment = apiPrefix + "/";
+export const apiPayment = apiPrefixPayment + "/";
 
 /**** API Commentaire ****/
 export const apiCommentaire = apiPrefix + "/";

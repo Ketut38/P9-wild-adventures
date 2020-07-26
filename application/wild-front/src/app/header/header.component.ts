@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  public ordersDemand = [];
+  public sessionsStored = [];
   isUserLoggedIn : boolean = false;
   
   constructor() { 
@@ -23,8 +23,8 @@ export class HeaderComponent implements OnInit {
   }
 
   getAllOrderDemandsByUser(){
-    this.ordersDemand = JSON.parse(sessionStorage.getItem("orderDemands"));
-    console.log("this.ordersDemand", this.ordersDemand);
+    this.sessionsStored = JSON.parse(sessionStorage.getItem("sessionsIdsStored"));
+    console.log("this.ordersDemand", this.sessionsStored);
   }
 
 }

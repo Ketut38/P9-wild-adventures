@@ -14,16 +14,10 @@ import { AdventureService } from '../services/adventure.service';
 export class SessionsByAdventureComponent implements OnInit {
 
   public sessionsByAdv : Session[] = [];
+  public sessionsIdsStored :  number[] = [1000];
+  public sessionToStore : Session;
   public addedToBasket : boolean = false;
   public sessionAlreadyExist : boolean = false;
-  public orders = [{id : 100, sessionId: 100, userId: 100, date: new Date()}];
-  order: Order = {  
-    id: null,
-    userId: null,
-    sessionId: null,
-    date: null,
-    isPaid: false
-  }
 
   adventure: Adventure = {  id: null, 
                             title: '', 
@@ -54,23 +48,24 @@ export class SessionsByAdventureComponent implements OnInit {
   }
 
   createOrderDemand(sessionId : number){
-    this.order.id = Math.floor(Math.random() * 100);;
-    this.order.sessionId = sessionId;
-    this.order.userId = parseInt(sessionStorage.getItem("userId"));
-    this.order.date = new Date();
-    let ordersFromSession = JSON.parse(sessionStorage.getItem("orderDemands"));
-    if(ordersFromSession != null){
-      ordersFromSession.forEach(element => {
-        if(this.order.id === element.id){
+    let sessionsAlreadyStored = JSON.parse(sessionStorage.getItem("sessionsIdsStored"));
+    if(sessionsAlreadyStored != null){
+      sessionsAlreadyStored.forEach(id => {
+        if(sessionId === id){
           this.sessionAlreadyExist = true;
         }
       });
     }
-    if(this.sessionAlreadyExist === false){
-      this.orders.push(this.order);
-      sessionStorage.setItem("orderDemands", JSON.stringify(this.orders));
+    if(!this.sessionAlreadyExist){
+      this.sessionsIdsStored.push(sessionId);
+      sessionStorage.setItem("sessionsIdsStored", JSON.stringify(this.sessionsIdsStored));
       this.changeAddedBasket();
     }
+
+    setTimeout(
+      () => {
+        this.sessionAlreadyExist = false;
+      }, 3000);
   }
 
   changeAddedBasket(){

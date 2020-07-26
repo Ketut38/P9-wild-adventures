@@ -11,20 +11,20 @@ import { element } from 'protractor';
   styleUrls: ['./basket-details.component.css']
 })
 export class BasketDetailsComponent implements OnInit {
-  public ordersDemand = [];
+  public sessionIdsStored = [];
   public selectedSessions : Session[] = [];
   public adventure : Adventure;
   constructor(private sessionService : SessionService, private adventureService : AdventureService) { }
 
   ngOnInit() {
-    this.getAllOrderDemandsByUser();
+    this.getAllSessionsStoredByUser();
   }
 
-  getAllOrderDemandsByUser(){
-    this.ordersDemand = JSON.parse(sessionStorage.getItem("orderDemands"));
-    this.ordersDemand.shift();
-    this.ordersDemand.forEach(orderDemand => {
-      this.sessionService.getSessionById(orderDemand.sessionId).subscribe((res) => {
+  getAllSessionsStoredByUser(){
+    this.sessionIdsStored = JSON.parse(sessionStorage.getItem("sessionsIdsStored"));
+    this.sessionIdsStored.shift();
+    this.sessionIdsStored.forEach(sessionId => {
+      this.sessionService.getSessionById(sessionId).subscribe((res) => {
         this.selectedSessions.push(res)
       })
     })
