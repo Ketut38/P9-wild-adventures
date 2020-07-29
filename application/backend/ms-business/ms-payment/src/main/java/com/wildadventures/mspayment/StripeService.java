@@ -15,8 +15,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class StripeService {
 
-    String secretKey = "\t\n" +
-            "sk_test_51H8625G3FbXArABCFIiCrg0UwwtMXZJkuiB5ZsFWfigmgpFJ3mQPCfUWfe86PlnvZiHSmQyiV5XUuC2jTEQlTV3V00pHmVpSb0\n";
+    String secretKey = "sk_test_51H8625G3FbXArABCFIiCrg0UwwtMXZJkuiB5ZsFWfigmgpFJ3mQPCfUWfe86PlnvZiHSmQyiV5XUuC2jTEQlTV3V00pHmVpSb0";
 
     @PostConstruct
     public void init() {

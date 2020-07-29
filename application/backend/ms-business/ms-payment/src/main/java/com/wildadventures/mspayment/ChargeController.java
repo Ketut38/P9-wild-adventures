@@ -16,7 +16,7 @@ public class ChargeController {
     @Autowired
     StripeService paymentsService;
 
-    @PostMapping("/charge/test")
+    @PostMapping("/charge")
     public String charge(ChargeRequest chargeRequest, Model model) throws StripeException {
         chargeRequest.setDescription("Example charge");
         chargeRequest.setCurrency(ChargeRequest.Currency.EUR);
