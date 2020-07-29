@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("api/orders")
 public class OrderController {
     Logger log = LoggerFactory.getLogger(this.getClass());
@@ -83,7 +84,7 @@ public class OrderController {
             log.error("La commande fournie est déjà  à l'état persistant");
             throw new OrderValidationException("La commande fournie existe déjà");
         }*/
-        if(order.getOrderSessions()!=null && order.getOrderSessions().size()==0) {
+        if(order.getOrderSessions()== null && order.getOrderSessions().isEmpty()) {
             log.error("La commande fournie n'est reliée à aucune session d'aventure");
             throw new OrderValidationException(("La commande fournie n'est reliée à aucune session d'aventure"));
         }

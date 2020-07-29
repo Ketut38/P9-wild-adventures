@@ -27,15 +27,15 @@ getAllUserOrders(userId: number): Observable<Order[]> {
 
 }
 
-getCommandeById(id: number): Observable<Order> {
+getOrderById(id: number): Observable<Order> {
   return this.http.get<Order>(apiOrders + '/' + id);
 }
 
-updateCommande(orderId): Observable<Order> {
+updateOrder(orderId): Observable<Order> {
   return this.http.put<Order>(apiOrders + '/update/' + orderId, orderId);
 }
 
-saveCommande(order : Order){
-  return this.http.post(apiOrders + '/save/', order);
+saveOrder(order : Order){
+  return this.http.post(apiOrders + '/save', order);
 }
 }

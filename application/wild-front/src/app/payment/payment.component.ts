@@ -4,6 +4,7 @@ import { first } from 'rxjs/operators';
 import { PaymentService } from '../services/payment.service';
 import { Order } from '../shared/model/order';  
 import { SessionService } from '../services/session.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-payment',
@@ -12,14 +13,16 @@ import { SessionService } from '../services/session.service';
 })
 export class PaymentComponent implements OnInit {
   public saved: boolean;
+  public createdOrder: any;
   public errorMessage: any;
+  public paymentSuccess : boolean;
+  public paymentError : boolean;
   prix;
 
-  constructor(private http: HttpClient, private paymentService : PaymentService,  private sessionService : SessionService) {}
+  constructor(private http: HttpClient, private paymentService : PaymentService,  private sessionService : SessionService, private router: Router) {}
 
   ngOnInit() {
-    let orderToAdd = this.createOrder();
-    console.log("orderToAdd : ", orderToAdd)
+    //this.createOrder();
   }
 
   /* chargeCreditCard() {
@@ -97,13 +100,13 @@ export class PaymentComponent implements OnInit {
   }
 
   getCommandeById(id : number) {
-    return this.paymentService.getCommandeById(id).subscribe(res => { 
+    return this.paymentService.getOrderById(id).subscribe(res => { 
       console.log("getCommandeById", res)
     });
   }
 
   getUpdateCommande(id) {
-    return this.paymentService.updateCommande(id).subscribe(res => { 
+    return this.paymentService.updateOrder(id).subscribe(res => { 
      console.log(res);
   });
 }
@@ -122,8 +125,30 @@ createOrder(){
       sessions.push(res)
     })
   });
-  order.sessions = sessions;
-  return order;
+  sessions = [
+    {adventureId: 1, endDate: "2018-05-20", id: 1, startDate: "2018-05-14"},
+    {adventureId: 2, endDate: "2018-05-20", id: 2, startDate: "2018-05-14"} 
+  ]
+  if(sessions.length > 0){
+    order.sessions = sessions;
+    this.paymentService.saveOrder(order).subscribe((res) => {
+    this.createdOrder = res;
+    if(this.createdOrder.id != null){
+      this.paymentSuccess = true;
+      setTimeout(
+        () => {
+          this.paymentSuccess = false;
+          this.router.navigate([""]);
+      }, 5000);
+    }else{
+      this.paymentError = true;
+      setTimeout(
+        () => {
+          this.paymentError = false;
+      }, 5000);
+    }
+  })
+  }
 }
 
 }

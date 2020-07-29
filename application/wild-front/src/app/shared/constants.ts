@@ -9,7 +9,7 @@ export const apiPrefixPayment = "http://localhost:9006";
 export const apiPrefixOrder = "http://localhost:9005";
 
 /**** API Commande ****/
-export const apiOrders = apiPrefixOrder + "api/orders/";
+export const apiOrders = apiPrefixOrder + "/api/orders";
 export const apiCommandeById = apiPrefix + "/";
 export const apiUpdateCommande = apiPrefix + "/";
 export const apiSaveCommande = apiPrefix + "/";

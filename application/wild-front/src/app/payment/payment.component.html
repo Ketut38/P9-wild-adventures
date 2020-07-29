@@ -1,8 +1,15 @@
 <div class="container">
- 
+
+
     <div class="row">
       <aside class="col-sm-6">
     <article class="card">
+      <div *ngIf="paymentSuccess" class="alert alert-success" role="alert" style="margin-top: 2rem;">
+        La transaction s'est bien passé. A bientot !!!
+      </div>
+      <div *ngIf="paymentError" class="alert alert-danger" role="alert" style="margin-top: 2rem;">
+        Une erreur est survenue lors de l'opération. Veuillez réessayer svp !!!
+      </div>
         <div class="card-header">
             <div class="row display-tr" >
                 <h3 class="title display-td" >Détails du paiement</h3>
