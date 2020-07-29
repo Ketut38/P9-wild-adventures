@@ -18,6 +18,7 @@ export class SessionsByAdventureComponent implements OnInit {
   public sessionToStore : Session;
   public addedToBasket : boolean = false;
   public sessionAlreadyExist : boolean = false;
+  public adv : Adventure;
 
   adventure: Adventure = {  id: null, 
                             title: '', 
@@ -61,7 +62,11 @@ export class SessionsByAdventureComponent implements OnInit {
       sessionStorage.setItem("sessionsIdsStored", JSON.stringify(this.sessionsIdsStored));
       this.changeAddedBasket();
     }
-
+    const advId = +this.route.snapshot.paramMap.get('id');
+    this.adventureService.getAdventureById(advId).subscribe((res)=>{
+      this.adv = res;
+      sessionStorage.setItem("adv", JSON.stringify(this.adv));
+    })
     setTimeout(
       () => {
         this.sessionAlreadyExist = false;

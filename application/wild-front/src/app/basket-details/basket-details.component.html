@@ -19,11 +19,11 @@
       <div *ngFor="let selectedSession of selectedSessions" class="col-lg-3 col-md-6 mb-4">
         <div class="card h-100">
           <div class="card-body">
-            <p class="card-text">Aventure : Titre de l'aventure</p>
+            <a routerLink="/adventures/{{adv.id}}" style="font-size: 22px;">{{adv.title}}</a>
             <p class="card-text">Début : {{selectedSession.startDate}}</p>
             <p class="card-text">Fin : {{selectedSession.endDate}}</p>
-            <p class="card-text">Localisation : localisation de l'aventure</p>
-            <p class="card-text">Prix : prix de l'aventure</p>
+            <p class="card-text">Localisation : {{adv.location}}</p>
+            <p class="card-text">Prix : {{adv.price}} euros</p>
             <button class="btn btn-danger"
             style="color: #fff;" (click) = "deleteItemFromBasket(selectedSession.id)">Supprimer du panier</button>
           </div>

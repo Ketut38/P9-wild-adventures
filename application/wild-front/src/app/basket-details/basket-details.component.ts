@@ -14,6 +14,7 @@ export class BasketDetailsComponent implements OnInit {
   public sessionIdsStored = [];
   public selectedSessions : Session[] = [];
   public adventure : Adventure;
+  public adv : Adventure;
   constructor(private sessionService : SessionService, private adventureService : AdventureService) { }
 
   ngOnInit() {
@@ -28,6 +29,7 @@ export class BasketDetailsComponent implements OnInit {
         this.selectedSessions.push(res)
       })
     })
+    this.adv = JSON.parse(sessionStorage.getItem("adv"));
   }
 
   getAdventureBySession(id : number){
