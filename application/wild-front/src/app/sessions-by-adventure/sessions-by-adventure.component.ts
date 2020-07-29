@@ -12,9 +12,10 @@ import { AdventureService } from '../services/adventure.service';
   styleUrls: ['./sessions-by-adventure.component.css']
 })
 export class SessionsByAdventureComponent implements OnInit {
-
+  
   public sessionsByAdv : Session[] = [];
   public sessionsIdsStored :  number[] = [1000];
+  public advSessionsIds :  any[] = [1000];
   public sessionToStore : Session;
   public addedToBasket : boolean = false;
   public sessionAlreadyExist : boolean = false;
@@ -58,6 +59,10 @@ export class SessionsByAdventureComponent implements OnInit {
       });
     }
     if(!this.sessionAlreadyExist){
+      let advSession = [+this.route.snapshot.paramMap.get('id'), sessionId]
+      this.advSessionsIds.push(advSession);
+      sessionStorage.setItem("advSession", JSON.stringify(this.advSessionsIds));
+
       this.sessionsIdsStored.push(sessionId);
       sessionStorage.setItem("sessionsIdsStored", JSON.stringify(this.sessionsIdsStored));
       this.changeAddedBasket();

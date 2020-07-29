@@ -38,6 +38,12 @@ export class BasketDetailsComponent implements OnInit {
     })
   }
   deleteItemFromBasket(id : number){
-    console.log("Session à supprimer");
+    this.sessionIdsStored = JSON.parse(sessionStorage.getItem("sessionsIdsStored"));
+    for( var i = 0; i < this.sessionIdsStored.length; i++){ 
+      if ( this.sessionIdsStored[i] === id) { 
+        this.sessionIdsStored.splice(i, 1); 
+      }
+    }
+    sessionStorage.setItem('sessionsIdsStored', JSON.stringify(this.sessionIdsStored))
   }
 }
