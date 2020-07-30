@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="config-server" />
+        <module name="ms-reservations" />
+        <module name="ms-adventures" />
+        <module name="ms-sessions" />
+        <module name="registry-server" />
+        <module name="ms-comments" />
+        <module name="ms-users" />
+        <module name="gateway-server" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="config-server" target="1.8" />
+      <module name="gateway-server" target="1.8" />
+      <module name="ms-adventures" target="1.8" />
+      <module name="ms-comments" target="1.8" />
+      <module name="ms-reservations" target="1.8" />
+      <module name="ms-sessions" target="1.8" />
+      <module name="ms-users" target="1.8" />
+      <module name="registry-server" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="config-server" options="-parameters" />
+      <module name="gateway-server" options="-parameters" />
+      <module name="ms-adventures" options="-parameters" />
+      <module name="ms-comments" options="-parameters" />
+      <module name="ms-reservations" options="-parameters" />
+      <module name="ms-sessions" options="-parameters" />
+      <module name="ms-users" options="-parameters" />
+      <module name="registry-server" options="-parameters" />
+    </option>
+  </component>
+</project>

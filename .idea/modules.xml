@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/P9-wild-adventures.iml" filepath="$PROJECT_DIR$/.idea/P9-wild-adventures.iml" />
+      <module fileurl="file://$PROJECT_DIR$/application/backend/ms-edge/config-server/config-server.iml" filepath="$PROJECT_DIR$/application/backend/ms-edge/config-server/config-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/application/backend/ms-edge/gateway-server/gateway-server.iml" filepath="$PROJECT_DIR$/application/backend/ms-edge/gateway-server/gateway-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/application/backend/ms-business/ms-adventures/ms-adventures.iml" filepath="$PROJECT_DIR$/application/backend/ms-business/ms-adventures/ms-adventures.iml" />
+      <module fileurl="file://$PROJECT_DIR$/application/backend/ms-business/ms-comments/ms-comments.iml" filepath="$PROJECT_DIR$/application/backend/ms-business/ms-comments/ms-comments.iml" />
+      <module fileurl="file://$PROJECT_DIR$/application/backend/ms-business/ms-reservations/ms-reservations.iml" filepath="$PROJECT_DIR$/application/backend/ms-business/ms-reservations/ms-reservations.iml" />
+      <module fileurl="file://$PROJECT_DIR$/application/backend/ms-business/ms-session/ms-sessions.iml" filepath="$PROJECT_DIR$/application/backend/ms-business/ms-session/ms-sessions.iml" />
+      <module fileurl="file://$PROJECT_DIR$/application/backend/ms-business/ms-users/ms-users.iml" filepath="$PROJECT_DIR$/application/backend/ms-business/ms-users/ms-users.iml" />
+      <module fileurl="file://$PROJECT_DIR$/application/backend/ms-edge/registry-server/registry-server.iml" filepath="$PROJECT_DIR$/application/backend/ms-edge/registry-server/registry-server.iml" />
+    </modules>
+  </component>
+</project>
