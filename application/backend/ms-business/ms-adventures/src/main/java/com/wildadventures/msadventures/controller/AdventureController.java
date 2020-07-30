@@ -38,5 +38,6 @@ public class AdventureController {
             throw new AdventureNotFoundException("L'aventure avec l'id, " + id + " est INTROUVABLE");
         return adventure;
     }
+    
 
 }

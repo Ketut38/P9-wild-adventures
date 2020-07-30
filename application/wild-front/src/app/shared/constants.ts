@@ -1,6 +1,7 @@
 // API Services
 
 export const apiPrefix = 'http://localhost:9001';
+export const apiUser = 'http://localhost:9002';
 
 /**** API Commande ****/
 export const apiCommande = apiPrefix + '/';
@@ -31,3 +32,6 @@ export const apiPayment = apiPrefix + '/';
 /**** API Commentaire ****/
 export const apiCommentaire = apiPrefix + '/';
 export const apiAddCommentaire = apiPrefix + '/';
+
+/**** API User ****/
+export const apiUserSession = apiUser + '/api/userInfos';

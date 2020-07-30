@@ -3,9 +3,10 @@ import { NgModule, APP_INITIALIZER } from '@angular/core';
 import {KeycloakService} from 'keycloak-angular';
 import {initializer} from '../environments/environment';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
-import {TokenInterceptor} from './shared/service/TokenInterceptor';
+import {KeycloakBearerInterceptor} from './shared/service/TokenInterceptor';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { UserService } from './services/user.service';
@@ -22,6 +23,7 @@ import { AdventuresByCategoryComponent } from './adventures-by-category/adventur
 import { SessionsByAdventureComponent } from './sessions-by-adventure/sessions-by-adventure.component';
 import { HomeComponent } from './home/home.component';
 import { KeycloakAngularModule } from 'keycloak-angular';
+import { UserComponent } from './user/user.component';
 
 
 
@@ -35,7 +37,8 @@ import { KeycloakAngularModule } from 'keycloak-angular';
     AdventureDetailsComponent,
     AdventuresByCategoryComponent,
     SessionsByAdventureComponent,
-    HomeComponent
+    HomeComponent,
+    UserComponent
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
 
@@ -55,7 +58,7 @@ import { KeycloakAngularModule } from 'keycloak-angular';
     },
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: TokenInterceptor,
+      useClass: KeycloakBearerInterceptor,
       multi: true
     },
   ],
