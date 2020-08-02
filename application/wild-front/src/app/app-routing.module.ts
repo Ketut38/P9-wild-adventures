@@ -6,6 +6,7 @@ import { CategoryComponent } from './category/category.component';
 import { AdventuresByCategoryComponent } from './adventures-by-category/adventures-by-category.component';
 import { SessionsByAdventureComponent } from './sessions-by-adventure/sessions-by-adventure.component';
 import { HomeComponent } from './home/home.component';
+import { UserComponent } from './user/user.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -14,7 +15,8 @@ const routes: Routes = [
   { path: 'adventuresByCategory/:id/adventures/:id/sessions', component: SessionsByAdventureComponent },
   { path : 'adventuresByCategory/:id', component : AdventuresByCategoryComponent}, 
   { path: 'adventures/:id/sessions', component: SessionsByAdventureComponent }, 
-  { path: 'categories', component: CategoryComponent }
+  { path: 'categories', component: CategoryComponent },
+  { path: 'profil', component: UserComponent}
 ];
 
 @NgModule({

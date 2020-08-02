@@ -11,11 +11,11 @@ import { User } from '../shared/model/user';
 export class UserComponent implements OnInit {
   public user: User = {
     id: null,
-    username: '',
+    userName: '',
     password: '',
     firstname: '',
     lastname: '',
-    gender:'',
+    gender: '',
     email: '',
     address: '',
     postcode: null,
