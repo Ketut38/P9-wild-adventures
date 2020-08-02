@@ -23,12 +23,25 @@ public class Sessions implements Serializable {
     @Column(name = "end_date")
     private LocalDate endDate;
 
+    @Column(name = "price")
+    private Double price;
+
+
     public Sessions(LocalDate startDate, LocalDate endDate) {
         this.startDate = startDate;
         this.endDate = endDate;
     }
 
     public Sessions() {
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public Sessions setPrice(Double price) {
+        this.price = price;
+        return this;
     }
 
     public Integer getId() {

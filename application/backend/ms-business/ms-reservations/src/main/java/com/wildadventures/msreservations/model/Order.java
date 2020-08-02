@@ -1,6 +1,7 @@
 package com.wildadventures.msreservations.model;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.wildadventures.msreservations.bean.SessionBean;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -23,20 +24,27 @@ public class Order implements Serializable{
     private LocalDate date;
     @Column(name = "is_paid")
     private Boolean isPaid;
+    @Column(name = "amount")
+    private Double amount;
 
     @JsonManagedReference
     @OneToMany(mappedBy = "order", targetEntity = OrderSession.class, fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.REMOVE})
     private List<OrderSession> orderSessions = new ArrayList<>(0);
 
+
+    // TODO : Montant d'une commande : methode static
+    // Stocker le montant en base
+
     public Order() {
     }
 
 
-    public Order(Integer id, Integer userId, LocalDate date, Boolean isPaid) {
+    public Order(Integer id, Integer userId, LocalDate date, Double amount, Boolean isPaid) {
         super();
         this.id = id;
         this.userId = userId;
         this.date = date;
+        this.amount = amount;
         this.isPaid = isPaid;
     }
 
@@ -89,6 +97,15 @@ public class Order implements Serializable{
         return this;
     }
 
+    public Double getAmount() {
+        return amount;
+    }
+
+    public Order setAmount(Double amount) {
+        this.amount = amount;
+        return this;
+    }
+
     public List<OrderSession> getOrderSessions() {
         return orderSessions;
     }
@@ -105,7 +122,19 @@ public class Order implements Serializable{
                 ", userId=" + userId +
                 ", date=" + date +
                 ", isPaid=" + isPaid +
-                ", orderSessions=" + orderSessions +
+                ", amount=" + amount +
                 '}';
+    }
+
+    public static Double getTotalOrderAmount(List<SessionBean> sessionBeans){
+        Double amount = null;
+        if(!sessionBeans.isEmpty()){
+            for (int i = 0; i <sessionBeans.size() ; i++) {
+                amount = sessionBeans.get(i).getPrice();
+            }
+            return amount;
+        }else{
+            return null;
+        }
     }
 }

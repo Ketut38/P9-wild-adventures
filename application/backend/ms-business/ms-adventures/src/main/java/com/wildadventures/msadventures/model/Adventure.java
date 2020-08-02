@@ -33,9 +33,6 @@ public class Adventure implements Serializable {
     private String location;
 
 
-    @Column(name = "price")
-    private Integer price;
-
     @Column(name = "image")
     private String image;
 
@@ -47,7 +44,6 @@ public class Adventure implements Serializable {
         this.description = description;
         this.participantCount = participantCount;
         this.location = location;
-        this.price = price;
         this.image = image;
     }
 
@@ -94,13 +90,6 @@ public class Adventure implements Serializable {
         this.location = location;
     }
 
-    public Integer getPrice() {
-        return price;
-    }
-
-    public void setPrice(Integer price) {
-        this.price = price;
-    }
 
     public String getImage() {
         return image;
@@ -127,7 +116,6 @@ public class Adventure implements Serializable {
                 ", description='" + description + '\'' +
                 ", nbparticipant=" + participantCount +
                 ", location='" + location + '\'' +
-                ", price=" + price +
                 ", image='" + image + '\'' +
                 '}';
     }

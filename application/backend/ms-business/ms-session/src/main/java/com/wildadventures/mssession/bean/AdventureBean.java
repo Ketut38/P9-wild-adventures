@@ -12,7 +12,6 @@ public class AdventureBean {
     private String description;
     private Integer participantCount;
     private String location;
-    private Integer price;
     private String image;
     private List<Sessions> sessions = new ArrayList<>(0);
 
@@ -61,15 +60,6 @@ public class AdventureBean {
 
     public AdventureBean setLocation(String location) {
         this.location = location;
-        return this;
-    }
-
-    public Integer getPrice() {
-        return price;
-    }
-
-    public AdventureBean setPrice(Integer price) {
-        this.price = price;
         return this;
     }
 
