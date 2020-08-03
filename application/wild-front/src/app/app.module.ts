@@ -6,6 +6,7 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {KeycloakBearerInterceptor} from './shared/service/TokenInterceptor';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { AuthGuard } from './auth.guard';
 
 
 import { HeaderComponent } from './header/header.component';

@@ -12,11 +12,10 @@ export function initializer(keycloak: KeycloakService): () => Promise<any> {
             clientId: 'wildAdventures-frontend'
           },
           initOptions: {
-            onLoad: 'login-required',
-            checkLoginIframe: false,
-            responseMode: 'fragment',
-            flow: 'standard'
-          }
+              onLoad: 'check-sso',
+              silentCheckSsoRedirectUri:
+                window.location.origin + '/assets/silent-check-sso.html',
+            },
         });
         resolve();
       } catch (error) {
