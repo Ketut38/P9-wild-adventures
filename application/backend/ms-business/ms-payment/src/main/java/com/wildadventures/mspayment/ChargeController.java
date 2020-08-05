@@ -1,3 +1,4 @@
+/*
 package com.wildadventures.mspayment;
 
 import com.stripe.exception.StripeException;
@@ -34,3 +35,4 @@ public class ChargeController {
         return "result";
     }
 }
+*/

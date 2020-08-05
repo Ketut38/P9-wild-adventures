@@ -20,10 +20,10 @@
           </div>
     <div class="card-body p-5">
     <!--  <span class="payment-message alert alert-success">{{message}}</span>  -->
-   <p>  Montant de la commande : <b>1000 €</b></p>
+   <p>  Montant de la commande : <b>{{orderAmount}} €</b></p>
     <form>   
-      <p *ngIf="saved == true" class="alert alert-success payment-message">success</p>
-      <p *ngIf="errorMessage" class="alert alert-danger payment-message">Error</p>
+      <!-- <p *ngIf="saved == true" class="alert alert-success payment-message">success</p>
+      <p *ngIf="errorMessage" class="alert alert-danger payment-message">Error</p> -->
     <div class="form-group">
     <label for="cardNumber">Numéro de carte</label>
     <div class="input-group">

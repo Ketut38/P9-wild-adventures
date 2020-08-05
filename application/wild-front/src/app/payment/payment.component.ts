@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { first } from 'rxjs/operators';
+import { Session } from '../shared/model/session';
 import { PaymentService } from '../services/payment.service';
 import { Order } from '../shared/model/order';  
 import { SessionService } from '../services/session.service';
@@ -17,12 +17,14 @@ export class PaymentComponent implements OnInit {
   public errorMessage: any;
   public paymentSuccess : boolean;
   public paymentError : boolean;
+  public orderAmount : number;
+  public sessions : Session[] = [];
   prix;
 
   constructor(private http: HttpClient, private paymentService : PaymentService,  private sessionService : SessionService, private router: Router, private route: ActivatedRoute) {}
 
   ngOnInit() {
-    //this.createOrder();
+    this.orderAmount = +this.route.snapshot.paramMap.get('price');
   }
 
   chargeCreditCard() {
@@ -37,11 +39,8 @@ export class PaymentComponent implements OnInit {
     if(form.cardNumber.value != '' && form.expMonth.value != '' && form.expYear.value != '' && form.cvc.value != ''){
     if (status === 200) {
       let token = response.id;
-      console.log("token", token);
-      console.log("token", this.prix);
       this.chargeCard(token, this.prix);
       this.saved = true;
-      console.log("saved", this.saved);
       form.cardNumber.value = '';
       form.expMonth.value = '';
       form.expYear.value = '';
@@ -58,7 +57,7 @@ export class PaymentComponent implements OnInit {
   
   chargeCard(token: string, montant: string) {
     this.paymentService.chargeCard(token, montant).subscribe(resp => {
-      console.log("payementtttt ", resp);
+      console.log(resp)
     }, (error) => {
       switch (true) {
         case error.status === 400 || error.status === 401: {
@@ -75,6 +74,7 @@ export class PaymentComponent implements OnInit {
         }
       } 
     });
+    this.createOrder();
   }
 
   getCommandeById(id : number) {
@@ -90,7 +90,6 @@ export class PaymentComponent implements OnInit {
 }
 
 createOrder(){
-  let sessions = [];
   let sessionIdsStored = JSON.parse(sessionStorage.getItem("sessionsIdsStored")); 
   sessionIdsStored.shift();
   let userId = JSON.parse(sessionStorage.getItem("userId"));
@@ -100,33 +99,29 @@ createOrder(){
   order.isPaid = false;
   sessionIdsStored.forEach(id => {
     this.sessionService.getSessionById(id).subscribe((res) => {
-      sessions.push(res)
+      this.sessions.push(res)
     })
   });
-  sessions = [
-    {adventureId: 1, endDate: "2018-05-20", id: 1, startDate: "2018-05-14"},
-    {adventureId: 2, endDate: "2018-05-20", id: 2, startDate: "2018-05-14"} 
-  ]
-  if(sessions.length > 0){
-    order.sessions = sessions;
-    this.paymentService.saveOrder(order).subscribe((res) => {
-    this.createdOrder = res;
-    if(this.createdOrder.id != null){
-      this.paymentSuccess = true;
-      setTimeout(
-        () => {
-          this.paymentSuccess = false;
-          this.router.navigate([""]);
-      }, 5000);
-    }else{
-      this.paymentError = true;
-      setTimeout(
-        () => {
-          this.paymentError = false;
-      }, 5000);
-    }
-  })
+  order.sessions = this.sessions;
+  order.isPaid = true;
+  order.amount = this.orderAmount;
+  this.paymentService.saveOrder(order).subscribe((res) => {
+  this.createdOrder = res;
+  if(this.createdOrder.id != null){
+    this.paymentSuccess = true;
+    setTimeout(
+      () => {
+        this.paymentSuccess = false;
+        this.router.navigate([""]);
+    }, 5000);
+  }else{
+    this.paymentError = true;
+    setTimeout(
+      () => {
+        this.paymentError = false;
+    }, 5000);
   }
+  })
 }
 
 }

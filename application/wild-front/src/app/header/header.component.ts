@@ -26,7 +26,6 @@ export class HeaderComponent implements OnInit {
 
   getAllOrderDemandsByUser(){
     this.sessionsStored = JSON.parse(sessionStorage.getItem("sessionsIdsStored"));
-    console.log("this.ordersDemand", this.sessionsStored);
   }
 
 }

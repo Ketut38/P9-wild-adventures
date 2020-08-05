@@ -13,12 +13,10 @@ export class PaymentService {
 
 
 chargeCard(token: string, montant : string) {
- return this.http.post(apiPayment + 'charge' , {},  {
+ return this.http.post(apiPayment + 'charge',{
               headers: new HttpHeaders()
                 .set('token', token)
-                .set('amount', montant)
-      })
-      
+                .set('amount', montant)})   
 }
 
 getAllUserOrders(userId: number): Observable<Order[]> {

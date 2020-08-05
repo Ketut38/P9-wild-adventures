@@ -12,7 +12,9 @@ import { element } from 'protractor';
 })
 export class BasketDetailsComponent implements OnInit {
   public sessionIdsStored = [];
+  public orderAmount = 0;
   public selectedSessions : Session[] = [];
+  public sessions : Session[] = [];
   public adventure : Adventure;
   public adv : Adventure;
   constructor(private sessionService : SessionService, private adventureService : AdventureService) { }
@@ -27,6 +29,7 @@ export class BasketDetailsComponent implements OnInit {
     this.sessionIdsStored.forEach(sessionId => {
       this.sessionService.getSessionById(sessionId).subscribe((res) => {
         this.selectedSessions.push(res)
+        this.orderAmount = this.orderAmount + res.price;
       })
     })
     this.adv = JSON.parse(sessionStorage.getItem("adv"));

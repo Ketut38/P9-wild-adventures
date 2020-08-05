@@ -24,16 +24,12 @@ public class Order implements Serializable{
     private LocalDate date;
     @Column(name = "is_paid")
     private Boolean isPaid;
-    @Column(name = "amount")
+    @Column(name = "amount", precision = 8, scale = 2)
     private Double amount;
 
     @JsonManagedReference
     @OneToMany(mappedBy = "order", targetEntity = OrderSession.class, fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.REMOVE})
     private List<OrderSession> orderSessions = new ArrayList<>(0);
-
-
-    // TODO : Montant d'une commande : methode static
-    // Stocker le montant en base
 
     public Order() {
     }

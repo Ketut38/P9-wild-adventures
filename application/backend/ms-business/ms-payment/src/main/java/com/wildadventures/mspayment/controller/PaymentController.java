@@ -1,4 +1,3 @@
-/*
 package com.wildadventures.mspayment.controller;
 
 import com.stripe.model.Charge;
@@ -24,12 +23,13 @@ public class PaymentController {
 
     @PostMapping("/charge")
     public Charge chargeCard(HttpServletRequest request) throws Exception {
-        String token = request.getHeader("token");
-        Double amount = Double.parseDouble(request.getHeader("amount"));
+        //String token = request.getHeader("token");
+        String token = "tok_1HCv5qG3FbXArABCilMfTcV6";
+        //Double amount = Double.parseDouble(request.getHeader("amount"));
+        Double amount = Double.valueOf(150);
         return this.stripeClient.chargeCreditCard(token, amount);
     }
 
 
 }
 
-*/
