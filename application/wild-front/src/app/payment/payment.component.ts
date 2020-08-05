@@ -4,7 +4,7 @@ import { first } from 'rxjs/operators';
 import { PaymentService } from '../services/payment.service';
 import { Order } from '../shared/model/order';  
 import { SessionService } from '../services/session.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-payment',
@@ -19,67 +19,45 @@ export class PaymentComponent implements OnInit {
   public paymentError : boolean;
   prix;
 
-  constructor(private http: HttpClient, private paymentService : PaymentService,  private sessionService : SessionService, private router: Router) {}
+  constructor(private http: HttpClient, private paymentService : PaymentService,  private sessionService : SessionService, private router: Router, private route: ActivatedRoute) {}
 
   ngOnInit() {
     //this.createOrder();
   }
 
-  /* chargeCreditCard() {
-    let form = document.getElementsByTagName("form")[0];
-    (<any>window).Stripe.card.createToken({
-      number: form.cardNumber.value,
-      exp_month: form.expMonth.value,
-      exp_year: form.expYear.value,
-      cvc: form.cvc.value
-    }, (status: number, response: any) => {
-      if (status === 200) {
-        let token = response.id;
-        this.chargeCard(token);
-      } else {
-        console.log("response.error", response.error.message);
-      }
-    });
-  }
-
-  chargeCard(token: string) {
-    const headers = new Headers({'token': token, 'amount': 100});
-    this.http.post('http://localhost:9006/charge', {}, {headers: headers})
-      .subscribe(resp => {
-        console.log(resp);
-      })
-  } */
-
-    chargeCreditCard() {
-    let form = document.getElementsByTagName("form")[0];
-    (<any>window).Stripe.card.createToken({
-      number: form.cardNumber.value,
-      exp_month: form.expMonth.value,
-      exp_year: form.expYear.value,
-      cvc: form.cvc.value
-    }, (status: number, response: any) => {
-      if(form.cardNumber.value != '' && form.expMonth.value != '' && form.expYear.value != '' && form.cvc.value != ''){
-      if (status === 200) {
-        let token = response.id;
-        this.chargeCard(token, this.prix);
-        this.saved = true;
-        console.log("saved", this.saved);
-        form.cardNumber.value = '';
-        form.expMonth.value = '';
-        form.expYear.value = '';
-      } 
-      else {
-       // this.errorMessage = response.error.message;
-        console.log("messageeeeeee error", this.errorMessage);
-      }
-    }else {
-      this.errorMessage ="Veuillez renseigner les champs"
+  chargeCreditCard() {
+  this.prix = +this.route.snapshot.paramMap.get('price');
+  let form = document.getElementsByTagName("form")[0];
+  (<any>window).Stripe.card.createToken({
+    number: form.cardNumber.value,
+    exp_month: form.expMonth.value,
+    exp_year: form.expYear.value,
+    cvc: form.cvc.value
+  }, (status: number, response: any) => {
+    if(form.cardNumber.value != '' && form.expMonth.value != '' && form.expYear.value != '' && form.cvc.value != ''){
+    if (status === 200) {
+      let token = response.id;
+      console.log("token", token);
+      console.log("token", this.prix);
+      this.chargeCard(token, this.prix);
+      this.saved = true;
+      console.log("saved", this.saved);
+      form.cardNumber.value = '';
+      form.expMonth.value = '';
+      form.expYear.value = '';
+    } 
+    else {
+      // this.errorMessage = response.error.message;
+      console.log("messageeeeeee error", this.errorMessage);
     }
-    });
+  }else {
+    this.errorMessage ="Veuillez renseigner les champs"
+  }
+  });
   }
   
   chargeCard(token: string, montant: string) {
-    return this.paymentService.chargeCard(token, montant).pipe(first()).subscribe(resp => {
+    this.paymentService.chargeCard(token, montant).subscribe(resp => {
       console.log("payementtttt ", resp);
     }, (error) => {
       switch (true) {

@@ -6,4 +6,5 @@ export class Order {
   sessions: Session[];
   date: Date;
   isPaid: Boolean;
+  amount : number;
 }

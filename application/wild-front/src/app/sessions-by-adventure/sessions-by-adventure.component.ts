@@ -21,12 +21,11 @@ export class SessionsByAdventureComponent implements OnInit {
   public sessionAlreadyExist : boolean = false;
   public adv : Adventure;
 
-  adventure: Adventure = {  id: null, 
+  public adventure: Adventure = {  id: null, 
                             title: '', 
                             description : '',
                             participantCount : null, 
                             location: "",
-                            price: null,
                             image: '', 
                             sessions: [],
                             category_id: null};
@@ -35,6 +34,7 @@ export class SessionsByAdventureComponent implements OnInit {
 
   ngOnInit() {
     const adventureId = +this.route.snapshot.paramMap.get('id');
+    this.getAdventureById(adventureId) 
     this.getSessionsByAdventure(adventureId);
   }
 
@@ -47,6 +47,12 @@ export class SessionsByAdventureComponent implements OnInit {
       console.log("res", res);
       this.sessionsByAdv = res;
     }) 
+  }
+
+  getAdventureById(id: number) {
+    return this.adventureService.getAdventureById(id).subscribe(res => {
+      this.adventure = res;
+    });
   }
 
   createOrderDemand(sessionId : number){

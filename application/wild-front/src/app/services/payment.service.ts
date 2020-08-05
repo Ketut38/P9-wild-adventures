@@ -13,8 +13,7 @@ export class PaymentService {
 
 
 chargeCard(token: string, montant : string) {
-    //const headers = new Headers({'token': token, 'amount': 100});
- return this.http.post(apiPayment + '/charge' , {},  {
+ return this.http.post(apiPayment + 'charge' , {},  {
               headers: new HttpHeaders()
                 .set('token', token)
                 .set('amount', montant)

@@ -5,4 +5,5 @@ export class Session {
   adventureId: number;
   startDate: string;
   endDate: string;
+  price: number;
 }
