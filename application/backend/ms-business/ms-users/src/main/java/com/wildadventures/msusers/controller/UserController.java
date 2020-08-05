@@ -39,6 +39,7 @@ public class UserController {
 			KeycloakPrincipal<KeycloakSecurityContext> kp = (KeycloakPrincipal<KeycloakSecurityContext>) principal;
 			AccessToken token = kp.getKeycloakSecurityContext().getToken();
 			user.setId(token.getId());
+			user.setEmail(token.getEmail());
 			user.setUserName(token.getName());
 			user.setPhoneNumber(token.getPhoneNumber());
 			user.setGender(token.getGender());
