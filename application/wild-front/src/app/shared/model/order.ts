@@ -1,7 +1,10 @@
-export class Commande {
+import { Session } from './session';
+
+export class Order {
   id: number;
   userId: number;
-  sessionId: number;
+  sessions: Session[];
   date: Date;
-  status: Boolean;
+  isPaid: Boolean;
+  amount : number;
 }

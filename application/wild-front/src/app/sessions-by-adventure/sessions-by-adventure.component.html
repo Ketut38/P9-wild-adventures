@@ -1,34 +1,30 @@
 <div class="container">
-    <header class="jumbotron my-4">
+  <div *ngIf="addedToBasket" class="alert alert-success" role="alert" style="margin-top: 2rem;">
+    La session a bien été ajouté dans votre panier.
+  </div>
+  <div *ngIf="sessionAlreadyExist" class="alert alert-danger" role="alert" style="margin-top: 2rem;">
+    Une erreur est survenue : la session a déjà été ajouté dans le panier.
+  </div>
+    <header class="jumbotron my-4" style="padding: 15px;">
       <div style="display: flex;">
         <div>
-            <p>Session 1</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam fuga repellendus totam aut ad voluptates reprehenderit rerum libero voluptatem maxime!</p>
-            <form class="d-flex justify-content-left">
-                <!-- Default input -->
-                <a class="btn btn-primary" routerLink=""
-                  >Reserver cette session</a>
-              </form>
-        </div>
-        <div>
-            <p>Session 1</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam fuga repellendus totam aut ad voluptates reprehenderit rerum libero voluptatem maxime!</p>
-            <form class="d-flex justify-content-left">
-                <!-- Default input -->
-                <a class="btn btn-primary" routerLink=""
-                  >Reserver cette session</a>
-              </form>
-        </div>
-        <div>
-            <p>Session 1</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam fuga repellendus totam aut ad voluptates reprehenderit rerum libero voluptatem maxime!</p>
-            <form class="d-flex justify-content-left">
-                <!-- Default input -->
-                <a class="btn btn-primary" routerLink=""
-                  >Reserver cette session</a>
-              </form>
+            <p style="font-size: 22px;">Liste des sessions de l'aventure : <span><a routerLink="/adventures/{{adventure.id}}" style="font-size: 22px;">{{adventure.title}}</a></span></p>
         </div>
       </div>
     </header>
+
+    <div class="row text-center">
+      <div *ngFor="let session of sessionsByAdv" class="col-lg-3 col-md-6 mb-4">
+        <div class="card h-100">
+          <div class="card-body">
+            <p class="card-text">Date de début : {{ session.startDate }}</p>
+            <p class="card-text">Date de fin : {{ session.endDate }}</p>
+          </div>
+          <div class="card-footer">
+            <button class="btn btn-primary" (click)="createOrderDemand(session.id)">Ajouter la session au panier</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
   

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Adventure } from '../shared/model/adventure';
 
 @Component({
   selector: 'app-header',
@@ -6,18 +7,25 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-
+  public sessionsStored = [];
+  public adv: Adventure;
   isUserLoggedIn : boolean = false;
   
   constructor() { 
     setTimeout(
       () => {
         this.isUserLoggedIn = true;
+        sessionStorage.setItem('userId', JSON.stringify(1))
       }, 10000
     );
   }
 
   ngOnInit() {
+    this.getAllOrderDemandsByUser();
+  }
+
+  getAllOrderDemandsByUser(){
+    this.sessionsStored = JSON.parse(sessionStorage.getItem("sessionsIdsStored"));
   }
 
 }

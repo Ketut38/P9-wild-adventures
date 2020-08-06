@@ -8,15 +8,19 @@ import { SessionsByAdventureComponent } from './sessions-by-adventure/sessions-b
 import { HomeComponent } from './home/home.component';
 import { UserComponent } from './user/user.component';
 import { AuthGuard } from './auth.guard';
+import { BasketDetailsComponent } from './basket-details/basket-details.component';
+import { PaymentComponent } from './payment/payment.component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
-  { path: 'adventures', component: AdventureComponent },
-  { path: 'adventures/:id', component: AdventureDetailsComponent },
-  { path: 'adventuresByCategory/:id/adventures/:id/sessions', component: SessionsByAdventureComponent },
-  { path : 'adventuresByCategory/:id', component : AdventuresByCategoryComponent},
-  { path: 'adventures/:id/sessions', component: SessionsByAdventureComponent },
-  { path: 'categories', component: CategoryComponent },
+  { path: "", component: HomeComponent },
+  { path: "adventures", component: AdventureComponent },
+  { path: "adventures/:id", component: AdventureDetailsComponent },
+  { path: "adventuresByCategory/:id/adventures/:id/sessions", component: SessionsByAdventureComponent },
+  { path : "adventuresByCategory/:id", component : AdventuresByCategoryComponent}, 
+  { path: "adventures/:id/sessions", component: SessionsByAdventureComponent }, 
+  { path: "categories", component: CategoryComponent },
+  { path: "basket-details", component: BasketDetailsComponent },
+  { path: "payment/commande/:price", component: PaymentComponent }
   { path: 'profil', component: UserComponent, canActivate: [AuthGuard]}
 ];
 

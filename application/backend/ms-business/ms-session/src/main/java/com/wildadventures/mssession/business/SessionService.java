@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class SessionService {
@@ -29,7 +30,7 @@ public class SessionService {
         return sessionRepository.findAllByIdIn(sessionsIdList);
     }
 
-    public Sessions findById(Integer sessionId) {
-        return sessionRepository.getOne(sessionId);
+    public Optional<Sessions> findById(Integer sessionId) {
+        return sessionRepository.findById(sessionId);
     }
 }

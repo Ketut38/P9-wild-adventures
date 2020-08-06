@@ -26,6 +26,8 @@ import { SessionsByAdventureComponent } from './sessions-by-adventure/sessions-b
 import { HomeComponent } from './home/home.component';
 import { KeycloakAngularModule } from 'keycloak-angular';
 import { UserComponent } from './user/user.component';
+import { BasketDetailsComponent } from './basket-details/basket-details.component';
+import { PaymentComponent } from './payment/payment.component';
 
 
 
@@ -40,6 +42,8 @@ import { UserComponent } from './user/user.component';
     AdventuresByCategoryComponent,
     SessionsByAdventureComponent,
     HomeComponent,
+    BasketDetailsComponent,
+    PaymentComponent
     UserComponent
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],

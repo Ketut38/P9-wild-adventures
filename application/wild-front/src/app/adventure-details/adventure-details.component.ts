@@ -11,11 +11,10 @@ import { AdventureService } from '../services/adventure.service';
 export class AdventureDetailsComponent implements OnInit {
   adventure: Adventure = {
     id: null,
-    title: '',
-    description: '',
-    location: '',
-    price: null,
-    image: '',
+    title: "",
+    description: "",
+    location: "",
+    image: "",
     participantCount: null,
     sessions: null,
     category_id: null

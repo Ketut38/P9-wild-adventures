@@ -1,14 +1,14 @@
 package com.wildadventures.msreservations.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.wildadventures.msreservations.bean.SessionBean;
+
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "orders")
@@ -20,23 +20,28 @@ public class Order implements Serializable{
     private Integer id;
     @Column(name = "user_id")
     private Integer userId;
-    @Column(name = "session_id")
-    private Integer sessionId;
     @Column(name = "order_date")
     private LocalDate date;
-    private Boolean status;
+    @Column(name = "is_paid")
+    private Boolean isPaid;
+    @Column(name = "amount", precision = 8, scale = 2)
+    private Double amount;
+
+    @JsonManagedReference
+    @OneToMany(mappedBy = "order", targetEntity = OrderSession.class, fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.REMOVE})
+    private List<OrderSession> orderSessions = new ArrayList<>(0);
 
     public Order() {
     }
 
 
-    public Order(Integer id, Integer userId, Integer sessionId, LocalDate date, Boolean status) {
+    public Order(Integer id, Integer userId, LocalDate date, Double amount, Boolean isPaid) {
         super();
         this.id = id;
         this.userId = userId;
-        this.sessionId = sessionId;
         this.date = date;
-        this.status = status;
+        this.amount = amount;
+        this.isPaid = isPaid;
     }
 
 
@@ -60,16 +65,6 @@ public class Order implements Serializable{
     }
 
 
-    public Integer getSessionId() {
-        return sessionId;
-    }
-
-
-    public void setSessionId(Integer sessionId) {
-        this.sessionId = sessionId;
-    }
-
-
     public LocalDate getDate() {
         return date;
     }
@@ -80,19 +75,62 @@ public class Order implements Serializable{
     }
 
 
-    public Boolean getStatus() {
-        return status;
+    public Boolean getIsPaid() {
+        return isPaid;
     }
 
 
-    public void setStatus(Boolean status) {
-        this.status = status;
+    public void setIsPaid(Boolean isPaid) {
+        this.isPaid = isPaid;
     }
 
+    public Boolean getPaid() {
+        return isPaid;
+    }
+
+    public Order setPaid(Boolean paid) {
+        isPaid = paid;
+        return this;
+    }
+
+    public Double getAmount() {
+        return amount;
+    }
+
+    public Order setAmount(Double amount) {
+        this.amount = amount;
+        return this;
+    }
+
+    public List<OrderSession> getOrderSessions() {
+        return orderSessions;
+    }
+
+    public Order setOrderSessions(List<OrderSession> orderSessions) {
+        this.orderSessions = orderSessions;
+        return this;
+    }
 
     @Override
     public String toString() {
-        return String.format("Order[id=%d, user_id='%s', session_id='%s', date='%s', status='%s']", id, userId, sessionId, date, status);
+        return "Order{" +
+                "id=" + id +
+                ", userId=" + userId +
+                ", date=" + date +
+                ", isPaid=" + isPaid +
+                ", amount=" + amount +
+                '}';
     }
 
+    public static Double getTotalOrderAmount(List<SessionBean> sessionBeans){
+        Double amount = null;
+        if(!sessionBeans.isEmpty()){
+            for (int i = 0; i <sessionBeans.size() ; i++) {
+                amount = sessionBeans.get(i).getPrice();
+            }
+            return amount;
+        }else{
+            return null;
+        }
+    }
 }

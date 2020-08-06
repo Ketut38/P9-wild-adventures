@@ -1,5 +1,7 @@
 package com.wildadventures.msadventures.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,8 +25,12 @@ public class Category {
     @Column(name = "image")
     private String image;
 
-    @OneToMany(fetch = FetchType.EAGER)
-    private List<Adventure> adventures = new ArrayList<>();
+    @JsonManagedReference
+    @OneToMany(mappedBy = "category", targetEntity = CategoryAdventure.class, fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.REMOVE})
+    private List<CategoryAdventure> categoryAdventures = new ArrayList<>(0);
+
+    /*@OneToMany(fetch = FetchType.EAGER)
+    private List<Adventure> adventures = new ArrayList<>();*/
 
     public Category(String title, String description, String image) {
         this.title = title;
@@ -67,14 +73,23 @@ public class Category {
         this.image = image;
     }
 
-    public List<Adventure> getAdventures() {
+    public List<CategoryAdventure> getCategoryAdventures() {
+        return categoryAdventures;
+    }
+
+    public Category setCategoryAdventures(List<CategoryAdventure> categoryAdventures) {
+        this.categoryAdventures = categoryAdventures;
+        return this;
+    }
+
+    /* public List<Adventure> getAdventures() {
         return adventures;
     }
 
     public Category setAdventures(List<Adventure> adventures) {
         this.adventures = adventures;
         return this;
-    }
+    }*/
 
     @Override
     public String toString() {

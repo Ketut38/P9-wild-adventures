@@ -1,0 +1,33 @@
+<div class="container">
+    <header class="jumbotron my-4">
+      <div style="display: flex; justify-content: space-between;">
+        <div>
+            <h1>Détails de votre panier</h1>
+            <p>Vous avez sélectionné les sessions d'aventure suivantes</p>
+        </div>
+        <div>
+          <div>
+              <h1>Total : {{orderAmount}}</h1>
+          </div>
+          <a class="btn btn-primary"
+            style="color: #fff;" routerLink="/payment/commande/{{orderAmount}}">Valider votre commande</a>
+        </div>
+      </div>
+    </header>
+
+    <div class="row text-center">
+      <div *ngFor="let selectedSession of selectedSessions" class="col-lg-3 col-md-6 mb-4">
+        <div class="card h-100">
+          <div class="card-body">
+            <a routerLink="/adventures/{{adv.id}}" style="font-size: 22px;">{{adv.title}}</a>
+            <p class="card-text">Début : {{selectedSession.startDate}}</p>
+            <p class="card-text">Fin : {{selectedSession.endDate}}</p>
+            <p class="card-text">Localisation : {{adv.location}}</p>
+            <p class="card-text">Prix : {{selectedSession.price}} euros</p>
+            <button class="btn btn-danger"
+            style="color: #fff;" (click) = "deleteItemFromBasket(selectedSession.id)">Supprimer du panier</button>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
