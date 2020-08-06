@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { apiPayment, apiOrders } from '../shared/constants';
 import { Order } from '../shared/model/order';
+import { Payment } from '../shared/model/payment';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -12,11 +13,11 @@ export class PaymentService {
   constructor(private http: HttpClient) {}
 
 
-chargeCard(token: string, montant : string) {
- return this.http.post(apiPayment + 'charge',{
-              headers: new HttpHeaders()
-                .set('token', token)
-                .set('amount', montant)})   
+chargeCard(token: string, amount : string) {
+  let req = new Payment()
+  req.token = token;
+  req.amount = amount;
+ return this.http.post(apiPayment + 'charge', req)   
 }
 
 getAllUserOrders(userId: number): Observable<Order[]> {
