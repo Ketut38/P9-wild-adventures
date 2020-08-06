@@ -14,7 +14,6 @@ export class AdventureDetailsComponent implements OnInit {
     title: "",
     description: "",
     location: "",
-    price: null,
     image: "",
     participantCount: null,
     sessions: null,

@@ -12,9 +12,9 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class AdventuresByCategoryComponent implements OnInit {
 
-  private adventuresByCategory: Adventure[];
+  private adventuresByCategory: Adventure[] = [];
   category: Category = {  id: null, title: '', description : '', image: '', adventures:[]};
-  constructor(private adventureService:AdventureService,private categoryService:CategoryService, private route: ActivatedRoute,) { }
+  constructor(private adventureService:AdventureService,private categoryService:CategoryService, private route: ActivatedRoute) { }
 
   ngOnInit() {
     const id = +this.route.snapshot.paramMap.get('id');
@@ -23,20 +23,19 @@ export class AdventuresByCategoryComponent implements OnInit {
 
   }
 
-  /* getAventuresByCategory(id:number){
-    return this.adventureService.getAventuresByCategory(id).subscribe((res)=>{
-      console.log("adventuresByCategory", res);
-      this.adventuresByCategory = res;
-    })
-  } */
-
-  getAventuresByCategory(id:number){
+  getCategoryById(id:number){
     return this.categoryService.getCategoryById(id).subscribe((res)=>{
       console.log("category", res);
       this.category = res;
-      console.log("adventuresByCategory", res.adventures);
-      this.adventuresByCategory = this.category.adventures;
     })
   }
+
+  getAventuresByCategory(id:number){
+    return this.categoryService.getAdventuresByCatId(id).subscribe((res) => {
+      this.adventuresByCategory = res;
+    });
+  }
+
+
 
 }

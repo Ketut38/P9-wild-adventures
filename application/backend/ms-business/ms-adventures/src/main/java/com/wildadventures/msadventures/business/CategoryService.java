@@ -23,16 +23,8 @@ public class CategoryService {
         return categoryRepository.findAll();
     }
 
-    public Category findById(Integer id) {
-        Optional<Category> category = categoryRepository.findById(id);
-        if(category.isPresent()){
-            return category.get();
-        }
-        return null;
-    }
-
-    public Category findByTitle(String title){
-        return categoryRepository.getByTitle(title);
+    public Optional<Category> findById(Integer id) {
+        return categoryRepository.findById(id);
     }
 
     public Iterable<Category> findAllByIdIn(List<Integer> categoriesIdList){

@@ -33,22 +33,17 @@ public class Adventure implements Serializable {
     private String location;
 
 
-    @Column(name = "price")
-    private Integer price;
-
     @Column(name = "image")
     private String image;
 
     @OneToMany(mappedBy = "adventure", targetEntity = AdventureSession.class, fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.REMOVE})
     private List<AdventureSession> adventureSessions = new ArrayList<>(0);
 
-
     public Adventure(String title, String description, Integer participantCount, String location, Integer price, String image) {
         this.title = title;
         this.description = description;
         this.participantCount = participantCount;
         this.location = location;
-        this.price = price;
         this.image = image;
     }
 
@@ -95,13 +90,6 @@ public class Adventure implements Serializable {
         this.location = location;
     }
 
-    public Integer getPrice() {
-        return price;
-    }
-
-    public void setPrice(Integer price) {
-        this.price = price;
-    }
 
     public String getImage() {
         return image;
@@ -128,7 +116,6 @@ public class Adventure implements Serializable {
                 ", description='" + description + '\'' +
                 ", nbparticipant=" + participantCount +
                 ", location='" + location + '\'' +
-                ", price=" + price +
                 ", image='" + image + '\'' +
                 '}';
     }

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class OrderService {
@@ -22,24 +23,20 @@ public class OrderService {
         return orderRepository.findAll();
     }
 
-    public Order findById(Integer id) {
-        return  orderRepository.findById(id).get();
+    public Optional<Order> findById(Integer id) {
+        return  orderRepository.findById(id);
     }
 
     public Order addOrder(Order order) {
         return orderRepository.save(order);
     }
 
-    public Order updateOrder(Integer orderToUpdateId, Order order) {
-        Order orderToUpdate = orderRepository.findById(orderToUpdateId).get();
-        if(orderToUpdate != null){
-            orderToUpdate.setUserId(order.getUserId());
-            orderToUpdate.setSessionId(order.getSessionId());
-            orderToUpdate.setDate(order.getDate());
-            orderToUpdate.setStatus(order.getStatus());
-            return orderRepository.save(orderToUpdate);
-        }
-        return null;
+    public Order updateOrder(Order order) {
+        return orderRepository.save(order);
+    }
+
+    public void deleteOrderById(Integer orderId){
+        orderRepository.deleteById(orderId);
     }
 
     public List<Order> findByUser(Integer userId){

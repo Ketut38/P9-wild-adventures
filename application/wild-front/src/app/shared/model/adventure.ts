@@ -7,7 +7,6 @@ export class Adventure {
   description: string;
   participantCount: number;
   location: string;
-  price: number;
   image: string;
   sessions: Session[];
   category_id: number;

@@ -22,12 +22,8 @@ public class AdventureService {
         return adventureRepository.findAll();
     }
 
-    public Adventure findById(Integer id) {
-         Optional<Adventure> adventure = adventureRepository.findById(id);
-         if(adventure.isPresent()){
-             return adventure.get();
-         }
-         return null;
+    public Optional<Adventure> findById(Integer id) {
+         return adventureRepository.findById(id);
     }
 
 }
