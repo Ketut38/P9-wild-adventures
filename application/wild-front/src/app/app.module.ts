@@ -43,8 +43,8 @@ import { PaymentComponent } from './payment/payment.component';
     SessionsByAdventureComponent,
     HomeComponent,
     BasketDetailsComponent,
-    PaymentComponent
-    UserComponent
+    PaymentComponent,
+    UserComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
 

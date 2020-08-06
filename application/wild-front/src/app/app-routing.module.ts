@@ -12,15 +12,15 @@ import { BasketDetailsComponent } from './basket-details/basket-details.componen
 import { PaymentComponent } from './payment/payment.component';
 
 const routes: Routes = [
-  { path: "", component: HomeComponent },
-  { path: "adventures", component: AdventureComponent },
-  { path: "adventures/:id", component: AdventureDetailsComponent },
-  { path: "adventuresByCategory/:id/adventures/:id/sessions", component: SessionsByAdventureComponent },
-  { path : "adventuresByCategory/:id", component : AdventuresByCategoryComponent}, 
-  { path: "adventures/:id/sessions", component: SessionsByAdventureComponent }, 
-  { path: "categories", component: CategoryComponent },
-  { path: "basket-details", component: BasketDetailsComponent },
-  { path: "payment/commande/:price", component: PaymentComponent }
+  { path: '', component: HomeComponent },
+  { path: 'adventures', component: AdventureComponent },
+  { path: 'adventures/:id', component: AdventureDetailsComponent },
+  { path: 'adventuresByCategory/:id/adventures/:id/sessions', component: SessionsByAdventureComponent },
+  { path : 'adventuresByCategory/:id', component : AdventuresByCategoryComponent},
+  { path: 'adventures/:id/sessions', component: SessionsByAdventureComponent },
+  { path: 'categories', component: CategoryComponent },
+  { path: 'basket-details', component: BasketDetailsComponent },
+  { path: 'payment/commande/:price', component: PaymentComponent },
   { path: 'profil', component: UserComponent, canActivate: [AuthGuard]}
 ];
 
