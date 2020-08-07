@@ -7,9 +7,11 @@ Demarrage de Keycloak 10.0.2 sur le port 8080
  - Lancement
 
   Placez-vous dans le dossier keycloak
+  
   $ cd docker
-  Lancez keycloak
+ 
   $ docker-compose up -d
+  
   keycloak est lancé sur localhost:8080
  
 - Connexion
