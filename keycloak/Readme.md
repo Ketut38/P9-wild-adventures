@@ -2,7 +2,7 @@ Demarrage de Keycloak 10.0.2 sur le port 8080
 
 - Pré-requis
 
-  docker-compose installé (installation docker-compose)
+  docker-compose installé (installez docker desktop)
  
  - Lancement
 
