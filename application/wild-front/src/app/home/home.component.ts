@@ -12,19 +12,23 @@ export class HomeComponent implements OnInit {
   public allAdventures: Adventure[] = [];
   public adventure: Adventure;
   public adventureList: Adventure[] = [];
+  public currentPage:number = 0;
+  public size:number = 5;
+  public totalPages : number;
+  public pages : Array<number>;
   constructor(
     private adventureService: AdventureService
   ) {}
 
   ngOnInit() {
-    this.getAllAventures();
   }
 
   getAllAventures() {
-    this.adventureService.getAllAdventures().subscribe(res => {
+    this.adventureService.getAllAdventures(this.currentPage, this.size).subscribe(res => {
       this.allAdventures = res;
-
-      for (let i = 1; i < 5; i++) {
+      this.totalPages = res['totalPages'];
+      this.pages = new Array<number>(this.totalPages);
+      for (let i = 1; i < this.allAdventures.length; i++) {
         this.adventureList.push(this.allAdventures[i]);
       }
     });

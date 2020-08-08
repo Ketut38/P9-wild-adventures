@@ -11,25 +11,40 @@ import { AdventureService } from "../services/adventure.service";
 export class AdventureComponent implements OnInit {
   public allAdventures: Adventure[] = [];
   public adventure: Adventure;
+  public totalPages : number;
+  public pages : Array<number>;
   public adventureList: Adventure[] = [];
+  public currentPage:number = 0;
+  public size:number = 5;
+  public callOnInit:boolean = true;
   constructor(
     private route: ActivatedRoute,
     private adventureService: AdventureService
   ) {}
 
   ngOnInit() {
-    this.getAllAventures();
+    if(this.callOnInit){
+      this.getAllAventures()
+    }
   }
 
   getAllAventures() {
-    this.adventureService.getAllAdventures().subscribe(res => {
-      this.allAdventures = res;
-
-      for (let i = 1; i < 5; i++) {
+    this.adventureService.getAllAdventures(this.currentPage, this.size).subscribe(res => {
+      this.allAdventures = res['content'];
+      console.log("this.allAdventures", res);
+      for (let i = 1; i < this.allAdventures.length; i++) {
         this.adventureList.push(this.allAdventures[i]);
       }
-      console.log("getAllAventures", this.allAdventures);
+      this.totalPages = res['totalPages'];
+      this.pages = new Array<number>(this.totalPages);
+    
     });
+  }
+
+  getPage(i){
+    this.currentPage = i;
+    this.callOnInit = false;
+    this.getAllAventures();
   }
 
   getAventureById(id: number) {

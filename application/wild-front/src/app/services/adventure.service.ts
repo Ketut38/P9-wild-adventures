@@ -15,8 +15,8 @@ import { Session } from "../shared/model/session";
 export class AdventureService {
   constructor(private http: HttpClient) {}
 
-  getAllAdventures(): Observable<Adventure[]> {
-    return this.http.get<Adventure[]>(apidAdventure);
+  getAllAdventures(page:number, size:number): Observable<Adventure[]> {
+    return this.http.get<Adventure[]>(apidAdventure+"?page="+page+"&size="+size);
   }
 
   getAdventureById(id: number): Observable<Adventure> {
