@@ -7,7 +7,7 @@ import java.time.LocalDate;
 
 
 @Entity
-@Table(name = "session")
+@Table(name = "session", schema = "wasession")
 public class Sessions implements Serializable {
 
     @Id

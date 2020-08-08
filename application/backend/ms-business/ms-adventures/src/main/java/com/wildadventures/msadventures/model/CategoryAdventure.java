@@ -7,7 +7,7 @@ import java.io.Serializable;
 
 @Entity
 @IdClass(CategoryAdventureKey.class)
-@Table(name = "category_adventure")
+@Table(name = "category_adventure", schema = "waadventure")
 public class CategoryAdventure implements Serializable {
 
     @JsonBackReference
