@@ -32,6 +32,7 @@ export class UserComponent implements OnInit {
 getUserInfos() {
   this.userService.getUserInfos().subscribe(res => {
     this.user = res;
+    console.log(this.user);
   });
 }
 }
