@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { Session } from '../shared/model/session';
+import { OrderSession } from '../shared/model/order-session';
 import { PaymentService } from '../services/payment.service';
 import { Order } from '../shared/model/order';  
 import { SessionService } from '../services/session.service';
@@ -18,7 +18,8 @@ export class PaymentComponent implements OnInit {
   public paymentSuccess : boolean;
   public paymentError : boolean;
   public orderAmount : number;
-  public sessions : Session[] = [];
+  public orderSession : OrderSession;
+  public orderSessions : OrderSession[] = [];
   prix;
 
   constructor(private http: HttpClient, private paymentService : PaymentService,  private sessionService : SessionService, private router: Router, private route: ActivatedRoute) {}
@@ -97,12 +98,13 @@ createOrder(){
   order.userId = userId;
   order.date = new Date();
   order.isPaid = false;
+  this.orderSession = new OrderSession();
   sessionIdsStored.forEach(id => {
-    this.sessionService.getSessionById(id).subscribe((res) => {
-      this.sessions.push(res)
-    })
+    this.orderSession.sessionId = id;
+    this.orderSession.orderId = null;
+    this.orderSessions.push(this.orderSession)
   });
-  order.sessions = this.sessions;
+  order.orderSessions = this.orderSessions;
   order.isPaid = true;
   order.amount = this.orderAmount;
   this.paymentService.saveOrder(order).subscribe((res) => {
