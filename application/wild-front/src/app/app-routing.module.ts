@@ -8,6 +8,7 @@ import { SessionsByAdventureComponent } from './sessions-by-adventure/sessions-b
 import { HomeComponent } from './home/home.component';
 import { BasketDetailsComponent } from './basket-details/basket-details.component';
 import { PaymentComponent } from './payment/payment.component';
+import { OrdersHistoryComponent } from './orders-history/orders-history.component';
 
 const routes: Routes = [
   { path: "", component: HomeComponent },
@@ -18,7 +19,8 @@ const routes: Routes = [
   { path: "adventures/:id/sessions", component: SessionsByAdventureComponent }, 
   { path: "categories", component: CategoryComponent },
   { path: "basket-details", component: BasketDetailsComponent },
-  { path: "payment/commande/:price", component: PaymentComponent }
+  { path: "payment/commande/:price", component: PaymentComponent },
+  { path: "profile/orders", component: OrdersHistoryComponent }
   
 ];
 

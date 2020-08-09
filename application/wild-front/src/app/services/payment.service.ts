@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { apiPayment, apiOrders } from '../shared/constants';
 import { Order } from '../shared/model/order';
 import { Payment } from '../shared/model/payment';
@@ -18,11 +18,6 @@ chargeCard(token: string, amount : string) {
   req.token = token;
   req.amount = amount;
  return this.http.post(apiPayment + 'charge', req)   
-}
-
-getAllUserOrders(userId: number): Observable<Order[]> {
-  return this.http.get<Order[]>(apiOrders + '/user/' + userId);
-
 }
 
 getOrderById(id: number): Observable<Order> {
