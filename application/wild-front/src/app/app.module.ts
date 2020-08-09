@@ -20,6 +20,7 @@ import { SessionsByAdventureComponent } from './sessions-by-adventure/sessions-b
 import { HomeComponent } from './home/home.component';
 import { BasketDetailsComponent } from './basket-details/basket-details.component';
 import { PaymentComponent } from './payment/payment.component';
+import { OrdersHistoryComponent } from './orders-history/orders-history.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { PaymentComponent } from './payment/payment.component';
     SessionsByAdventureComponent,
     HomeComponent,
     BasketDetailsComponent,
-    PaymentComponent
+    PaymentComponent,
+    OrdersHistoryComponent
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [

@@ -1,0 +1,17 @@
+<div class="container">
+    <div class="jumbotron jumbotron-fluid" style="margin-top: 2rem;text-align: center;">
+        <div class="container">
+          <h1 class="display-4">Historique de commandes</h1>
+          <p class="lead">Veuillz trouver l'historique de vos commandes</p>
+        </div>
+    </div>
+    <div class="display:flex;flex-direction: column;">
+        <div *ngFor="let order of userOrders" class="card" style="width: 18rem;display: inline-block;margin: 2rem;">
+            <div class="card-body">
+                <a href="#" class="card-link" style="font-size: 30px;">{{adventure.title}}</a>
+              <h6 class="card-subtitle mb-2 text-muted" style="margin-top: 1rem;">Montant : {{order.amount}} euros</h6>
+              <p class="card-text">Date de la session : {{order.date}}</p>
+            </div>
+          </div>
+    </div>
+</div>
