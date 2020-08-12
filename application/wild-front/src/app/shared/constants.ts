@@ -1,6 +1,7 @@
 // API Services
 
-export const apiPrefix = "http://localhost:9001";
+export const apiPrefix = 'http://localhost:9001';
+export const apiUser = 'http://localhost:9003';
 
 export const apiPrefixSession = "http://localhost:9002";
 
@@ -21,14 +22,14 @@ export const apiUserByuserid = apiPrefix + "/";
 export const apiInscription = apiPrefix + "/utilisateur/utilisateur/save";
 
 /**** API Aventure ****/
-export const apidAdventureBySession = apiPrefix + "/";
-export const apidAdventureByCategory = apiPrefix + "/api/categories";
-export const apidAdventure = apiPrefix + "/api/adventures";
-export const apidAdventureById = apiPrefix + "/api/adventures";
+export const apidAdventureBySession = apiPrefix + '/';
+export const apidAdventureByCategory = apiPrefix + '/api/categories';
+export const apidAdventure = apiPrefix + '/api/adventures';
+export const apidAdventureById = apiPrefix + '/api/adventures';
 
 /**** API Category ****/
-export const apiCategory = apiPrefix + "/api/categories";
-export const apiCategoryById = apiPrefix + "/api/categories";
+export const apiCategory = apiPrefix + '/api/categories';
+export const apiCategoryById = apiPrefix + '/api/categories';
 
 /**** API Session ****/
 export const apiSession = apiPrefixSession + "/api/sessions";
@@ -37,5 +38,8 @@ export const apiSession = apiPrefixSession + "/api/sessions";
 export const apiPayment = apiPrefixPayment + "/";
 
 /**** API Commentaire ****/
-export const apiCommentaire = apiPrefix + "/";
-export const apiAddCommentaire = apiPrefix + "/";
+export const apiCommentaire = apiPrefix + '/';
+export const apiAddCommentaire = apiPrefix + '/';
+
+/**** API User ****/
+export const apiUserSession = apiUser + '/api/userInfos';

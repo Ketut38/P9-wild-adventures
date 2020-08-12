@@ -21,6 +21,7 @@ import { HomeComponent } from './home/home.component';
 import { BasketDetailsComponent } from './basket-details/basket-details.component';
 import { PaymentComponent } from './payment/payment.component';
 import { OrdersHistoryComponent } from './orders-history/orders-history.component';
+import { UserComponent } from './user/user.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { OrdersHistoryComponent } from './orders-history/orders-history.componen
     HomeComponent,
     BasketDetailsComponent,
     PaymentComponent,
-    OrdersHistoryComponent
+    OrdersHistoryComponent, 
+    UserComponent
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [

@@ -1,6 +1,6 @@
 package com.wildadventures.msusers.model;
 
-import javax.persistence.Column;
+/*import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -44,3 +44,4 @@ public class Address {
 	
 
 }
+*/

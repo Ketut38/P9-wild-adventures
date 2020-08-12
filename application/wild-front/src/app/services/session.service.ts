@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import {apiSession} from "../shared/constants";
 import { Session } from '../shared/model/session';
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
 export class SessionService {
   constructor(private http: HttpClient) {}

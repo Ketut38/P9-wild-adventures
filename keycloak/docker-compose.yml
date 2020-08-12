@@ -1,0 +1,23 @@
+version: '3'
+
+
+services:
+
+  keycloak:
+      image: ketout38/wild_adv:imagewildadv
+      
+      environment:
+        KEYCLOAK_USER: admin
+        KEYCLOAK_PASSWORD: admin
+        
+      volumes:
+          - ./imports:/opt/jboss/keycloak/imports
+          
+      command: 
+      - '-b 0.0.0.0' 
+      - '-Dkeycloak.import=/opt/jboss/keycloak/imports/wild-adventures-realm.json'
+   
+      
+      ports:
+        - 8080:8080
+   

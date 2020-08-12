@@ -1,12 +1,12 @@
-import { Component, OnInit } from "@angular/core";
-import { Adventure } from "../shared/model/adventure";
-import { ActivatedRoute } from "@angular/router";
-import { AdventureService } from "../services/adventure.service";
+import { Component, OnInit } from '@angular/core';
+import { Adventure } from '../shared/model/adventure';
+import { ActivatedRoute } from '@angular/router';
+import { AdventureService } from '../services/adventure.service';
 
 @Component({
-  selector: "app-adventure-details",
-  templateUrl: "./adventure-details.component.html",
-  styleUrls: ["./adventure-details.component.css"]
+  selector: 'app-adventure-details',
+  templateUrl: './adventure-details.component.html',
+  styleUrls: ['./adventure-details.component.css']
 })
 export class AdventureDetailsComponent implements OnInit {
   adventure: Adventure = {
@@ -28,14 +28,14 @@ export class AdventureDetailsComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.adventureId = this.activatedRoute.snapshot.params["id"];
+    this.adventureId = this.activatedRoute.snapshot.params['id'];
     this.getAdventureById(this.adventureId);
   }
 
   getAdventureById(id: number) {
     return this.adventureService.getAdventureById(id).subscribe(res => {
       this.adventure = res;
-      console.log("aventure by Id is good avec id :", this.adventure);
+      console.log('aventure by Id is good avec id :', this.adventure);
     });
   }
 }

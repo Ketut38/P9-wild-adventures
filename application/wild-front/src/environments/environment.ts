@@ -1,10 +1,62 @@
-// This file can be replaced during build by using the `fileReplacements` array.
-// `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
-// The list of file replacements can be found in `angular.json`.
+import { KeycloakConfig, KeycloakInitOptions, KeycloakOptions } from 'keycloak-angular';
+import {KeycloakService} from 'keycloak-angular';
 
+export function initializer(keycloak: KeycloakService): () => Promise<any> {
+  return (): Promise<any> => {
+    return new Promise(async (resolve, reject) => {
+      try {
+        await keycloak.init({
+          config: {
+            url: 'http://localhost:8080/auth',
+            realm: 'WildAdventures',
+            clientId: 'wildAdventures-frontend'
+          },
+          initOptions: {
+              onLoad: 'check-sso',
+              silentCheckSsoRedirectUri:
+                window.location.origin + '/assets/silent-check-sso.html',
+            },
+        });
+        resolve();
+      } catch (error) {
+        reject(error);
+      }
+    });
+  };
+}
 export const environment = {
-  production: false
+  production: false,
+  initializer
 };
+
+/*const keycloakConfig: KeycloakConfig = {
+  url: 'http://localhost:8080/auth',
+  realm: 'WildAdventures',
+  clientId: 'wildAdventures-frontend'
+
+};
+
+const keycloakInitOptions: KeycloakInitOptions = {
+  onLoad: 'login-required',
+  checkLoginIframe: false
+};
+
+const keycloakOptions: KeycloakOptions = {
+  config: keycloakConfig,
+  initOptions: keycloakInitOptions,
+  enableBearerInterceptor: true
+};
+
+
+*/
+
+
+
+
+
+
+
+
 
 /*
  * For easier debugging in development mode, you can import the following file
