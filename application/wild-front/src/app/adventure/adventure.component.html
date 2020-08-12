@@ -25,15 +25,15 @@
         </div>
       </div>
     </div>
-    <div>
-      <ul *ngIf="pages" class="nav">
-        <li *ngFor="let p of pages; let i=index" class="nav-item" style="padding: 10px;"
-        [ngClass]="i==currentPage?'active':''">
-          <a (click)="getPage(i)" style="color: #fff; cursor: pointer;">{{i}}</a>
-        </li>
-      </ul>
-    </div>
   </div>
   <!-- /.row -->
+  <div style="float: right;">
+    <ul *ngIf="pages" class="nav">
+      <li *ngFor="let p of pages; let i=index" class="nav-item" style="padding: 10px;"
+      [ngClass]="{'active-index' : currentPage==i}">
+        <a (click)="getPage(i)" style="cursor: pointer;">{{i}}</a>
+      </li>
+    </ul>
+  </div>
 </div>
 <!-- /.container -->

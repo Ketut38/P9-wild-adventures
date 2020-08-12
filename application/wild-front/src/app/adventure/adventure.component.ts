@@ -15,7 +15,7 @@ export class AdventureComponent implements OnInit {
   public pages : Array<number>;
   public adventureList: Adventure[] = [];
   public currentPage:number = 0;
-  public size:number = 5;
+  public size:number = 10;
   public callOnInit:boolean = true;
   constructor(
     private route: ActivatedRoute,
@@ -29,6 +29,7 @@ export class AdventureComponent implements OnInit {
   }
 
   getAllAventures() {
+    this.adventureList = [];
     this.adventureService.getAllAdventures(this.currentPage, this.size).subscribe(res => {
       this.allAdventures = res['content'];
       console.log("this.allAdventures", res);
