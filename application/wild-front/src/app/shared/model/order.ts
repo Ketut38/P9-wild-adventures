@@ -1,9 +1,9 @@
-import { Session } from './session';
+import { OrderSession } from './order-session';
 
 export class Order {
   id: number;
   userId: number;
-  sessions: Session[];
+  orderSessions: OrderSession[];
   date: Date;
   isPaid: Boolean;
   amount : number;

@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "order_session")
+@Table(name = "order_session", schema = "waorder")
 @IdClass(OrderSessionKey.class)
 public class OrderSession implements Serializable {
 

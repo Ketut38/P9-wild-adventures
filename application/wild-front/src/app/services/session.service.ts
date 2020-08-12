@@ -3,9 +3,7 @@ import { Observable } from 'rxjs';
 import { Adventure } from '../shared/model/adventure';
 import { HttpClient } from '@angular/common/http';
 
-import {
-  apiSession
-} from "../shared/constants";
+import {apiSession} from "../shared/constants";
 import { Session } from '../shared/model/session';
 @Injectable({
   providedIn: 'root'

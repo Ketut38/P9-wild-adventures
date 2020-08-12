@@ -7,7 +7,7 @@ import java.io.Serializable;
 
 @Entity
 @IdClass(AdventureSessionKey.class)
-@Table(name = "adventure_session")
+@Table(name = "adventure_session", schema = "waadventure")
 public class AdventureSession implements Serializable {
 
     @ManyToOne(targetEntity = Adventure.class, fetch = FetchType.LAZY)

@@ -1,33 +1,31 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { Adventure } from '../shared/model/adventure';
+import { Injectable } from "@angular/core";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { Observable } from "rxjs";
+import { Adventure } from "../shared/model/adventure";
 import {
   apidAdventure,
   apidAdventureById,
   apidAdventureByCategory
-} from '../shared/constants';
-import { Session } from '../shared/model/session';
-
-const headers = new HttpHeaders().set('Content-Type', 'application/json');
+} from "../shared/constants";
+import { Session } from "../shared/model/session";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class AdventureService {
   constructor(private http: HttpClient) {}
 
-  getAllAdventures(): Observable<Adventure[]> {
-    return this.http.get<Adventure[]>(apidAdventure, {headers});
+  getAllAdventures(page:number, size:number): Observable<Adventure[]> {
+    return this.http.get<Adventure[]>(apidAdventure+"?page="+page+"&size="+size);
   }
 
   getAdventureById(id: number): Observable<Adventure> {
-    return this.http.get<Adventure>(apidAdventureById + '/adventure/' + id);
+    return this.http.get<Adventure>(apidAdventureById + "/adventure/" + id);
   }
 
   getAventuresByCategory(id: number): Observable<Adventure[]> {
     return this.http.get<Adventure[]>(
-      apidAdventureByCategory + '/adventures'
+      apidAdventureByCategory + "/adventures"
     );
   }
 }

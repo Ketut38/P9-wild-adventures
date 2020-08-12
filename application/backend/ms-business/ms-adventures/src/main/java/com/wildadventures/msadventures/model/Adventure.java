@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
-@Table(name = "adventure")
+@Table(name = "adventure", schema = "waadventure")
 public class Adventure implements Serializable {
 
     /**

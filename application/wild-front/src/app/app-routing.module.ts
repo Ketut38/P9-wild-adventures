@@ -10,6 +10,7 @@ import { UserComponent } from './user/user.component';
 import { AuthGuard } from './auth.guard';
 import { BasketDetailsComponent } from './basket-details/basket-details.component';
 import { PaymentComponent } from './payment/payment.component';
+import { OrdersHistoryComponent } from './orders-history/orders-history.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -21,7 +22,8 @@ const routes: Routes = [
   { path: 'categories', component: CategoryComponent },
   { path: 'basket-details', component: BasketDetailsComponent },
   { path: 'payment/commande/:price', component: PaymentComponent },
-  { path: 'profil', component: UserComponent, canActivate: [AuthGuard]}
+  { path: 'profil', component: UserComponent},
+  { path: "profil/orders", component: OrdersHistoryComponent }
 ];
 
 @NgModule({

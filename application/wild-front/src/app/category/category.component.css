@@ -31,7 +31,6 @@ section .section-title {
 
 #team .card {
   border: none;
-  background: #e9ecefb3;
 }
 
 .image-flip:hover .backside,
@@ -126,6 +125,4 @@ section .section-title {
   height: 200px;
   border-radius: 50%;
 }
-.jumbotron {
-  background-color: #e9ecefc9 !important;
-}
+

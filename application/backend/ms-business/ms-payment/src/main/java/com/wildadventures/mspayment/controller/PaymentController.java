@@ -8,6 +8,7 @@ import com.wildadventures.mspayment.service.StripeClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -22,11 +23,9 @@ public class PaymentController {
     }
 
     @PostMapping("/charge")
-    public Charge chargeCard(HttpServletRequest request) throws Exception {
-        //String token = request.getHeader("token");
-        String token = "tok_1HCv5qG3FbXArABCilMfTcV6";
-        //Double amount = Double.parseDouble(request.getHeader("amount"));
-        Double amount = Double.valueOf(150);
+    public Charge chargeCard(@RequestBody PaymentRequest request) throws Exception {
+        String token = request.getToken();
+        Double amount = Double.parseDouble(request.getAmount());
         return this.stripeClient.chargeCreditCard(token, amount);
     }
 
