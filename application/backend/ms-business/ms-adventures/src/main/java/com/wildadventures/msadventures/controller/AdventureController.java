@@ -39,7 +39,7 @@ public class AdventureController {
 
     @GetMapping
     public Page<Adventure> getAllAventures(@RequestParam(name = "page", defaultValue = "0") int page,
-                                           @RequestParam(name = "size", defaultValue = "10") int size) {
+                                           @RequestParam(name = "size", defaultValue = "12") int size) {
         PageRequest pageRequest = PageRequest.of(page, size);
         Page<Adventure> pageResult = adventureRepository.findAll(pageRequest);
         List<Adventure> adventures = pageResult
