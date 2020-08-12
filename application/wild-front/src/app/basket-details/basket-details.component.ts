@@ -3,6 +3,7 @@ import { SessionService } from '../services/session.service';
 import { Session } from '../shared/model/session';import { AdventureService } from '../services/adventure.service';
 import { Adventure } from '../shared/model/adventure';
 import { element } from 'protractor';
+import { Router } from '@angular/router';
 ;
 
 @Component({
@@ -17,7 +18,8 @@ export class BasketDetailsComponent implements OnInit {
   public sessions : Session[] = [];
   public adventure : Adventure;
   public adv : Adventure;
-  constructor(private sessionService : SessionService, private adventureService : AdventureService) { }
+  itemDeleted: boolean;
+  constructor(private sessionService : SessionService, private adventureService : AdventureService, private router : Router) { }
 
   ngOnInit() {
     this.getAllSessionsStoredByUser();
@@ -33,6 +35,7 @@ export class BasketDetailsComponent implements OnInit {
       })
     })
     this.adv = JSON.parse(sessionStorage.getItem("adv"));
+    sessionStorage.removeItem("sessionsIdsStored");
   }
 
   getAdventureBySession(id : number){
@@ -40,13 +43,18 @@ export class BasketDetailsComponent implements OnInit {
       this.adventure = res;
     })
   }
-  deleteItemFromBasket(id : number){
-    this.sessionIdsStored = JSON.parse(sessionStorage.getItem("sessionsIdsStored"));
-    for( var i = 0; i < this.sessionIdsStored.length; i++){ 
-      if ( this.sessionIdsStored[i] === id) { 
-        this.sessionIdsStored.splice(i, 1); 
-      }
-    }
-    sessionStorage.setItem('sessionsIdsStored', JSON.stringify(this.sessionIdsStored))
+  deleteItemFromBasket(index:number){
+    this.selectedSessions.splice(index, 1);
+    this.itemDeleted = true;
+    this.selectedSessions = [...this.selectedSessions];
+    this.orderAmount = 0;
+    this.selectedSessions.forEach(selectedSession => {
+      this.orderAmount = this.orderAmount - selectedSession.price;
+    })
+    this.orderAmount = Math.abs(this.orderAmount);
+    setTimeout(
+      () => {
+        this.itemDeleted = false; 
+    }, 2000);
   }
 }
