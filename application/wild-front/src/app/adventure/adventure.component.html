@@ -14,7 +14,7 @@
   <div class="row text-center">
     <div *ngFor="let adv of adventureList" class="col-lg-3 col-md-6 mb-4">
       <div class="card h-100">
-        <img class="card-img-top" src="{{ adv.image }}" alt="" />
+        <img class="card-img-top" src="{{ adv.image }}" alt="" [ngClass]="{'card-img-top-no-image' : adv.image == null}"/>
         <div class="card-body">
           <h4 class="card-title">{{ adv.title }}</h4>
           <p class="card-text">{{ adv.description }}</p>

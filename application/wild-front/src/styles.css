@@ -1,1 +1,5 @@
 @import "~bootstrap/dist/css/bootstrap.css";
+
+.jumbotron {
+    background-color: #fff !important;
+  }
