@@ -16,7 +16,7 @@ export class HeaderComponent implements OnInit {
       () => {
         this.isUserLoggedIn = true;
         sessionStorage.setItem('userId', JSON.stringify(1))
-      }, 10000
+      }, 5000
     );
   }
 
