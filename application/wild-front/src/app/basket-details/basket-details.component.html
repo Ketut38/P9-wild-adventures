@@ -1,6 +1,6 @@
 <div class="container">
     <header class="jumbotron my-4">
-      <div style="display: flex; justify-content: space-between;">
+      <div *ngIf="selectedSessions.length>0" style="display: flex; justify-content: space-between;">
         <div>
             <h1>Détails de votre panier</h1>
             <p>Vous avez sélectionné les sessions d'aventure suivantes</p>
@@ -13,10 +13,22 @@
             style="color: #fff;" routerLink="/payment/commande/{{orderAmount}}">Valider votre commande</a>
         </div>
       </div>
+      <div *ngIf="!selectedSessions.length>0">
+        Votre panier est vide. Aller consulter la liste des aventures afin de réserver une session.
+      </div>
+      <a *ngIf="!selectedSessions.length>0" class="btn btn-primary btn-lg" routerLink="/adventures" style="margin-top: 2rem;">Voir les aventures disponible</a
+      >
     </header>
 
+    <div *ngIf="itemDeleted" class="alert alert-danger alert-dismissible fade show" role="alert">
+      La session a bien été supprimer du panier.
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
     <div class="row text-center" style="justify-content: center;">
-      <div *ngFor="let selectedSession of selectedSessions" style="width: 700px;">
+      <div *ngFor="let selectedSession of selectedSessions; let i=index" style="width: 700px;">
         <div class="card h-100">
           <div class="card-body">
             <a routerLink="/adventures/{{adv.id}}" style="font-size: 22px;">{{adv.title}}</a>
@@ -25,7 +37,7 @@
             <p class="card-text">Localisation : {{adv.location}}</p>
             <p class="card-text">Prix : {{selectedSession.price}} euros</p>
             <button class="btn btn-danger"
-            style="color: #fff;" (click) = "deleteItemFromBasket(selectedSession.id)">Supprimer du panier</button>
+            style="color: #fff;" (click) = "deleteItemFromBasket(i)">Supprimer du panier</button>
           </div>
         </div>
       </div>

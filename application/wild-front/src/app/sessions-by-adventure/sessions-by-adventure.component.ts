@@ -56,9 +56,12 @@ export class SessionsByAdventureComponent implements OnInit {
   }
 
   createOrderDemand(sessionId : number){
-    let sessionsAlreadyStored = JSON.parse(sessionStorage.getItem("sessionsIdsStored"));
-    if(sessionsAlreadyStored != null){
-      sessionsAlreadyStored.forEach(id => {
+    this.sessionsIdsStored = JSON.parse(sessionStorage.getItem("sessionsIdsStored"));
+    if(this.sessionsIdsStored === null){
+      this.sessionsIdsStored = [1000];
+    }
+    if(this.sessionsIdsStored != null){
+      this.sessionsIdsStored.forEach(id => {
         if(sessionId === id){
           this.sessionAlreadyExist = true;
         }
