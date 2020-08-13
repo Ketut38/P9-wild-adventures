@@ -26,7 +26,7 @@ export function initializer(keycloak: KeycloakService): () => Promise<any> {
 }
 export const environment = {
   production: false,
-  initializer
+  initializer,
 };
 
 /*const keycloakConfig: KeycloakConfig = {

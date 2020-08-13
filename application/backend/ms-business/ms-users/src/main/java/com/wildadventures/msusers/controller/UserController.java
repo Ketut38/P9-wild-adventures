@@ -1,5 +1,6 @@
 package com.wildadventures.msusers.controller;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
 import java.util.Collections;
@@ -26,7 +27,7 @@ import com.wildadventures.msusers.model.User;
 @RestController
 public class UserController {
 
-    private @Autowired HttpServletRequest request;
+    @Autowired HttpServletRequest request;
 
 	@GetMapping(value = "/userInfos", produces = MediaType.APPLICATION_JSON_VALUE)
 	public User handleUserInfoRequest(Principal principal) {
@@ -43,14 +44,18 @@ public class UserController {
 			user.setUserName(token.getName());
 			user.setPhoneNumber(token.getPhoneNumber());
 			user.setGender(token.getGender());
+			user.setFirstName(token.getFamilyName());
 			/*Map<String, Object> otherClaims = token.getOtherClaims();
 			user.setCustomAttributes(otherClaims);*/ // Pour créer des attributs custom. (set otherclaims se fait dans keycloak user attributes=
 		}
+		
 		return user;
+		
+		
 	}
 
 	@GetMapping(value = "/public", produces = MediaType.APPLICATION_JSON_VALUE)
-	public Map<String, String> handlePublicRequest() {
-		return Collections.singletonMap("message", "public access");
+	public void logout() throws ServletException{
+		request.logout();
 	}
 }

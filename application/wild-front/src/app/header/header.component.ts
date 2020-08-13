@@ -1,5 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { Adventure } from '../shared/model/adventure';
+import { AuthGuard} from '../auth.guard';
+import { KeycloakService } from 'keycloak-angular';
+import { DOCUMENT } from '@angular/common';
+import { UserService } from '../services/user.service';
+import { User } from '../shared/model/user';
+
 
 @Component({
   selector: 'app-header',
@@ -8,24 +14,48 @@ import { Adventure } from '../shared/model/adventure';
 })
 export class HeaderComponent implements OnInit {
   public sessionsStored = [];
+  public user = {};
   public adv: Adventure;
-  isUserLoggedIn : boolean = false;
-  
-  constructor() { 
-    setTimeout(
-      () => {
-        this.isUserLoggedIn = true;
-        sessionStorage.setItem('userId', JSON.stringify(1))
-      }, 5000
-    );
-  }
+  isUserLoggedIn: boolean;
+  private authGuard: AuthGuard;
+  // tslint:disable-next-line: max-line-length
+  logoutURI = 'http://localhost:8080/auth/realms/WildAdventures/protocol/openid-connect/logout?redirect_uri=http://localhost:4200/';
+
+
+  constructor(
+    @Inject(DOCUMENT) private document: Document,
+    protected readonly keycloak: KeycloakService,
+    private userService: UserService
+  ){}
 
   ngOnInit() {
     this.getAllOrderDemandsByUser();
+    this.checkUserLoggedIn();
   }
 
+  checkUserLoggedIn(): boolean {
+    this.userService.getUserInfos().subscribe(res => {
+      this.user = res;
+    });
+    if (this.user) {
+      this.isUserLoggedIn = true;
+    } else {
+      this.isUserLoggedIn = false;
+    }
+    return this.isUserLoggedIn;
+  }
+
+ /* logout() {
+    this.keycloak.logout();
+    this.router.navigate(['/logout']);
+}*/
+
+public logout() {
+  this.document.location.href = this.logoutURI;
+}
+
   getAllOrderDemandsByUser(){
-    this.sessionsStored = JSON.parse(sessionStorage.getItem("sessionsIdsStored"));
+    this.sessionsStored = JSON.parse(sessionStorage.getItem('sessionsIdsStored'));
   }
 
 }

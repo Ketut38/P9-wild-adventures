@@ -12,10 +12,15 @@ import { KeycloakAuthGuard, KeycloakService } from 'keycloak-angular';
 export class AuthGuard extends KeycloakAuthGuard {
   constructor(
     protected readonly router: Router,
-    protected readonly keycloak: KeycloakService
+    protected readonly keycloak: KeycloakService,
   ) {
     super(router, keycloak);
   }
+
+  public isuserLoggedIn() {
+   return this.keycloak.isLoggedIn;
+  }
+
 
   public async isAccessAllowed(
     route: ActivatedRouteSnapshot,

@@ -14,6 +14,7 @@ import { OrdersHistoryComponent } from './orders-history/orders-history.componen
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
+  { path: 'logout', component: HomeComponent },
   { path: 'adventures', component: AdventureComponent },
   { path: 'adventures/:id', component: AdventureDetailsComponent },
   { path: 'adventuresByCategory/:id/adventures/:id/sessions', component: SessionsByAdventureComponent },
