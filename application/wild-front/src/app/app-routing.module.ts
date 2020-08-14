@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { NgModule, InjectionToken } from '@angular/core';
+import { Routes, RouterModule, ActivatedRouteSnapshot } from '@angular/router';
 import { AdventureComponent } from './adventure/adventure.component';
 import { AdventureDetailsComponent } from './adventure-details/adventure-details.component';
 import { CategoryComponent } from './category/category.component';
@@ -11,6 +11,10 @@ import { AuthGuard } from './auth.guard';
 import { BasketDetailsComponent } from './basket-details/basket-details.component';
 import { PaymentComponent } from './payment/payment.component';
 import { OrdersHistoryComponent } from './orders-history/orders-history.component';
+
+
+const externalUrlProvider = new InjectionToken('externalUrlRedirectResolver');
+
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -24,12 +28,21 @@ const routes: Routes = [
   { path: 'basket-details', component: BasketDetailsComponent },
   { path: 'payment/commande/:price', component: PaymentComponent },
   { path: 'profil', component: UserComponent, canActivate: [AuthGuard]},
-  { path: "profil/orders", component: OrdersHistoryComponent, canActivate: [AuthGuard] }
+  { path: 'profil/orders', component: OrdersHistoryComponent, canActivate: [AuthGuard] },
+  { path: 'externalRedirect', resolve: {url: externalUrlProvider}, component: HomeComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
-  providers: [AuthGuard]
+  providers: [AuthGuard,
+    {
+      provide: externalUrlProvider,
+      useValue: (route: ActivatedRouteSnapshot) => {
+          const externalUrl = route.paramMap.get('externalUrl');
+          window.open(externalUrl, '_self');
+      },
+  },
+  ]
 })
 export class AppRoutingModule {}

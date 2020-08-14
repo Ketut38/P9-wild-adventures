@@ -3,23 +3,25 @@
 export const apiPrefix = 'http://localhost:9001';
 export const apiUser = 'http://localhost:9003';
 
-export const apiPrefixSession = "http://localhost:9002";
+export const apiPrefixSession = 'http://localhost:9002';
 
-export const apiPrefixPayment = "http://localhost:9006";
+export const apiPrefixPayment = 'http://localhost:9006';
 
-export const apiPrefixOrder = "http://localhost:9005";
+export const apiPrefixOrder = 'http://localhost:9005';
+
+export const keycloakURL = 'http://localhost:8080/auth/realms/WildAdventures';
 
 /**** API Commande ****/
-export const apiOrders = apiPrefixOrder + "/api/orders";
-export const apiCommandeById = apiPrefix + "/";
-export const apiUpdateCommande = apiPrefix + "/";
-export const apiSaveCommande = apiPrefix + "/";
+export const apiOrders = apiPrefixOrder + '/api/orders';
+export const apiCommandeById = apiPrefix + '/';
+export const apiUpdateCommande = apiPrefix + '/';
+export const apiSaveCommande = apiPrefix + '/';
 
 /**** API User and Login ****/
-export const apiLogin = apiPrefix + "/";
-export const apiUserByusername = apiPrefix + "/";
-export const apiUserByuserid = apiPrefix + "/";
-export const apiInscription = apiPrefix + "/utilisateur/utilisateur/save";
+export const apiLogin = apiPrefix + '/';
+export const apiUserByusername = apiPrefix + '/';
+export const apiUserByuserid = apiPrefix + '/';
+export const apiInscription = apiPrefix + '/utilisateur/utilisateur/save';
 
 /**** API Aventure ****/
 export const apidAdventureBySession = apiPrefix + '/';
@@ -32,10 +34,10 @@ export const apiCategory = apiPrefix + '/api/categories';
 export const apiCategoryById = apiPrefix + '/api/categories';
 
 /**** API Session ****/
-export const apiSession = apiPrefixSession + "/api/sessions";
+export const apiSession = apiPrefixSession + '/api/sessions';
 
 /**** API Paiement ****/
-export const apiPayment = apiPrefixPayment + "/";
+export const apiPayment = apiPrefixPayment + '/';
 
 /**** API Commentaire ****/
 export const apiCommentaire = apiPrefix + '/';

@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../services/user.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { User } from '../shared/model/user';
+import {AppRoutingModule} from '../app-routing.module';
+import { keycloakURL } from '../shared/constants';
+
+const url = keycloakURL + '/account/';
 
 @Component({
   selector: 'app-user',
@@ -23,7 +27,8 @@ export class UserComponent implements OnInit {
   };
 
   constructor(
-    private userService: UserService
+    private userService: UserService,
+    public router: Router
     ) {}
 
   ngOnInit() {
@@ -34,5 +39,9 @@ getUserInfos() {
     this.user = res;
     console.log(this.user);
   });
+}
+changeUserInfos() {
+  this.router.navigate(['/externalRedirect', { externalUrl: url }]);
+
 }
 }
