@@ -19,7 +19,7 @@ public class Order implements Serializable{
     @Column(name = "id")
     private Integer id;
     @Column(name = "user_id")
-    private Integer userId;
+    private String userId;
     @Column(name = "order_date")
     private LocalDate date;
     @Column(name = "is_paid")
@@ -35,7 +35,7 @@ public class Order implements Serializable{
     }
 
 
-    public Order(Integer id, Integer userId, LocalDate date, Double amount, Boolean isPaid) {
+    public Order(Integer id, String userId, LocalDate date, Double amount, Boolean isPaid) {
         super();
         this.id = id;
         this.userId = userId;
@@ -55,12 +55,12 @@ public class Order implements Serializable{
     }
 
 
-    public Integer getUserId() {
+    public String getUserId() {
         return userId;
     }
 
 
-    public void setUserId(Integer userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 

@@ -35,6 +35,7 @@ export class BasketDetailsComponent implements OnInit {
       })
     })
     this.adv = JSON.parse(sessionStorage.getItem("adv"));
+    sessionStorage.setItem('sessionsIdsStoredForOrders', JSON.stringify(this.sessionIdsStored));
     sessionStorage.removeItem("sessionsIdsStored");
   }
 

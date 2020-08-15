@@ -15,7 +15,7 @@ export class AdventureComponent implements OnInit {
   public pages : Array<number>;
   public adventureList: Adventure[] = [];
   public currentPage:number = 0;
-  public size:number = 10;
+  public size:number = 7;
   public callOnInit:boolean = true;
   constructor(
     private route: ActivatedRoute,
