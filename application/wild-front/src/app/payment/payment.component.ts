@@ -38,8 +38,8 @@ export class PaymentComponent implements OnInit {
     private userService: UserService,  private router: Router, private route: ActivatedRoute) {}
 
   ngOnInit() {
-    //this.orderAmount = +this.route.snapshot.paramMap.get('price');
-    this.createOrder();
+    this.orderAmount = +this.route.snapshot.paramMap.get('price');
+    //this.createOrder();
   }
 
   chargeCreditCard() {
@@ -105,13 +105,18 @@ export class PaymentComponent implements OnInit {
 }
 
 createOrder(){
+  this.prix = +this.route.snapshot.paramMap.get('price');
   let sessionIdsStored = JSON.parse(sessionStorage.getItem("sessionsIdsStoredForOrders")); 
-  this.userService.getUserInfos().subscribe(res => {
-    this.user = res;
-    if(this.user != undefined){
-      this.order.userId = this.user.id;
-    }
-  });
+  this.user = JSON.parse(sessionStorage.getItem("userInfos"));
+  if (!this.user) {
+    this.userService.getUserInfos().subscribe(res => {
+      this.user = res;
+      if(this.user != undefined){
+        sessionStorage.setItem('userInfos', JSON.stringify(this.user));
+      }
+    });
+  }
+  this.order.userId = this.user.id;
   this.order.date = new Date();
   this.order.isPaid = false;
   this.orderSession = new OrderSession();
@@ -124,22 +129,22 @@ createOrder(){
   this.order.isPaid = true;
   this.order.amount = this.orderAmount;
   this.paymentService.saveOrder(this.order).subscribe((res) => {
-  this.createdOrder = res;
-  if(this.createdOrder.id != null){
-    this.paymentSuccess = true;
-    setTimeout(
-      () => {
-        this.paymentSuccess = false;
-        this.router.navigate([""]);
-    }, 5000);
-  }else{
-    this.paymentError = true;
-    setTimeout(
-      () => {
-        this.paymentError = false;
-    }, 5000);
-  }
-  })
+    this.createdOrder = res;
+    if(this.createdOrder.id != null){
+      this.paymentSuccess = true;
+      setTimeout(
+        () => {
+          this.paymentSuccess = false;
+          this.router.navigate([""]);
+      }, 5000);
+    }else{
+      this.paymentError = true;
+      setTimeout(
+        () => {
+          this.paymentError = false;
+      }, 5000);
+    }
+  });
 }
 
 }

@@ -34,9 +34,7 @@ export class HeaderComponent implements OnInit {
   }
 
   checkUserLoggedIn(): boolean {
-    this.userService.getUserInfos().subscribe(res => {
-      this.user = res;
-    });
+    this.user = JSON.parse(sessionStorage.getItem("userInfos"));  
     if (this.user) {
       this.isUserLoggedIn = true;
     } else {
@@ -51,6 +49,7 @@ export class HeaderComponent implements OnInit {
 }*/
 
 public logout() {
+  sessionStorage.removeItem("userInfos");
   this.document.location.href = this.logoutURI;
 }
 
