@@ -26,7 +26,7 @@ const routes: Routes = [
   { path: 'adventures/:id/sessions', component: SessionsByAdventureComponent },
   { path: 'categories', component: CategoryComponent },
   { path: 'basket-details', component: BasketDetailsComponent },
-  { path: 'payment/commande/:price', component: PaymentComponent },
+  { path: 'payment/commande/:price', component: PaymentComponent, canActivate: [AuthGuard] },
   { path: 'profil', component: UserComponent, canActivate: [AuthGuard]},
   { path: 'profil/orders', component: OrdersHistoryComponent, canActivate: [AuthGuard] },
   { path: 'externalRedirect', resolve: {url: externalUrlProvider}, component: HomeComponent, canActivate: [AuthGuard] }

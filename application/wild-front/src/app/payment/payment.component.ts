@@ -5,6 +5,9 @@ import { PaymentService } from '../services/payment.service';
 import { Order } from '../shared/model/order';  
 import { SessionService } from '../services/session.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { UserService } from '../services/user.service';
+import { User } from '../shared/model/user';
+import { KeycloakService } from 'keycloak-angular';
 
 @Component({
   selector: 'app-payment',
@@ -20,12 +23,23 @@ export class PaymentComponent implements OnInit {
   public orderAmount : number;
   public orderSession : OrderSession;
   public orderSessions : OrderSession[] = [];
-  prix;
+  public prix;
+  public user : User;
+  public order = {
+    id : null,
+    userId: null,
+    orderSessions: null,
+    date: null,
+    isPaid: false,
+    amount : null
+  };
 
-  constructor(private http: HttpClient, private paymentService : PaymentService,  private sessionService : SessionService, private router: Router, private route: ActivatedRoute) {}
+  constructor(private http: HttpClient, private paymentService : PaymentService,  private sessionService : SessionService,  protected readonly keycloak: KeycloakService,
+    private userService: UserService,  private router: Router, private route: ActivatedRoute) {}
 
   ngOnInit() {
-    this.orderAmount = +this.route.snapshot.paramMap.get('price');
+    //this.orderAmount = +this.route.snapshot.paramMap.get('price');
+    this.createOrder();
   }
 
   chargeCreditCard() {
@@ -91,23 +105,25 @@ export class PaymentComponent implements OnInit {
 }
 
 createOrder(){
-  let sessionIdsStored = JSON.parse(sessionStorage.getItem("sessionsIdsStored")); 
-  sessionIdsStored.shift();
-  let userId = JSON.parse(sessionStorage.getItem("userId"));
-  let order = new Order();
-  order.userId = userId;
-  order.date = new Date();
-  order.isPaid = false;
+  let sessionIdsStored = JSON.parse(sessionStorage.getItem("sessionsIdsStoredForOrders")); 
+  this.userService.getUserInfos().subscribe(res => {
+    this.user = res;
+    if(this.user != undefined){
+      this.order.userId = this.user.id;
+    }
+  });
+  this.order.date = new Date();
+  this.order.isPaid = false;
   this.orderSession = new OrderSession();
   sessionIdsStored.forEach(id => {
     this.orderSession.sessionId = id;
     this.orderSession.orderId = null;
     this.orderSessions.push(this.orderSession)
   });
-  order.orderSessions = this.orderSessions;
-  order.isPaid = true;
-  order.amount = this.orderAmount;
-  this.paymentService.saveOrder(order).subscribe((res) => {
+  this.order.orderSessions = this.orderSessions;
+  this.order.isPaid = true;
+  this.order.amount = this.orderAmount;
+  this.paymentService.saveOrder(this.order).subscribe((res) => {
   this.createdOrder = res;
   if(this.createdOrder.id != null){
     this.paymentSuccess = true;
