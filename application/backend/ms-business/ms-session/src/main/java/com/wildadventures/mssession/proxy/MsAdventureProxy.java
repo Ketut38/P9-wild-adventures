@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import java.util.List;
 import java.util.Optional;
 
-@FeignClient(name = "ms-application.properties", url = "localhost:9001")
+@FeignClient(name = "ms-bootstrap.properties", url = "localhost:9001")
 public interface MsAdventureProxy {
 
     @GetMapping(value = "/api/adventures")
