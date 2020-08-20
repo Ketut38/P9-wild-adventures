@@ -1,0 +1,54 @@
+<nav class="navbar navbar-expand-lg navStyle" style="background-color: #fff;">
+  <a class="brand-navbar" href="#"
+    ><img
+      src="/assets/images/logo.jpg"
+      alt="Responsive image"
+      width="100px"
+      height="40px"
+  /></a>
+  <button class="navbar-toggler" data-toggle="collapse" data-target="#mainMenu">
+    <span><i class="fa fa-align-right iconStyle"></i></span>
+  </button>
+  <div class="collapse navbar-collapse" id="mainMenu">
+    <div class="navbar-collapse navbar-brand navbar-brand-centered ">
+      <ul class="navbar-nav ml-auto navList">
+        <li class="nav-item active">
+          <a
+            routerLink="/"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            class="nav-link"
+            >Accueil</a
+          >
+        </li>
+        <li class="nav-item">
+          <a routerLink="categories" routerLinkActive="active" class="nav-link"
+            >Liste des catégories</a
+          >
+        </li>
+        <li class="nav-item">
+          <a routerLink="profil" routerLinkActive="active" class="nav-link"
+            >Espace Client</a
+          >
+        </li>
+      </ul>
+    </div>
+    <div class="navbar-collapse navbar-nav navbar-right" id="collapsibleNavbar">
+      <ul class="navbar-nav ml-auto navList">
+        <li class="nav-item" *ngIf="isUserLoggedIn"><a class="nav-link" (click)="logout()" >Déconnexion</a></li>
+        <li class="nav-item">
+          <a class="nav-link" *ngIf="!isUserLoggedIn">Connexion</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" *ngIf="!isUserLoggedIn">Inscription</a>
+        </li>
+        <li class="nav-item">
+          <a class="btn btn-success" routerLink="basket-details" style="color: white;font-size: 12px;" *ngIf="sessionsStored != undefined && sessionsStored.length > 1">
+            Details panier 
+            <span class="badge badge-light">{{sessionsStored.length - 1}}</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

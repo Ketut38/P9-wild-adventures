@@ -1,0 +1,13 @@
+body { 
+    background-color: #f7f2ed !important;
+    /* background: url(/assets/images/bg2.jpg); 
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 175vh;  */
+}
+header{
+    background-color: #fff !important; 
+}
+.jumbotron {
+    background-color: #fff !important;
+}

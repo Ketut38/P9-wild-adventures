@@ -1,0 +1,51 @@
+version: '2.2'
+networks:
+    wild-adventures-network:
+
+services:
+# Base de données adventure
+    adventure-db:
+        container_name: adventure-db
+        build:
+            context: .
+            dockerfile: Dockerfile-dbAdventure
+        image: adventure-db:latest
+        networks:
+          - wild-adventures-network      
+# Microservice adventure        
+    adventure-ms:
+        container_name: adventure-ms
+        build:
+            context: .
+            dockerfile: Dockerfile-adventure
+        image: adventure-ms:latest
+    environment:
+      - DB_HOST=adventure-db
+      - DB_NAME=adventure-db
+    networks:
+      - wild-adventures-network
+    depends_on:
+      - adventure-db    
+# Base de données session
+    sessions-db:
+        container_name: sessions-db
+        build:
+            context: .
+            dockerfile: Dockerfile-dbSession
+        image: sessions-db:latest
+        networks:
+          - wild-adventures-network
+# Microservice session 
+    session-ms:
+        container_name: session-ms
+        build:
+            context: .
+            dockerfile: Dockerfile-session
+        image: session-ms:latest
+    environment:
+      - DB_HOST=sessions-db
+      - DB_NAME=sessions-db
+    networks:
+      - wild-adventures-network
+    depends_on:
+      - sessions-db
