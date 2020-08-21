@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="ms-reservations" />
+        <module name="ms-session" />
+        <module name="ms-adventures" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="ms-adventures" target="1.8" />
+      <module name="ms-reservations" target="1.8" />
+      <module name="ms-session" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="ms-adventures" options="-parameters" />
+      <module name="ms-reservations" options="-parameters" />
+      <module name="ms-session" options="-parameters" />
+    </option>
+  </component>
+</project>

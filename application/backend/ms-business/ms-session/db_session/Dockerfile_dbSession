@@ -1,0 +1,7 @@
+FROM postgres:10.5-alpine
+
+ENV POSTGRES_USER=wild_user
+ENV POSTGRES_PASSWORD=wild_password
+ENV POSTGRES_DB=sessions
+
+COPY init/db/docker-entrypoint-initdb.d/* /docker-entrypoint-initdb.d/
