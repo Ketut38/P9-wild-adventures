@@ -28,6 +28,16 @@
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-config-server</artifactId>
 		</dependency>
+		<!-- Dependencies for zipkin and sleuth -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-sleuth</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-zipkin</artifactId>
+		</dependency>
+		<!-- Dependencies for zipkin and sleuth -->
 	</dependencies>
 
 	<dependencyManagement>

@@ -75,6 +75,17 @@
 			<version>2.0.1.RELEASE</version>
 		</dependency>
 
+		<!-- Dependencies for zipkin and sleuth -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-sleuth</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-zipkin</artifactId>
+		</dependency>
+		<!-- Dependencies for zipkin and sleuth -->
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
@@ -93,8 +104,6 @@
 			<groupId>org.keycloak</groupId>
 			<artifactId>keycloak-spring-boot-starter</artifactId>
 		</dependency>
-
-
 
 
 	</dependencies>
