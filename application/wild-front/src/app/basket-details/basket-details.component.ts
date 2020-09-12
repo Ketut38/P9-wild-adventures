@@ -17,7 +17,7 @@ export class BasketDetailsComponent implements OnInit {
   public selectedSessions : Session[] = [];
   public sessions : Session[] = [];
   public adventure : Adventure;
-  public adv : Adventure;
+  public adv : Adventure[] = [];
   itemDeleted: boolean;
   constructor(private sessionService : SessionService, private adventureService : AdventureService, private router : Router) { }
 
@@ -39,11 +39,13 @@ export class BasketDetailsComponent implements OnInit {
     sessionStorage.removeItem("sessionsIdsStored");
   }
 
-  getAdventureBySession(id : number){
-    this.adventureService.getAdventureById(id).subscribe((res) => {
-      this.adventure = res;
-    })
+  getAdventureBySession(index : number){
+    this.adv = JSON.parse(sessionStorage.getItem("adv"));
+    this.adventure = this.adv[index];
+    sessionStorage.removeItem("adv");
+    return this.adventure;
   }
+  
   deleteItemFromBasket(index:number){
     this.selectedSessions.splice(index, 1);
     this.itemDeleted = true;

@@ -28,13 +28,13 @@
     </div>
 
     <div class="row text-center" style="justify-content: center;">
-      <div *ngFor="let selectedSession of selectedSessions; let i=index" style="width: 700px;">
+      <div *ngFor="let selectedSession of selectedSessions; let index=index" style="width: 700px;">
         <div class="card h-100">
           <div class="card-body">
-            <a routerLink="/adventures/{{adv.id}}" style="font-size: 22px;">{{adv.title}}</a>
+            <a routerLink="/adventures/{{getAdventureBySession(index).id}}" style="font-size: 22px;">{{getAdventureBySession(index).title}}</a>
             <p class="card-text">Début : {{selectedSession.startDate}}</p>
             <p class="card-text">Fin : {{selectedSession.endDate}}</p>
-            <p class="card-text">Localisation : {{adv.location}}</p>
+            <p class="card-text">Localisation : {{getAdventureBySession(index).location}}</p>
             <p class="card-text">Prix : {{selectedSession.price}} euros</p>
             <button class="btn btn-danger"
             style="color: #fff;" (click) = "deleteItemFromBasket(i)">Supprimer du panier</button>
