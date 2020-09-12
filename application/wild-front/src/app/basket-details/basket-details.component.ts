@@ -42,10 +42,9 @@ export class BasketDetailsComponent implements OnInit {
   getAdventureBySession(index : number){
     this.adv = JSON.parse(sessionStorage.getItem("adv"));
     this.adventure = this.adv[index];
-    sessionStorage.removeItem("adv");
     return this.adventure;
   }
-  
+
   deleteItemFromBasket(index:number){
     this.selectedSessions.splice(index, 1);
     this.itemDeleted = true;
