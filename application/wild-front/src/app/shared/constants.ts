@@ -11,6 +11,11 @@ export const apiPrefixOrder = 'http://localhost:9005';
 
 export const keycloakURL = 'http://localhost:8080/auth/realms/WildAdventures';
 
+// tslint:disable-next-line: max-line-length
+export const logoutURI = 'http://localhost:8080/auth/realms/WildAdventures/protocol/openid-connect/logout?redirect_uri=http://localhost:4200/';
+// tslint:disable-next-line: max-line-length
+export const registerURI ='http://localhost:8080/auth/realms/WildAdventures/login-actions/registration?client_id=wildAdventures-frontend&tab_id=ZbJ2FUiHEak';
+
 /**** API Commande ****/
 export const apiOrders = apiPrefixOrder + '/api/orders';
 export const apiCommandeById = apiPrefix + '/';

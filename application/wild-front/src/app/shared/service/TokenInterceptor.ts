@@ -90,26 +90,3 @@ export class KeycloakBearerInterceptor implements HttpInterceptor {
     );
   }
 }
-
-/*@Injectable()
-export class TokenInterceptor implements HttpInterceptor {
-
-  constructor(protected keycloak: KeycloakService) {}
-
-  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    return Observable
-      .fromPromise(this.keycloak.getToken())
-      .mergeMap(
-      token => {
-
-        console.log('adding header to request');
-        console.log(token);
-
-        const headers: HttpHeaders = req.headers;
-        const hedersWithAuthorization: HttpHeaders = headers.append('Authorization', 'bearer ' + token);
-        const requestWithAuthorizationHeader = req.clone({ headers: hedersWithAuthorization });
-        return next.handle(requestWithAuthorizationHeader);
-      }
-    );
-  }
-}*/
