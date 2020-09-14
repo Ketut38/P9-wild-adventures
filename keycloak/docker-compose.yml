@@ -4,7 +4,8 @@ version: '3'
 services:
 
   keycloak:
-      image: ketout38/wild_adv:imagewildadv
+      image: ketout38/keycloak_wildv2:modifiedAccount
+      container_name: keycloak_wildAdv
       
       environment:
         KEYCLOAK_USER: admin

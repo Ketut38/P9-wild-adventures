@@ -21,7 +21,6 @@ export class AuthGuard extends KeycloakAuthGuard {
    return this.keycloak.isLoggedIn;
   }
 
-
   public async isAccessAllowed(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot

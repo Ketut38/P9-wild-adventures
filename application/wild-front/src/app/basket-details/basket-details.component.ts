@@ -4,6 +4,7 @@ import { Session } from '../shared/model/session';import { AdventureService } fr
 import { Adventure } from '../shared/model/adventure';
 import { element } from 'protractor';
 import { Router } from '@angular/router';
+import { WildEventService } from '../services/wild-event.service';
 ;
 
 @Component({
@@ -19,7 +20,7 @@ export class BasketDetailsComponent implements OnInit {
   public adventure : Adventure;
   public adv : Adventure[] = [];
   itemDeleted: boolean;
-  constructor(private sessionService : SessionService, private adventureService : AdventureService, private router : Router) { }
+  constructor(private sessionService : SessionService, private events : WildEventService, private router : Router) { }
 
   ngOnInit() {
     this.getAllSessionsStoredByUser();
@@ -57,5 +58,6 @@ export class BasketDetailsComponent implements OnInit {
       () => {
         this.itemDeleted = false; 
     }, 2000);
+    this.events.publish("wild.item.basket.deleted:refresh");
   }
 }

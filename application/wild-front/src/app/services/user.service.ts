@@ -12,8 +12,6 @@ const headers = new HttpHeaders().set('Content-Type', 'application/json');
 export class UserService {
   constructor(private http: HttpClient) {}
 
-
-
   getUserInfos(): Observable<User> {
     return this.http.get<User>(apiUserSession, {headers});
   }

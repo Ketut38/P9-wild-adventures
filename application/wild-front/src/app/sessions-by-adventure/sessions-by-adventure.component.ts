@@ -15,7 +15,7 @@ import { WildEventService } from '../services/wild-event.service';
 export class SessionsByAdventureComponent implements OnInit {
   
   public sessionsByAdv : Session[] = [];
-  public sessionsIdsStored :  number[] = [1000];
+  public sessionsIdsStored :  number[] = [];
   public advSessionsIds :  any[] = [1000];
   public sessionToStore : Session;
   public addedToBasket : boolean = false;
@@ -59,7 +59,7 @@ export class SessionsByAdventureComponent implements OnInit {
   createOrderDemand(sessionId : number){
     this.sessionsIdsStored = JSON.parse(sessionStorage.getItem("sessionsIdsStored"));
     if(this.sessionsIdsStored === null){
-      this.sessionsIdsStored = [1000];
+      this.sessionsIdsStored = new Array();;
     }
     if(this.sessionsIdsStored != null){
       this.sessionsIdsStored.forEach(id => {
