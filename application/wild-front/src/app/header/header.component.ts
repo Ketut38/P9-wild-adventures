@@ -5,6 +5,7 @@ import { KeycloakService } from 'keycloak-angular';
 import { DOCUMENT } from '@angular/common';
 import { UserService } from '../services/user.service';
 import { User } from '../shared/model/user';
+import { WildEventService } from '../services/wild-event.service';
 
 
 @Component({
@@ -25,11 +26,14 @@ export class HeaderComponent implements OnInit {
   constructor(
     @Inject(DOCUMENT) private document: Document,
     protected readonly keycloak: KeycloakService,
-    private userService: UserService
-  ){}
+    private userService: UserService, private events : WildEventService
+  ){
+    this.events.subscribe("wild.order.demand:refresh", () => {
+      this.getAllOrderDemandsByUser();
+    });
+  }
 
   ngOnInit() {
-    this.getAllOrderDemandsByUser();
     this.checkUserLoggedIn();
   }
 

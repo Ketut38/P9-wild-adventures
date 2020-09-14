@@ -5,6 +5,7 @@ import { SessionService } from '../services/session.service';
 import { ActivatedRoute } from '@angular/router';
 import { Adventure } from '../shared/model/adventure';
 import { AdventureService } from '../services/adventure.service';
+import { WildEventService } from '../services/wild-event.service';
 
 @Component({
   selector: 'app-sessions-by-adventure',
@@ -30,7 +31,7 @@ export class SessionsByAdventureComponent implements OnInit {
                             sessions: [],
                             category_id: null};
 
-  constructor(private sessionService: SessionService, private adventureService : AdventureService, private route: ActivatedRoute) { }
+  constructor(private sessionService: SessionService, private adventureService : AdventureService, private route: ActivatedRoute, private events: WildEventService) { }
 
   ngOnInit() {
     const adventureId = +this.route.snapshot.paramMap.get('id');
@@ -89,6 +90,8 @@ export class SessionsByAdventureComponent implements OnInit {
       () => {
         this.sessionAlreadyExist = false;
       }, 3000);
+    this.events.publish("wild.order.demand:refresh");
+      
   }
 
   changeAddedBasket(){

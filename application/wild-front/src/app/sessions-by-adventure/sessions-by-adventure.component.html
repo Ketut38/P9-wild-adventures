@@ -13,6 +13,10 @@
       </div>
     </header>
 
+    <div class="row text-center" *ngIf="sessionsByAdv.length===0">
+      <p style="font-size: 22px;color: red;">Pas de session disponible pour cette aventure. <span><a routerLink="/adventures" style="font-size: 22px;">Listes des aventures</a></span></p>
+    </div>
+
     <div class="row text-center">
       <div *ngFor="let session of sessionsByAdv" class="col-lg-3 col-md-6 mb-4">
         <div class="card h-100">

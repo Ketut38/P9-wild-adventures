@@ -18,4 +18,8 @@ export class SessionService {
   getSessionById(id: number): Observable<Session> {
     return this.http.get<Session>(apiSession + "/single/" + id) ;
   }
+
+  getAdventureBySessionId(sessionId: number): Observable<Adventure> {
+    return this.http.get<Adventure>(apiSession + "/" + sessionId + "/adventure") ;
+  }
 }

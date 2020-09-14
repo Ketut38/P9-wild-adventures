@@ -68,6 +68,7 @@ export class PaymentComponent implements OnInit {
     this.errorMessage ="Veuillez renseigner les champs"
   }
   });
+  sessionStorage.removeItem("sessionsIdsStored");
   }
   
   chargeCard(token: string, montant: string) {
