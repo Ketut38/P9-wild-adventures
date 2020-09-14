@@ -4,6 +4,7 @@ import { Adventure } from '../shared/model/adventure';
 import { logoutURI, registerURI } from '../shared/constants';
 import { DOCUMENT } from '@angular/common';
 import { UserService } from '../services/user.service';
+import { WildEventService } from '../services/wild-event.service';
 
 @Component({
   selector: 'app-header',
@@ -19,12 +20,15 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
-    private userService: UserService,
-  ) {}
+    private userService: UserService, private events:WildEventService
+  ) {
+    this.events.subscribe("wild.order.demand:refresh", () => {
+      this.getAllOrderDemandsByUser();
+    });
+  }
 
 
   ngOnInit() {
-    this.getAllOrderDemandsByUser();
     this.checkUserLoggedIn();
   }
 
@@ -51,6 +55,6 @@ register(){
 
 getAllOrderDemandsByUser(){
     this.sessionsStored = JSON.parse(sessionStorage.getItem('sessionsIdsStored'));
-  }
+}
 
 }
