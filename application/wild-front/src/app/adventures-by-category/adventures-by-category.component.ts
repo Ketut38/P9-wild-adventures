@@ -18,7 +18,7 @@ export class AdventuresByCategoryComponent implements OnInit {
 
   ngOnInit() {
     const id = +this.route.snapshot.paramMap.get('id');
-    //this.getCategoryById(id);
+    this.getCategoryById(id);
     this.getAventuresByCategory(id);
 
   }
