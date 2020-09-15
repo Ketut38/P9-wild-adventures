@@ -21,6 +21,7 @@ export class SessionsByAdventureComponent implements OnInit {
   public addedToBasket : boolean = false;
   public sessionAlreadyExist : boolean = false;
   public adv : Adventure[] = [];
+  public itemsLoaded : boolean;
 
   public adventure: Adventure = {  id: null, 
                             title: '', 
@@ -31,7 +32,11 @@ export class SessionsByAdventureComponent implements OnInit {
                             sessions: [],
                             category_id: null};
 
-  constructor(private sessionService: SessionService, private adventureService : AdventureService, private route: ActivatedRoute, private events: WildEventService) { }
+  constructor(private sessionService: SessionService, private adventureService : AdventureService, private route: ActivatedRoute, private events: WildEventService) { 
+    setTimeout(() => {
+      this.itemsLoaded = true;
+    }, 3000);
+  }
 
   ngOnInit() {
     const adventureId = +this.route.snapshot.paramMap.get('id');

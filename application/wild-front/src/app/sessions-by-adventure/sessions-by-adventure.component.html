@@ -5,7 +5,7 @@
   <div *ngIf="sessionAlreadyExist" class="alert alert-danger" role="alert" style="margin-top: 2rem;">
     Une erreur est survenue : la session a déjà été ajouté dans le panier.
   </div>
-    <header class="jumbotron my-4" style="padding: 15px;">
+    <header *ngIf="itemsLoaded" class="jumbotron my-4" style="padding: 15px;">
       <div style="display: flex;">
         <div>
             <p style="font-size: 22px;">Liste des sessions de l'aventure : <span><a routerLink="/adventures/{{adventure.id}}" style="font-size: 22px;">{{adventure.title}}</a></span></p>
@@ -13,13 +13,19 @@
       </div>
     </header>
 
-    <div class="row text-center" *ngIf="sessionsByAdv.length===0">
+    <div class="row text-center" *ngIf="itemsLoaded && sessionsByAdv.length===0">
       <p style="font-size: 22px;color: red;">Pas de session disponible pour cette aventure. <span><a routerLink="/adventures" style="font-size: 22px;">Listes des aventures</a></span></p>
     </div>
 
     <div class="row text-center">
+      <div class="shareflow-loading" *ngIf="!itemsLoaded">
+        <div style="margin-top: 175px;margin-left: -14px;background-color: rgba(221,221,221, 0); border:none">
+          <span class="loader" style="margin : 0; width: 3em;height: 3em;"></span>
+          <span style="margin-left : 20px">Chargement ...</span>
+        </div>
+      </div>
       <div *ngFor="let session of sessionsByAdv" class="col-lg-3 col-md-6 mb-4">
-        <div class="card h-100">
+        <div class="card h-100" *ngIf="itemsLoaded">
           <div class="card-body">
             <p class="card-text">Date de début : {{ session.startDate }}</p>
             <p class="card-text">Date de fin : {{ session.endDate }}</p>
