@@ -6,7 +6,7 @@
         </div>
     </div>
     <div class="display:flex;flex-direction: column;">
-        <div *ngFor="let order of userOrders" class="card" style="width: 18rem;display: inline-block;margin: 2rem;">
+        <div *ngFor="let order of userOrders; let index = index" class="card" style="width: 18rem;display: inline-block;margin: 2rem;">
             <div class="card-body">
                 <a href="#" class="card-link" style="font-size: 30px;"></a>
               <h6 class="card-subtitle mb-2 text-muted" style="margin-top: 1rem;">Montant : {{order.amount}} euros</h6>

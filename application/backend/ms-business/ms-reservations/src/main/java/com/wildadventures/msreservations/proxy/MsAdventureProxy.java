@@ -3,6 +3,6 @@ package com.wildadventures.msreservations.proxy;
 import org.springframework.cloud.openfeign.FeignClient;
 
 
-@FeignClient(name = "ms-adventure", url = "localhost:9001")
+@FeignClient(name = "ms-zuul-server")
 public interface MsAdventureProxy {
 }

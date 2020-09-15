@@ -25,6 +25,7 @@ import { PaymentComponent } from './payment/payment.component';
 import { OrdersHistoryComponent } from './orders-history/orders-history.component';
 import { UserComponent } from './user/user.component';
 import { initializer } from 'src/environments/environment';
+import { WildEventService } from './services/wild-event.service';
 
 
 @NgModule({
@@ -56,7 +57,8 @@ import { initializer } from 'src/environments/environment';
     AdventureService,
     CategoryService,
     CommentService,
-    SessionService
+    SessionService,
+    WildEventService
   ],
   bootstrap: [AppComponent]
 })
