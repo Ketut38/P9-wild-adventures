@@ -12,12 +12,7 @@
 
   <!-- Page Features -->
   <div class="row text-center">
-    <div class="shareflow-loading" *ngIf="!itemsLoaded">
-      <div style="margin-top: 175px;margin-left: -14px;background-color: rgba(221,221,221, 0); border:none">
-        <span class="loader" style="margin : 0; width: 3em;height: 3em;"></span>
-        <span style="margin-left : 20px">Chargement ...</span>
-      </div>
-    </div>
+    <app-spinner *ngIf="!itemsLoaded"></app-spinner>
     <div *ngFor="let adv of adventureList" class="col-lg-3 col-md-6 mb-4">
       <div class="card h-100" *ngIf="itemsLoaded">
         <img class="card-img-top" src="{{ adv.image }}" alt="" [ngClass]="{'card-img-top-no-image' : adv.image == null}"/>
