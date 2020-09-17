@@ -16,6 +16,8 @@ export class OrdersHistoryComponent implements OnInit {
   public userOrders : Order[] = [];
   public adventure : Adventure;
   public sessions : Session[];
+  public order : Order;
+  public advHistory : Adventure;
   constructor(private orderService : OrderService, private adventureService : AdventureService, private sessionService:SessionService) { }
 
   ngOnInit() {
@@ -36,6 +38,9 @@ export class OrdersHistoryComponent implements OnInit {
   getUserOrders(userId){
     this.orderService.getAllUserOrders(userId).subscribe((res) =>{
       this.userOrders = res;
+      this.userOrders.forEach(order => {
+        this.getAdvByOrder(order.id);
+      })
       sessionStorage.setItem('user-orders', JSON.stringify(this.userOrders));
       console.log("this.userOrders", this.userOrders);
     })
@@ -53,6 +58,20 @@ export class OrdersHistoryComponent implements OnInit {
       })
     })
   }
-  
 
+  getOrderById(orderId : number){
+    this.orderService.getOderById(orderId).subscribe((res) => {
+      sessionStorage.setItem("orderById", JSON.stringify(res));
+    })
+  }
+
+  getAdvByOrder(orderId : number){
+    this.getOrderById(orderId);
+    this.order = JSON.parse(sessionStorage.getItem("orderById"));
+    this.order.orderSessions.forEach(orderSession => {
+      this.sessionService.getAdventureBySessionId(orderSession.sessionId).subscribe(res => {
+        this.advHistory = res;
+      })
+    })
+  }
 }

@@ -28,7 +28,6 @@ export class BasketDetailsComponent implements OnInit {
 
   getAllSessionsStoredByUser(){
     this.sessionIdsStored = JSON.parse(sessionStorage.getItem("sessionsIdsStored"));
-    this.sessionIdsStored.shift();
     this.sessionIdsStored.forEach(sessionId => {
       this.sessionService.getSessionById(sessionId).subscribe((res) => {
         this.selectedSessions.push(res)

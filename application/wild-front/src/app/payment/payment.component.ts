@@ -25,6 +25,7 @@ export class PaymentComponent implements OnInit {
   public orderSessions : OrderSession[] = [];
   public prix;
   public user : User;
+  public paymantDone: boolean=false;
   public order = {
     id : null,
     userId: null,
@@ -35,7 +36,8 @@ export class PaymentComponent implements OnInit {
   };
 
   constructor(private http: HttpClient, private paymentService : PaymentService,  private sessionService : SessionService,  protected readonly keycloak: KeycloakService,
-    private userService: UserService,  private router: Router, private route: ActivatedRoute) {}
+    private userService: UserService,  private router: Router, private route: ActivatedRoute) {
+    }
 
   ngOnInit() {
     this.orderAmount = +this.route.snapshot.paramMap.get('price');
@@ -116,6 +118,10 @@ createOrder(){
         sessionStorage.setItem('userInfos', JSON.stringify(this.user));
       }
     });
+  }
+  if(this.user === null){
+    this.user = new User();
+    this.user.id = "d42a177e-f6e4-47a0-a1b4-88c17ef7039b";
   }
   this.order.userId = this.user.id;
   this.order.date = new Date();
