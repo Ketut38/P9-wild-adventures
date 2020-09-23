@@ -43,3 +43,13 @@ L'application web permet globalement de:
 
 ### Déploiement
 
+Le tableau suivant résume les microservices avec leur différents ports
+![](fonctionnel/images/appli-ports.png?raw=true)
+
+#### Lancement de l'application
+`cd application/backend/ms-business` et tapez la commande: `docker-compose up`. Une fois que l'appli est lancée vous pouvez accéder à l'interface grace à l'url suivante : [http://localhost:4200](http://localhost:4200)
+
+Pour faire des tests, il faut ajouter les jeux de données dans la base de données. pour ce faire : 
+- `cd database` et tapez la commande: `docker-compose up`.
+
+
