@@ -107,7 +107,7 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
-					<finalName>ms-sessions</finalName>
+					<finalName>ms-session</finalName>
 				</configuration>
 			</plugin>
 		</plugins>

@@ -106,7 +106,7 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
-					<finalName>ms-reservations</finalName>
+					<finalName>ms-orders</finalName>
 				</configuration>
 			</plugin>
 		</plugins>

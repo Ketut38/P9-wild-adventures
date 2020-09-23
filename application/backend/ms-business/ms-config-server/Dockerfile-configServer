@@ -1,5 +1,5 @@
 FROM openjdk:8-jdk-alpine
 
-ADD target/ms-adventure.jar /app.jar
+ADD target/ms-config-server.jar /app.jar
 
 ENTRYPOINT [ "sh", "-c", "java -jar /app.jar" ]
