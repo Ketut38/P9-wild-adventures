@@ -25,6 +25,8 @@ import { PaymentComponent } from './payment/payment.component';
 import { OrdersHistoryComponent } from './orders-history/orders-history.component';
 import { UserComponent } from './user/user.component';
 import { initializer } from 'src/environments/environment';
+import { WildEventService } from './services/wild-event.service';
+import { SpinnerComponent } from './spinner/spinner.component';
 
 
 @NgModule({
@@ -41,7 +43,8 @@ import { initializer } from 'src/environments/environment';
     BasketDetailsComponent,
     PaymentComponent,
     OrdersHistoryComponent,
-    UserComponent
+    UserComponent,
+    SpinnerComponent
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, KeycloakAngularModule],
   providers: [
@@ -56,7 +59,8 @@ import { initializer } from 'src/environments/environment';
     AdventureService,
     CategoryService,
     CommentService,
-    SessionService
+    SessionService,
+    WildEventService
   ],
   bootstrap: [AppComponent]
 })

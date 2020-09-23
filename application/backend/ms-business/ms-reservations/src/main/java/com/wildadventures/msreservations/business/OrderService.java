@@ -39,7 +39,7 @@ public class OrderService {
         orderRepository.deleteById(orderId);
     }
 
-    public List<Order> findByUser(Integer userId){
+    public List<Order> findByUser(String userId){
         List<Order> orders = orderRepository.findByUserId(userId);
         return orders;
     }

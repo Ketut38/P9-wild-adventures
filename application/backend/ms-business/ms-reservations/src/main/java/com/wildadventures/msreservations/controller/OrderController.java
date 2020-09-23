@@ -51,11 +51,11 @@ public class OrderController {
     //Récupère toutes les commandes d'un utlisateur
 
     @GetMapping(value = "/user/{userId}")
-    public List<Order> getAllOrdersByUser(@PathVariable Integer userId){
+    public List<Order> getAllOrdersByUser(@PathVariable String userId){
         log.info("Début méthode : getAllOrdersByUser()");
         List<Order> orders = orderService.findByUser(userId);
         if(orders == null || orders.isEmpty()) {
-            throw  new OrderNotFoundException("Aucune commande enregistrée pour cet utilisateur " + +userId);
+            throw  new OrderNotFoundException("Aucune commande enregistrée pour cet utilisateur " + userId);
         }
         return orders;
     }

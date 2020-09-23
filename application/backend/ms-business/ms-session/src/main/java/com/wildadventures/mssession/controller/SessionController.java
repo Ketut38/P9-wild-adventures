@@ -1,5 +1,6 @@
 package com.wildadventures.mssession.controller;
 
+import com.wildadventures.mssession.bean.AdventureBean;
 import com.wildadventures.mssession.business.SessionService;
 import com.wildadventures.mssession.controller.exceptions.SessionNotFoundException;
 import com.wildadventures.mssession.model.Sessions;
@@ -69,6 +70,19 @@ public class SessionController{
 
         log.info("Session récupérée");
         return new ResponseEntity<>(session.get(), HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/{sessionId}/adventure")
+    public ResponseEntity<AdventureBean> getAdventureBySessionId(@PathVariable Integer sessionId){
+        Optional<AdventureBean> adventure = msAdventureProxy.getOneAdventure(sessionId);
+        if(!adventure.isPresent()){
+            String message = "Aucune aventure de trouver pour cet session id : " + sessionId;
+            log.error(message);
+            throw new SessionNotFoundException(message);
+        }
+
+        log.info("Aventure récupérée");
+        return new ResponseEntity<>(adventure.get(), HttpStatus.OK);
     }
 
 

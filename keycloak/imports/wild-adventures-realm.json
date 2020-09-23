@@ -3,7 +3,7 @@
   "realm": "WildAdventures",
   "displayName": "wild-Adventures",
   "displayNameHtml": "wild-Adventures",
-  "notBefore": 1596382676,
+  "notBefore": 1597490575,
   "revokeRefreshToken": false,
   "refreshTokenMaxReuse": 0,
   "accessTokenLifespan": 300,
@@ -374,6 +374,7 @@
   },
   "groups": [],
   "defaultRoles": [
+    "user",
     "uma_authorization",
     "offline_access"
   ],
@@ -450,7 +451,7 @@
       "clientId": "account",
       "name": "${client_account}",
       "rootUrl": "${authBaseUrl}",
-      "baseUrl": "/realms/WildAdventures/account/",
+      "baseUrl": "http://localhost:8080/auth/realms/WildAdventures/account",
       "surrogateAuthRequired": false,
       "enabled": true,
       "alwaysDisplayInConsole": false,
@@ -461,9 +462,12 @@
         "view-profile"
       ],
       "redirectUris": [
-        "/realms/WildAdventures/account/*"
+        "",
+        "/realms/WildAdventures/account?referrer=account"
       ],
-      "webOrigins": [],
+      "webOrigins": [
+        ""
+      ],
       "notBefore": 0,
       "bearerOnly": false,
       "consentRequired": false,
@@ -474,7 +478,22 @@
       "publicClient": false,
       "frontchannelLogout": false,
       "protocol": "openid-connect",
-      "attributes": {},
+      "attributes": {
+        "saml.assertion.signature": "false",
+        "saml.force.post.binding": "false",
+        "saml.multivalued.roles": "false",
+        "saml.encrypt": "false",
+        "login_theme": "wild-adventures-theme",
+        "saml.server.signature": "false",
+        "saml.server.signature.keyinfo.ext": "false",
+        "exclude.session.state.from.auth.response": "false",
+        "saml_force_name_id_format": "false",
+        "saml.client.signature": "false",
+        "tls.client.certificate.bound.access.tokens": "false",
+        "saml.authnstatement": "false",
+        "display.on.consent.screen": "false",
+        "saml.onetimeuse.condition": "false"
+      },
       "authenticationFlowBindingOverrides": {},
       "fullScopeAllowed": false,
       "nodeReRegistrationTimeout": 0,
@@ -689,7 +708,7 @@
       "clientAuthenticatorType": "client-secret",
       "secret": "**********",
       "redirectUris": [
-        "http://localhost:9002/*"
+        "http://localhost:9003/*"
       ],
       "webOrigins": [],
       "notBefore": 0,
@@ -749,8 +768,8 @@
           "config": {
             "userinfo.token.claim": "true",
             "user.attribute": "phoneNumber",
-            "id.token.claim": "true",
-            "access.token.claim": "true",
+            "id.token.claim": "false",
+            "access.token.claim": "false",
             "claim.name": "phone_number",
             "jsonType.label": "String"
           }
@@ -1030,10 +1049,10 @@
           "consentRequired": false,
           "config": {
             "userinfo.token.claim": "true",
-            "user.attribute": "phone",
+            "user.attribute": "phoneNumber",
             "id.token.claim": "false",
             "access.token.claim": "true",
-            "claim.name": "phone",
+            "claim.name": "phone_number",
             "jsonType.label": "String"
           }
         }
@@ -1563,6 +1582,7 @@
   "smtpServer": {},
   "loginTheme": "wild-adventures-theme",
   "accountTheme": "wild-adventures-theme",
+  "adminTheme": "wild-adventures-theme",
   "eventsEnabled": false,
   "eventsListeners": [
     "jboss-logging"
@@ -2335,7 +2355,8 @@
   "dockerAuthenticationFlow": "docker auth",
   "attributes": {
     "clientSessionIdleTimeout": "0",
-    "clientSessionMaxLifespan": "0"
+    "clientSessionMaxLifespan": "0",
+    "frontendUrl": ""
   },
   "keycloakVersion": "10.0.2",
   "userManagedAccessAllowed": false

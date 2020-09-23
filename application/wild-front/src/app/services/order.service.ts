@@ -10,8 +10,12 @@ import { Observable } from 'rxjs';
 export class OrderService {
   constructor(private http: HttpClient) {}
 
-  getAllUserOrders(userId: number): Observable<Order[]> {
+  getAllUserOrders(userId: string): Observable<Order[]> {
     return this.http.get<Order[]>(apiOrders + '/user/' + userId);
   
+  }
+
+  getOderById(orderId: number): Observable<Order> {
+    return this.http.get<Order>(apiOrders + '/' + orderId);
   }
 }

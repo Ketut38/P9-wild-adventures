@@ -14,5 +14,5 @@ import org.springframework.stereotype.Repository;
 public interface OrderRepository extends JpaRepository<Order, Integer>{
     List<Order> findByDate(Date date);
 
-    List<Order> findByUserId(Integer  userId);
+    List<Order> findByUserId(String  userId);
 }

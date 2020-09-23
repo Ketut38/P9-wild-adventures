@@ -1,11 +1,10 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { Adventure } from '../shared/model/adventure';
-import { AuthGuard} from '../auth.guard';
-import { KeycloakService } from 'keycloak-angular';
+
+import { logoutURI, registerURI } from '../shared/constants';
 import { DOCUMENT } from '@angular/common';
 import { UserService } from '../services/user.service';
-import { User } from '../shared/model/user';
-
+import { WildEventService } from '../services/wild-event.service';
 
 @Component({
   selector: 'app-header',
@@ -16,46 +15,46 @@ export class HeaderComponent implements OnInit {
   public sessionsStored = [];
   public user = {};
   public adv: Adventure;
-  isUserLoggedIn: boolean;
-  private authGuard: AuthGuard;
+  protected isUserLoggedIn: boolean;
   // tslint:disable-next-line: max-line-length
-  logoutURI = 'http://localhost:8080/auth/realms/WildAdventures/protocol/openid-connect/logout?redirect_uri=http://localhost:4200/';
-
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
-    protected readonly keycloak: KeycloakService,
-    private userService: UserService
-  ){}
+    private userService: UserService, private events:WildEventService
+  ) {
+    this.events.subscribe("wild.order.demand:refresh", () => {
+      this.getAllOrderDemandsByUser();
+    });
+  }
+
 
   ngOnInit() {
-    this.getAllOrderDemandsByUser();
     this.checkUserLoggedIn();
   }
 
-  checkUserLoggedIn(): boolean {
+  checkUserLoggedIn() {
     this.userService.getUserInfos().subscribe(res => {
       this.user = res;
+      if (Object.keys(res).length === 0) {
+        this.isUserLoggedIn = false;
+      } else {
+        this.isUserLoggedIn = true;
+      }
     });
-    if (this.user) {
-      this.isUserLoggedIn = true;
-    } else {
-      this.isUserLoggedIn = false;
-    }
     return this.isUserLoggedIn;
   }
 
- /* logout() {
-    this.keycloak.logout();
-    this.router.navigate(['/logout']);
-}*/
-
-public logout() {
-  this.document.location.href = this.logoutURI;
+logout() {
+  sessionStorage.removeItem('userInfos');
+  this.document.location.href = logoutURI;
 }
 
-  getAllOrderDemandsByUser(){
+register(){
+  this.document.location.href = registerURI;
+}
+
+getAllOrderDemandsByUser(){
     this.sessionsStored = JSON.parse(sessionStorage.getItem('sessionsIdsStored'));
-  }
+}
 
 }

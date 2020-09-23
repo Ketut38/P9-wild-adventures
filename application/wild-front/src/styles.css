@@ -3,3 +3,33 @@
 .jumbotron {
     background-color: #fff !important;
   }
+
+  .shareflow-loading {
+    top: 67px;
+    z-index: 0;
+    overflow: hidden;
+    height: calc(100% - 67px);
+    border-radius: 0 0 6px 6px;
+    width: 99%;
+    margin: auto;
+}
+
+.loader {
+    overflow: hidden;
+    background-color: transparent;
+    font-size: 10px;
+    position: relative;
+    text-indent: -9999em;
+    border-top: 0.3em solid rgba(0, 0, 0, 0.3);
+    border-right: 0.3em solid rgba(0, 0, 0, 0.3);
+    border-bottom: 0.3em solid rgba(0, 0, 0, 0.3);
+    border-left: 0.3em solid rgba(206, 76, 80, 0.8);
+    -webkit-animation: load8 1s infinite linear;
+    animation: load8 1s infinite linear;
+    opacity:0.6
+}
+
+.loader,
+.loader:after {
+  border-radius: 50%;
+}

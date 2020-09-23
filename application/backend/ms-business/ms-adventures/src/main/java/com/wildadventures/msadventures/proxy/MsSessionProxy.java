@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import java.util.List;
 import java.util.Optional;
 
-@FeignClient(name = "ms-sessions", url = "localhost:9002")
+@FeignClient(name = "ms-zuul-server")
 public interface MsSessionProxy {
 
     @GetMapping(value = "/api/sessions")
