@@ -1,0 +1,5 @@
+INSERT INTO commentaire(id, adventure_id, contents, created_at, user_id) VALUES (1, 1, 'Commentaire 1 Super aventure ! je recommande !', '2020-01-23', 'a613220b-ba4c-4a89-a6b1-bc14d5bf8440');
+INSERT INTO commentaire(id, adventure_id, contents, created_at, user_id) VALUES (2, 1, 'Commentaire 2 Super aventure ! je recommande !', '2020-01-23', 'a613220b-ba4c-4a89-a6b1-bc14d5bf8440');
+INSERT INTO commentaire(id, adventure_id, contents, created_at, user_id) VALUES (3, 2, 'Commentaire 3 Super aventure ! je recommande !', '2020-01-23', 'a613220b-ba4c-4a89-a6b1-bc14d5bf8440');
+INSERT INTO commentaire(id, adventure_id, contents, created_at, user_id) VALUES (4, 2, 'Commentaire 4 Super aventure ! je recommande !', '2020-01-23', 'a613220b-ba4c-4a89-a6b1-bc14d5bf8440');
+INSERT INTO commentaire(id, adventure_id, contents, created_at, user_id) VALUES (5, 3, 'Commentaire 5 Super aventure ! je recommande !', '2020-01-23', 'a613220b-ba4c-4a89-a6b1-bc14d5bf8440');

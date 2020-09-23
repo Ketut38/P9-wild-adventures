@@ -1,0 +1,20 @@
+
+<div class="container">
+  <header class="jumbotron my-4">
+    <h5 class="section-title h1">Commentaire</h5>
+  </header>
+ <!--formulaire commentaire -->
+<div class="row">
+  <div class="col-sm-8 col-sm-offset-2">
+    <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+      <div class="form-group">
+        <label for="message">
+          Votre commentaire
+        </label>
+        <input type="text" id="message" class="form-control" name="message" ngModel required>
+      </div>
+       
+      <button type="submit" class="btn btn-primary" [disabled]="f.invalid" [routerLink]= "['commentaires']" routerLinkActive="active">Enregistrer</button>
+    </form>
+  </div>
+</div>
