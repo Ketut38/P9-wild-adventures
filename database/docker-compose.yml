@@ -6,7 +6,7 @@ services:
     restart: always
     hostname: 127.0.0.1
     volumes:
-      - ./database/scripts/:/docker-entrypoint-initdb.d/
+      - ./database/:/docker-entrypoint-initdb.d/
     ports:
       - 5432:5432
     environment:
