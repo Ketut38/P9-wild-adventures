@@ -98,6 +98,18 @@
 			<artifactId>spring-cloud-starter-zipkin</artifactId>
 		</dependency>
 		<!-- Dependencies for zipkin and sleuth -->
+
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-ui</artifactId>
+			<version>1.2.32</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-ui</artifactId>
+			<version>1.2.32</version>
+		</dependency>
 	</dependencies>
 
 	<build>
