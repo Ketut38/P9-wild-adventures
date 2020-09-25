@@ -30,7 +30,7 @@ Demarrage de Keycloak 10.0.2 sur le port 8080
 
   Dans le menu de gauche slectionnez User/Add user
   Renseignez les champs que vous jugez utiles cliquez sur save
-  Retrounez dans User/View all users;
+  Retournez dans User/View all users;
   edit le user qui viens d'être crée;
   Onglet credentials : saissisez un mot de passe et désélectionnez la case "Temporary" puis save
   Vous pouvez maintenant acceder aux url securisées comme "profi" et d'autre qui nécéssitent une authentification.
