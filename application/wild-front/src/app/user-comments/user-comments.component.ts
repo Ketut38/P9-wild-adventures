@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommentaireService } from '../services/commentaire.service';
 import { Commentaire } from '../shared/model/commentaire';
+import { Router, ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -12,10 +13,11 @@ export class UserCommentsComponent implements OnInit {
 
   public userCommentaires : Commentaire[] = [];
 
-  constructor(private commentaireService : CommentaireService) { }
+  constructor(private commentaireService : CommentaireService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.getCommentsByUser("943b47b7-f336-4929-b557-7123aed78a96");
+   // this.getCommentsByUser(this.route.snapshot.params['id']);
     let userCommentaires = JSON.parse(sessionStorage.getItem("user-comments"));
   }
 

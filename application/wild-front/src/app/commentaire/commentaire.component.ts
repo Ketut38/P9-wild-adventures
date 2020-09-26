@@ -52,7 +52,7 @@ export class CommentaireComponent implements OnInit {
 
   this.commentaire.date = new Date();
   //this.commentaire.adventureId = this.sessionService.getAdventureBySessionId(this.route.snapshot.params['id']);
-  this.commentaire.adventureId = 2;
+  this.commentaire.adventureId = this.route.snapshot.params['id'];
   this.commentaire.userId = this.route.snapshot.params['userId'];
 
   this.commentaire.contents = message;
