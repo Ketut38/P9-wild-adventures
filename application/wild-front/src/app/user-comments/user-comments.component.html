@@ -1,0 +1,18 @@
+<div class="container">
+    <div class="jumbotron jumbotron-fluid" style="margin-top: 2rem;text-align: center;">
+        <div class="container">
+          <h1 class="display-4">Mes commentaires</h1>
+          <p class="lead">Veuillz trouver l'historique de vos commentaires</p>
+        </div>
+    </div>
+    <div class="display:flex;flex-direction: column;">
+        <div *ngFor="let commentaire of userCommentaires" class="card" style="width: 18rem;display: inline-block;margin: 2rem;">
+            <div class="card-body">
+                <a href="#" class="card-link" style="font-size: 30px;"></a>
+                
+                <p class="card-text">Commentaire : {{commentaire.contents}}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
