@@ -11,7 +11,7 @@ import { UserService } from './services/user.service';
 import { OrderService } from './services/order.service';
 import { AdventureService } from './services/adventure.service';
 import { CategoryService } from './services/category.service';
-import { CommentService } from './services/comment.service';
+import { CommentaireService } from './services/commentaire.service';
 import { SessionService } from './services/session.service';
 import { CategoryComponent } from './category/category.component';
 import { AdventureComponent } from './adventure/adventure.component';
@@ -24,7 +24,12 @@ import { BasketDetailsComponent } from './basket-details/basket-details.componen
 import { PaymentComponent } from './payment/payment.component';
 import { OrdersHistoryComponent } from './orders-history/orders-history.component';
 import { UserComponent } from './user/user.component';
+import { CommentaireComponent } from './commentaire/commentaire.component';
 import { initializer } from 'src/environments/environment';
+import { WildEventService } from './services/wild-event.service';
+import { SpinnerComponent } from './spinner/spinner.component';
+import { UserCommentsComponent } from './user-comments/user-comments.component';
+import { FormsModule }   from '@angular/forms';
 
 
 @NgModule({
@@ -41,9 +46,12 @@ import { initializer } from 'src/environments/environment';
     BasketDetailsComponent,
     PaymentComponent,
     OrdersHistoryComponent,
-    UserComponent
+    UserComponent,
+    SpinnerComponent,
+    CommentaireComponent,
+    UserCommentsComponent
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, KeycloakAngularModule],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule, KeycloakAngularModule, FormsModule],
   providers: [
     {
       provide: APP_INITIALIZER,
@@ -55,8 +63,9 @@ import { initializer } from 'src/environments/environment';
     OrderService,
     AdventureService,
     CategoryService,
-    CommentService,
-    SessionService
+    CommentaireService,
+    SessionService,
+    WildEventService
   ],
   bootstrap: [AppComponent]
 })

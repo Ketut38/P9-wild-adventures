@@ -1,6 +1,6 @@
 <div class="container">
   <!-- Jumbotron Header -->
-  <header class="jumbotron my-4">
+  <header class="jumbotron my-4" *ngIf="itemsLoaded">
     <h3 class="display-3">NOS AVENTURES!</h3>
     <p class="lead">
       Voici la liste de nos avantures. Vous pouvez également consulter le détails de chaque aventure. 
@@ -12,8 +12,9 @@
 
   <!-- Page Features -->
   <div class="row text-center">
+    <app-spinner *ngIf="!itemsLoaded"></app-spinner>
     <div *ngFor="let adv of adventureList" class="col-lg-3 col-md-6 mb-4">
-      <div class="card h-100">
+      <div class="card h-100" *ngIf="itemsLoaded">
         <img class="card-img-top" src="{{ adv.image }}" alt="" [ngClass]="{'card-img-top-no-image' : adv.image == null}"/>
         <div class="card-body">
           <h4 class="card-title">{{ adv.title }}</h4>
@@ -27,7 +28,7 @@
     </div>
   </div>
   <!-- /.row -->
-  <div style="float: right;">
+  <div style="float: right;" *ngIf="itemsLoaded">
     <ul *ngIf="pages" class="nav">
       <li *ngFor="let p of pages; let i=index" class="nav-item" style="padding: 10px;"
       [ngClass]="{'active-index' : currentPage==i}">

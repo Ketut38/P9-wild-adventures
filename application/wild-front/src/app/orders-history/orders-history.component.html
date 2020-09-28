@@ -2,16 +2,24 @@
     <div class="jumbotron jumbotron-fluid" style="margin-top: 2rem;text-align: center;">
         <div class="container">
           <h1 class="display-4">Historique de commandes</h1>
-          <p class="lead">Veuillz trouver l'historique de vos commandes</p>
+          <p class="lead">Veuillez trouver l'historique de vos commandes</p>
         </div>
     </div>
     <div class="display:flex;flex-direction: column;">
-        <div *ngFor="let order of userOrders" class="card" style="width: 18rem;display: inline-block;margin: 2rem;">
+        <div *ngFor="let order of userOrders; let index = index" class="card" style="width: 18rem;display: inline-block;margin: 2rem;">
             <div class="card-body">
+              <div>
+                <a style="font-size: 20px;font-weight: 600;" routerLink="">{{advHistory.title}}</a>
+              </div>
                 <a href="#" class="card-link" style="font-size: 30px;"></a>
               <h6 class="card-subtitle mb-2 text-muted" style="margin-top: 1rem;">Montant : {{order.amount}} euros</h6>
               <p class="card-text">Date de la session : {{order.date}}</p>
             </div>
+            <div class="text-center">
+             <a class="btn btn-primary btn-lg" routerLink="/profil/orders/{{advHistory.id}}/{{order.userId}}/commentaires" (click) = "setCommentaireValues()">Laisser un avis</a>
+             <!-- <a class="btn btn-primary btn-lg" [routerLink]="['commentaires']">Laisser un avis</a> -->
           </div>
+          <br>
+        </div>
     </div>
 </div>

@@ -11,6 +11,8 @@ import { AuthGuard } from './auth.guard';
 import { BasketDetailsComponent } from './basket-details/basket-details.component';
 import { PaymentComponent } from './payment/payment.component';
 import { OrdersHistoryComponent } from './orders-history/orders-history.component';
+import { UserCommentsComponent } from './user-comments/user-comments.component';
+import { CommentaireComponent } from './commentaire/commentaire.component';
 
 
 const externalUrlProvider = new InjectionToken('externalUrlRedirectResolver');
@@ -29,6 +31,9 @@ const routes: Routes = [
   { path: 'payment/commande/:price', component: PaymentComponent, canActivate: [AuthGuard] },
   { path: 'profil', component: UserComponent, canActivate: [AuthGuard]},
   { path: 'profil/orders', component: OrdersHistoryComponent, canActivate: [AuthGuard] },
+  { path: 'profil/commentaires', component: UserCommentsComponent, canActivate: [AuthGuard] },
+ // { path: 'profil/orders/commentaires', component: CommentaireComponent, canActivate: [AuthGuard] },
+  { path: 'profil/orders/:id/:userId/commentaires', component: CommentaireComponent },
   { path: 'externalRedirect', resolve: {url: externalUrlProvider}, component: HomeComponent, canActivate: [AuthGuard] }
 ];
 

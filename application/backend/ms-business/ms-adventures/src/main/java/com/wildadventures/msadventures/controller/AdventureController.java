@@ -51,6 +51,7 @@ public class AdventureController {
     @GetMapping
     public Page<Adventure> getAllAventures(@RequestParam(name = "page", defaultValue = "0") int page,
                                            @RequestParam(name = "size", defaultValue = "12") int size) {
+        log.info("Tentative de récupération de la liste des aventures");
         PageRequest pageRequest = PageRequest.of(page, size);
         Page<Adventure> pageResult = adventureRepository.findAll(pageRequest);
         List<Adventure> adventures = pageResult
@@ -63,7 +64,7 @@ public class AdventureController {
     // Récupère la liste des aventures d'une catégorie, s'il y en existe au moins une
     @GetMapping(value = "/category/{categoryId}")
     public List<Adventure> adventureList(@PathVariable Integer categoryId) {
-        log.info("Tentative de récupération de la liste des aventures");
+        log.info("Tentative de récupération de la liste des aventures par catégorie");
 
         List<Adventure> adventures = new ArrayList<>(0);
 

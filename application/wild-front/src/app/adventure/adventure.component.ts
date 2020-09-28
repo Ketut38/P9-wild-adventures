@@ -17,10 +17,15 @@ export class AdventureComponent implements OnInit {
   public currentPage:number = 0;
   public size:number = 7;
   public callOnInit:boolean = true;
+  public itemsLoaded : boolean;
   constructor(
     private route: ActivatedRoute,
     private adventureService: AdventureService
-  ) {}
+  ) {
+    setTimeout(() => {
+      this.itemsLoaded = true;
+    }, 3000);
+  }
 
   ngOnInit() {
     if(this.callOnInit){

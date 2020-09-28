@@ -5,6 +5,7 @@ import { SessionService } from '../services/session.service';
 import { ActivatedRoute } from '@angular/router';
 import { Adventure } from '../shared/model/adventure';
 import { AdventureService } from '../services/adventure.service';
+import { WildEventService } from '../services/wild-event.service';
 
 @Component({
   selector: 'app-sessions-by-adventure',
@@ -14,12 +15,13 @@ import { AdventureService } from '../services/adventure.service';
 export class SessionsByAdventureComponent implements OnInit {
   
   public sessionsByAdv : Session[] = [];
-  public sessionsIdsStored :  number[] = [1000];
+  public sessionsIdsStored :  number[] = [];
   public advSessionsIds :  any[] = [1000];
   public sessionToStore : Session;
   public addedToBasket : boolean = false;
   public sessionAlreadyExist : boolean = false;
-  public adv : Adventure;
+  public adv : Adventure[] = [];
+  public itemsLoaded : boolean;
 
   public adventure: Adventure = {  id: null, 
                             title: '', 
@@ -30,7 +32,11 @@ export class SessionsByAdventureComponent implements OnInit {
                             sessions: [],
                             category_id: null};
 
-  constructor(private sessionService: SessionService, private adventureService : AdventureService, private route: ActivatedRoute) { }
+  constructor(private sessionService: SessionService, private adventureService : AdventureService, private route: ActivatedRoute, private events: WildEventService) { 
+    setTimeout(() => {
+      this.itemsLoaded = true;
+    }, 3000);
+  }
 
   ngOnInit() {
     const adventureId = +this.route.snapshot.paramMap.get('id');
@@ -58,7 +64,7 @@ export class SessionsByAdventureComponent implements OnInit {
   createOrderDemand(sessionId : number){
     this.sessionsIdsStored = JSON.parse(sessionStorage.getItem("sessionsIdsStored"));
     if(this.sessionsIdsStored === null){
-      this.sessionsIdsStored = [1000];
+      this.sessionsIdsStored = new Array();;
     }
     if(this.sessionsIdsStored != null){
       this.sessionsIdsStored.forEach(id => {
@@ -77,14 +83,20 @@ export class SessionsByAdventureComponent implements OnInit {
       this.changeAddedBasket();
     }
     const advId = +this.route.snapshot.paramMap.get('id');
+    this.adv = JSON.parse(sessionStorage.getItem("adv"));
+    if(this.adv == null){
+      this.adv = new Array<Adventure>();
+    }
     this.adventureService.getAdventureById(advId).subscribe((res)=>{
-      this.adv = res;
+      this.adv.push(res);
       sessionStorage.setItem("adv", JSON.stringify(this.adv));
     })
     setTimeout(
       () => {
         this.sessionAlreadyExist = false;
       }, 3000);
+    this.events.publish("wild.order.demand:refresh");
+      
   }
 
   changeAddedBasket(){
