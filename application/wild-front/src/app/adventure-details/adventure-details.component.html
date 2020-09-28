@@ -21,5 +21,21 @@
       </div>
     </div>
   </header>
-  <br><br><br><br><br><br>
+  
+
+<!------ Liste des commentaires ---------->
+
+
+
+
+<div class="display:flex;flex-direction: column;">
+  <div *ngFor="let commentaire of adventureComments" class="card" style="width: 18rem;display: inline-block;margin: 2rem;">
+      <div class="card-body">
+          <a href="#" class="card-link" style="font-size: 30px;"></a>
+          
+          <p class="card-text">Commentaire : {{commentaire.contents}}</p>
+      </div>
+  </div>
+</div>
+
 </div>

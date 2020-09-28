@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Adventure } from '../shared/model/adventure';
 import { AdventureService } from '../services/adventure.service';
+import { SessionService } from '../services/session.service';
+import { Order } from '../shared/model/order';
+import { OrderService } from '../services/order.service';
 
 @Component({
   selector: 'app-home',
@@ -17,7 +20,8 @@ export class HomeComponent implements OnInit {
   public totalPages : number;
   public pages : Array<number>;
   constructor(
-    private adventureService: AdventureService
+    private adventureService: AdventureService, private sessionService : SessionService, 
+    private orderService: OrderService
   ) {}
 
   ngOnInit() {

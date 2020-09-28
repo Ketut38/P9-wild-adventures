@@ -1,24 +1,18 @@
 package com.wildadventures.msusers.controller;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.keycloak.KeycloakPrincipal;
+import org.keycloak.KeycloakSecurityContext;
+import org.keycloak.representations.AccessToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import org.keycloak.KeycloakPrincipal;
-import org.keycloak.KeycloakSecurityContext;
-import org.keycloak.representations.IDToken;
-import org.keycloak.representations.AccessToken;
-import org.keycloak.representations.UserInfo;
 
 import com.wildadventures.msusers.model.User;
 
@@ -51,11 +45,7 @@ public class UserController {
 		
 		return user;
 		
-		
 	}
 
-	@GetMapping(value = "/public", produces = MediaType.APPLICATION_JSON_VALUE)
-	public void logout() throws ServletException{
-		request.logout();
-	}
+
 }

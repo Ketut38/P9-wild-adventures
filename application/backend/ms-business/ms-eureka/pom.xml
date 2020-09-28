@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.wildadventures</groupId>
 	<artifactId>ms-eureka</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0-SNAPSHOT</version>
 	<name>ms-eureka</name>
 	<description>Eureka Server</description>
 
@@ -47,6 +47,9 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<finalName>ms-eureka</finalName>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>

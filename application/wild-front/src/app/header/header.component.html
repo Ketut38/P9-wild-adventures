@@ -36,16 +36,14 @@
     <div class="navbar-collapse navbar-nav navbar-right" id="collapsibleNavbar">
       <ul class="navbar-nav ml-auto navList">
         <li class="nav-item" *ngIf="isUserLoggedIn"><a class="nav-link" (click)="logout()" >Déconnexion</a></li>
+        
         <li class="nav-item">
-          <a class="nav-link" *ngIf="!isUserLoggedIn">Connexion</a>
+          <a class="nav-link" *ngIf="!isUserLoggedIn" (click)="register()">Inscription</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" *ngIf="!isUserLoggedIn">Inscription</a>
-        </li>
-        <li class="nav-item">
-          <a class="btn btn-success" routerLink="basket-details" style="color: white;font-size: 12px;" *ngIf="sessionsStored != undefined && sessionsStored.length > 1">
+          <a class="btn btn-success" routerLink="basket-details" style="color: white;font-size: 12px;" *ngIf="sessionsStored != undefined && sessionsStored.length > 0">
             Details panier 
-            <span class="badge badge-light">{{sessionsStored.length - 1}}</span>
+            <span class="badge badge-light">{{sessionsStored.length}}</span>
           </a>
         </li>
       </ul>

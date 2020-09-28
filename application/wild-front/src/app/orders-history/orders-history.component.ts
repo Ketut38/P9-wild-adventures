@@ -5,6 +5,8 @@ import { AdventureService } from '../services/adventure.service';
 import { Adventure } from '../shared/model/adventure';
 import { SessionService } from '../services/session.service';
 import { Session } from '../shared/model/session';
+import { User } from '../shared/model/user';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-orders-history',
@@ -15,19 +17,38 @@ export class OrdersHistoryComponent implements OnInit {
 
   public userOrders : Order[] = [];
   public adventure : Adventure;
+  public userInfos : User;
   public sessions : Session[];
-  constructor(private orderService : OrderService, private adventureService : AdventureService, private sessionService:SessionService) { }
+  public order : Order;
+  public advHistory : Adventure;
+  constructor(private orderService : OrderService, private adventureService : AdventureService, private sessionService:SessionService, private userService: UserService) { }
 
   ngOnInit() {
-    this.getUserOrders("8ee2ac7e-f30e-4671-82ce-eee213d47196");
+    this.userInfos = JSON.parse(sessionStorage.getItem("userInfos"));
+    if(this.userInfos === undefined || this.userInfos === null){
+      this.userInfos = JSON.parse(sessionStorage.getItem("user-connected"));
+    }
+    if(this.userInfos === undefined || this.userInfos === null){
+      this.getConnectedUser();
+      this.userInfos = JSON.parse(sessionStorage.getItem("user-infos-for-history"));
+    }
+    this.getUserOrders(this.userInfos.id);
     let userOrders = JSON.parse(sessionStorage.getItem("user-orders"));
     this.getUserOrderSession(userOrders);
     let userOrdersSession = JSON.parse(sessionStorage.getItem("user-order-sessions"));
     this.getAdventureBySession(userOrdersSession);
   }
+
+  getConnectedUser(){
+    this.userService.getUserInfos().subscribe((res) => {
+      sessionStorage.setItem('user-infos-for-history', JSON.stringify(res));
+    })
+  }
+
   getAdventureBySession(userOrdersSession:Session[]) {
     userOrdersSession.forEach(userSession => {
       this.adventureService.getAdventureById(userSession.adventureId).subscribe((res) =>{
+        console.log("this.adventureHistory", res);
         this.adventure = res;
       })
     })
@@ -36,6 +57,9 @@ export class OrdersHistoryComponent implements OnInit {
   getUserOrders(userId){
     this.orderService.getAllUserOrders(userId).subscribe((res) =>{
       this.userOrders = res;
+      this.userOrders.forEach(order => {
+        this.getAdvByOrder(order.id);
+      })
       sessionStorage.setItem('user-orders', JSON.stringify(this.userOrders));
       console.log("this.userOrders", this.userOrders);
     })
@@ -53,6 +77,20 @@ export class OrdersHistoryComponent implements OnInit {
       })
     })
   }
-  
 
+  getOrderById(orderId : number){
+    this.orderService.getOderById(orderId).subscribe((res) => {
+      sessionStorage.setItem("orderById", JSON.stringify(res));
+    })
+  }
+
+  getAdvByOrder(orderId : number){
+    this.getOrderById(orderId);
+    this.order = JSON.parse(sessionStorage.getItem("orderById"));
+    this.order.orderSessions.forEach(orderSession => {
+      this.sessionService.getAdventureBySessionId(orderSession.sessionId).subscribe(res => {
+        this.advHistory = res;
+      })
+    })
+  }
 }
