@@ -34,7 +34,7 @@ export class UserCommentsComponent implements OnInit {
     this.userInfos = JSON.parse(sessionStorage.getItem("userInfos"));
     if(this.userInfos === undefined || this.userInfos === null){
       this.getConnectedUser();
-      this.userInfos = JSON.parse(sessionStorage.getItem("user-infos-for-commenthistory"));
+      this.userInfos = JSON.parse(sessionStorage.getItem("user-infos-for-history"));
     }
     this.getCommentsByUser(this.userInfos.id);
     let userOrders = JSON.parse(sessionStorage.getItem("user-orders"));
@@ -43,7 +43,7 @@ export class UserCommentsComponent implements OnInit {
 
   getConnectedUser(){
     this.userService.getUserInfos().subscribe((res) => {
-      sessionStorage.setItem('user-infos-for-commenthistory', JSON.stringify(res));
+      sessionStorage.setItem('user-infos-for-history', JSON.stringify(res));
     })
   }
 
