@@ -26,6 +26,9 @@ export class OrdersHistoryComponent implements OnInit {
   ngOnInit() {
     this.userInfos = JSON.parse(sessionStorage.getItem("userInfos"));
     if(this.userInfos === undefined || this.userInfos === null){
+      this.userInfos = JSON.parse(sessionStorage.getItem("user-connected"));
+    }
+    if(this.userInfos === undefined || this.userInfos === null){
       this.getConnectedUser();
       this.userInfos = JSON.parse(sessionStorage.getItem("user-infos-for-history"));
     }
