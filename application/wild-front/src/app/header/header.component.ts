@@ -1,10 +1,11 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { Adventure } from '../shared/model/adventure';
 
-import { logoutURI, registerURI } from '../shared/constants';
+import { logoutURI, registerURI, homeURI } from '../shared/constants';
 import { DOCUMENT } from '@angular/common';
 import { UserService } from '../services/user.service';
 import { WildEventService } from '../services/wild-event.service';
+import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
 
 @Component({
   selector: 'app-header',
@@ -20,13 +21,13 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
-    private userService: UserService, private events:WildEventService
+    private userService: UserService, private events: WildEventService,
+    private keycloakService: KeycloakService
   ) {
     this.events.subscribe("wild.order.demand:refresh", () => {
       this.getAllOrderDemandsByUser();
     });
   }
-
 
   ngOnInit() {
     this.checkUserLoggedIn();
@@ -44,10 +45,10 @@ export class HeaderComponent implements OnInit {
     return this.isUserLoggedIn;
   }
 
-logout() {
-  sessionStorage.removeItem('userInfos');
-  this.document.location.href = logoutURI;
-}
+  public async logout() {
+  await this.keycloakService.logout(homeURI);
+  }
+
 
 register(){
   this.document.location.href = registerURI;

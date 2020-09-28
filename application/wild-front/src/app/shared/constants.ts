@@ -1,4 +1,5 @@
 // API Services
+export const homeURI = 'http://localhost:4200/';
 
 export const apiPrefix = 'http://localhost:9001';
 export const apiUser = 'http://localhost:9003';
