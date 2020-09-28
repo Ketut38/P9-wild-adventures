@@ -5,6 +5,7 @@ import { AdventureService } from '../services/adventure.service';
 import { Adventure } from '../shared/model/adventure';
 import { SessionService } from '../services/session.service';
 import { Session } from '../shared/model/session';
+import { User } from '../shared/model/user';
 
 @Component({
   selector: 'app-orders-history',
@@ -15,13 +16,15 @@ export class OrdersHistoryComponent implements OnInit {
 
   public userOrders : Order[] = [];
   public adventure : Adventure;
+  public userInfos : User;
   public sessions : Session[];
   public order : Order;
   public advHistory : Adventure;
   constructor(private orderService : OrderService, private adventureService : AdventureService, private sessionService:SessionService) { }
 
   ngOnInit() {
-    this.getUserOrders("8ee2ac7e-f30e-4671-82ce-eee213d47196");
+    this.userInfos = JSON.parse(sessionStorage.getItem("user-connected"));
+    this.getUserOrders(this.userInfos.id);
     let userOrders = JSON.parse(sessionStorage.getItem("user-orders"));
     this.getUserOrderSession(userOrders);
     let userOrdersSession = JSON.parse(sessionStorage.getItem("user-order-sessions"));
@@ -30,6 +33,7 @@ export class OrdersHistoryComponent implements OnInit {
   getAdventureBySession(userOrdersSession:Session[]) {
     userOrdersSession.forEach(userSession => {
       this.adventureService.getAdventureById(userSession.adventureId).subscribe((res) =>{
+        console.log("this.adventureHistory", res);
         this.adventure = res;
       })
     })

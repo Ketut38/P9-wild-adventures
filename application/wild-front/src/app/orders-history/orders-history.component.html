@@ -14,7 +14,6 @@
                 <a href="#" class="card-link" style="font-size: 30px;"></a>
               <h6 class="card-subtitle mb-2 text-muted" style="margin-top: 1rem;">Montant : {{order.amount}} euros</h6>
               <p class="card-text">Date de la session : {{order.date}}</p>
-              <p class="card-text">Id commande : {{order.id}}</p>
             </div>
             <div class="text-center">
              <a class="btn btn-primary btn-lg" routerLink="/profil/orders/{{order.id}}/{{order.userId}}/commentaires" (click) = "setCommentaireValues()">Laisser un avis</a>

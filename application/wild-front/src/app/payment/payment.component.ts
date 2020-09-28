@@ -111,45 +111,39 @@ createOrder(){
   this.prix = +this.route.snapshot.paramMap.get('price');
   let sessionIdsStored = JSON.parse(sessionStorage.getItem("sessionsIdsStoredForOrders")); 
   this.user = JSON.parse(sessionStorage.getItem("userInfos"));
-  if (!this.user) {
-    this.userService.getUserInfos().subscribe(res => {
-      this.user = res;
-      if(this.user != undefined){
-        sessionStorage.setItem('userInfos', JSON.stringify(this.user));
-      }
-    });
-  }
-  if(this.user === null){
-    this.user = new User();
-    this.user.id = "d42a177e-f6e4-47a0-a1b4-88c17ef7039b";
-  }
-  this.order.userId = this.user.id;
-  this.order.date = new Date();
-  this.order.isPaid = false;
-  this.orderSession = new OrderSession();
-  sessionIdsStored.forEach(id => {
-    this.orderSession.sessionId = id;
-    this.orderSession.orderId = null;
-    this.orderSessions.push(this.orderSession)
-  });
-  this.order.orderSessions = this.orderSessions;
-  this.order.isPaid = true;
-  this.order.amount = this.orderAmount;
-  this.paymentService.saveOrder(this.order).subscribe((res) => {
-    this.createdOrder = res;
-    if(this.createdOrder.id != null){
-      this.paymentSuccess = true;
-      setTimeout(
-        () => {
-          this.paymentSuccess = false;
-          this.router.navigate([""]);
-      }, 5000);
-    }else{
-      this.paymentError = true;
-      setTimeout(
-        () => {
-          this.paymentError = false;
-      }, 5000);
+  this.userService.getUserInfos().subscribe(res => {
+    this.user = res;
+    if(this.user != undefined){
+      sessionStorage.setItem('user-connected', JSON.stringify(this.user));
+      this.order.userId = this.user.id;
+      this.order.date = new Date();
+      this.order.isPaid = false;
+      this.orderSession = new OrderSession();
+      sessionIdsStored.forEach(id => {
+        this.orderSession.sessionId = id;
+        this.orderSession.orderId = null;
+        this.orderSessions.push(this.orderSession)
+      });
+      this.order.orderSessions = this.orderSessions;
+      this.order.isPaid = true;
+      this.order.amount = this.orderAmount;
+      this.paymentService.saveOrder(this.order).subscribe((res) => {
+        this.createdOrder = res;
+        if(this.createdOrder.id != null){
+          this.paymentSuccess = true;
+          setTimeout(
+            () => {
+              this.paymentSuccess = false;
+              this.router.navigate([""]);
+          }, 5000);
+        }else{
+          this.paymentError = true;
+          setTimeout(
+            () => {
+              this.paymentError = false;
+          }, 5000);
+        }
+      });
     }
   });
 }
