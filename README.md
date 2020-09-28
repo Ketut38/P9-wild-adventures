@@ -53,3 +53,36 @@ Pour faire des tests, il faut ajouter les jeux de données dans la base de donn�
 - `cd database` et tapez la commande: `docker-compose up`.
 
 
+### Lancement mannuel 
+Avant de lancer les microservices : 
+- Créer une base de données postgres : wild-adv (username : postgres, password : postgres).
+
+Nous avons aussi créé des schéma en fonction des microservices. Il vous sera donc nécessaire de créer ces schémas en local : 
+- waadventure
+- wasession
+- waorder
+
+Avant de lancer les microservices : 
+`cd keycloak` puis `docker-compose up`
+
+Ensuite : 
+`se mettre sur le microservice correspondant puis cd target/` et lancer les microservices dans l'ordre suivante : 
+- java -jar ms-config-server.jar
+- java -jar ms-eureka.jar
+- java -jar zipkin-server.jar
+- java -jar ms-adventure.jar
+- java -jar ms-session.jar
+- java -jar ms-orders.jar
+- java -jar ms-payment.jar
+- java -jar ms-user.jar
+- java -jar ms-comments.jar
+
+Pour lancer le front : 
+`cd application/backend/wild-front` puis `ng serve`
+
+[http://localhost:4200](http://localhost:4200)
+
+Pour tester : 
+veuillez exécuter les jeux de données du dossier scripts dans votre base de données.
+
+
