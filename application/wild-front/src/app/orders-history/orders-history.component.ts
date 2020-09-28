@@ -6,6 +6,7 @@ import { Adventure } from '../shared/model/adventure';
 import { SessionService } from '../services/session.service';
 import { Session } from '../shared/model/session';
 import { User } from '../shared/model/user';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-orders-history',
@@ -20,12 +21,13 @@ export class OrdersHistoryComponent implements OnInit {
   public sessions : Session[];
   public order : Order;
   public advHistory : Adventure;
-  constructor(private orderService : OrderService, private adventureService : AdventureService, private sessionService:SessionService) { }
+  constructor(private orderService : OrderService, private adventureService : AdventureService, private sessionService:SessionService, private userService: UserService) { }
 
   ngOnInit() {
     this.userInfos = JSON.parse(sessionStorage.getItem("userInfos"));
     if(this.userInfos === undefined || this.userInfos === null){
-      this.userInfos = JSON.parse(sessionStorage.getItem("user-connected"));
+      this.getConnectedUser();
+      this.userInfos = JSON.parse(sessionStorage.getItem("user-infos-for-history"));
     }
     this.getUserOrders(this.userInfos.id);
     let userOrders = JSON.parse(sessionStorage.getItem("user-orders"));
@@ -33,6 +35,13 @@ export class OrdersHistoryComponent implements OnInit {
     let userOrdersSession = JSON.parse(sessionStorage.getItem("user-order-sessions"));
     this.getAdventureBySession(userOrdersSession);
   }
+
+  getConnectedUser(){
+    this.userService.getUserInfos().subscribe((res) => {
+      sessionStorage.setItem('user-infos-for-history', JSON.stringify(res));
+    })
+  }
+
   getAdventureBySession(userOrdersSession:Session[]) {
     userOrdersSession.forEach(userSession => {
       this.adventureService.getAdventureById(userSession.adventureId).subscribe((res) =>{
