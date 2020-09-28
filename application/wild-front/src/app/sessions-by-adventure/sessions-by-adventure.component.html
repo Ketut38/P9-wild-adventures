@@ -22,6 +22,7 @@
       <div *ngFor="let session of sessionsByAdv" class="col-lg-3 col-md-6 mb-4">
         <div class="card h-100" *ngIf="itemsLoaded">
           <div class="card-body">
+            <p class="card-text">Prix : {{ session.price }} euros</p>
             <p class="card-text">Date de début : {{ session.startDate }}</p>
             <p class="card-text">Date de fin : {{ session.endDate }}</p>
           </div>

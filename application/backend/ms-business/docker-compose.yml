@@ -1,0 +1,182 @@
+version: '3.7'
+networks:
+    wild-adventure-network:
+    
+services:
+    config-server:
+      container_name: config-server
+      build:
+          context: ms-config-server
+          dockerfile: Dockerfile-configServer
+      image: config-server:latest
+      expose:
+        - 9101
+      ports:
+        - 9101:9101
+      networks:
+        - wild-adventure-network
+            
+    eureka-server:
+      container_name: eureka-server
+      build:
+          context: ms-eureka
+          dockerfile: Dockerfile-eureka
+      image: eureka-server:latest
+      expose:
+        - 9102
+      ports:
+        - 9102:9102
+      networks:
+        - wild-adventure-network 
+      depends_on:
+        - config-server
+
+    Zuul-Server: 
+      container_name: Zuul-Server
+      build:
+          context: zuul-server
+          dockerfile: Dockerfile-zuul
+      image: zuulserver:latest
+      environment:
+        - CORS_ALLOW_CREDENTIALS=true
+        - CORS_ALLOWED_HEADERS=*
+        - CORS_ALLOWED_METHODS=*
+        - CORS_ALLOWED_ORIGINS=*
+        - CORS_EXPOSED_HEADERS=Authorization,x-xsrf-token,Access-Control-Allow-Headers,Origin,Accept,X-Requested-With,Content-Type,Access-Control-Request-Method,Set-Cookie
+        - CORS_MAX_AGE=1800
+      expose:
+        - 8000
+      ports:
+        - 8000:8000
+      networks:
+        - wild-adventure-network
+      links:
+        - eureka-server:eureka-server
+        - config-server:config-server
+      depends_on:
+        - config-server   
+                
+    admin-server:
+      container_name: admin-server
+      build:
+          context: admin-server
+          dockerfile: Dockerfile-admin
+      image: admin-server:latest
+      expose:
+        - 9103
+      ports:
+        - 9103:9103
+      networks:
+        - wild-adventure-network 
+      depends_on:
+        - config-server
+          
+    zipkin-server:
+      container_name: zipkin-server
+      build:
+          context: zipkin
+          dockerfile: Dockerfile-zipkin
+      image: zipkin-server:latest
+      networks:
+          - wild-adventure-network   
+
+    keycloak:
+      image: ketout38/keycloak_wildv2:modifiedAccount
+      container_name: keycloak_wildAdv
+      environment:
+        KEYCLOAK_USER: admin
+        KEYCLOAK_PASSWORD: admin 
+      volumes:
+          - ./imports:/opt/jboss/keycloak/imports   
+      command: 
+      - '-b 0.0.0.0' 
+      - '-Dkeycloak.import=/opt/jboss/keycloak/imports/wild-adventures-realm.json'
+      ports:
+        - 8080:8080 
+      
+    ms-users:
+      container_name: ms-users
+      build:
+          context: ms-users
+          dockerfile: Dockerfile-users
+      image: ms-users:latest
+      networks:
+        - wild-adventure-network
+      depends_on:
+        - config-server
+        - eureka-server
+        - zipkin-server    
+            
+    ms-adventures:
+      container_name: ms-adventures
+      build:
+          context: ms-adventures
+          dockerfile: Dockerfile-adventure
+      image: ms-adventures:latest
+      networks:
+        - wild-adventure-network
+      depends_on:
+        - config-server
+        - eureka-server
+        - zipkin-server  
+
+    ms-session:
+      container_name: ms-session
+      build:
+          context: ms-session
+          dockerfile: Dockerfile-session
+      image: ms-session:latest
+      networks:
+        - wild-adventure-network
+      depends_on:
+        - config-server
+        - eureka-server
+        - zipkin-server     
+       
+    # ms-comment:
+    #   container_name: ms-comment
+    #   build:
+    #       context: ms-comment
+    #       dockerfile: Dockerfile-comment
+    #   image: ms-comment:latest
+    #   networks:
+    #     - wild-adventure-network
+    #   depends_on:
+    #     - config-server
+    #     - eureka-server
+    #     - zipkin-server
+        
+          
+    ms-order:
+      container_name: ms-order
+      build:
+          context: ms-reservations
+          dockerfile: Dockerfile-orders
+      image: ms-order:latest
+
+      networks:
+        - wild-adventure-network
+      depends_on:
+        - config-server
+        - eureka-server
+        - zipkin-server
+      
+    ms-payment:
+      container_name: ms-payment
+      build:
+          context: ms-payment
+          dockerfile: Dockerfile-payment
+      image: ms-payment:latest
+      networks:
+        - wild-adventure-network
+      depends_on:
+        - config-server  
+
+    # wild-front:
+    #   container_name: wild-front
+    #   build:
+    #       context: wild-front
+    #       dockerfile: Dockerfile-front
+    #   image: wild-front-front:latest
+    #   ports:
+    #     - 4200:4200        
