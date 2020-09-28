@@ -23,7 +23,10 @@ export class OrdersHistoryComponent implements OnInit {
   constructor(private orderService : OrderService, private adventureService : AdventureService, private sessionService:SessionService) { }
 
   ngOnInit() {
-    this.userInfos = JSON.parse(sessionStorage.getItem("user-connected"));
+    this.userInfos = JSON.parse(sessionStorage.getItem("userInfos"));
+    if(this.userInfos === undefined || this.userInfos === null){
+      this.userInfos = JSON.parse(sessionStorage.getItem("user-connected"));
+    }
     this.getUserOrders(this.userInfos.id);
     let userOrders = JSON.parse(sessionStorage.getItem("user-orders"));
     this.getUserOrderSession(userOrders);
